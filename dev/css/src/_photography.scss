@@ -1,23 +1,13 @@
 /**
  * Photography Grid
  */
-.col-5 {
-	-webkit-columns: 100px 4;
-	-moz-columns: 100px 4;
-	columns: 100px 4;
-	-webkit-column-gap: 16px;
-	-mo-column-gap: 16px;
-	column-gap: 16px;
+.col {
+	border: 1px solid red;
+
+	display: inline-block;
 	padding-right: 10px;
 
-	> .photoWall-container {
-		width: 100%;
-		padding: 0;
-		display: block;
-		margin-bottom: 10px;
-
-		> img {
-			max-width: 100%;
-		}
+	img {
+		width: 20%;
 	}
 }
