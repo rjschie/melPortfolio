@@ -14,3 +14,7 @@
 Route::get('/', function() {
 	return 'Functioning';
 });
+
+Route::resource('galleries', 'GalleryController',
+	['only' => ['index', 'show', 'store', 'update', 'destroy']
+	]);
