@@ -1,0 +1,3 @@
+sed -E 's/"version"\:\ "[0-9]+\.[0-9]+"/"version"\:\ "'$1'"/g' package.json > package.json.tmp && mv package.json.tmp package.json
+sed -E 's/"version"\:\ "[0-9]+\.[0-9]+"/"version"\:\ "'$1'"/g' bower.json > bower.json.tmp && mv bower.json.tmp bower.json
+sed -E 's/[0-9]+\.[0-9]+/'$1'/g' VERSION > VERSION.tmp && mv VERSION.tmp VERSION

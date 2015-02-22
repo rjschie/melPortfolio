@@ -1,0 +1,157 @@
+/**
+ * Font Faces
+ */
+@font-face {
+  font-family: "univers";
+  src: url("../assets/univers/UniversLTStd-LightCn.otf");
+  font-weight: normal; }
+
+@font-face {
+  font-family: "univers";
+  src: url("../assets/univers/UniversLTStd-BoldCn.otf");
+  font-weight: bold; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+
+* {
+  box-sizing: border-box; }
+
+.bold {
+  font-weight: bold; }
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  font-family: "univers", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: .07em; }
+
+/**
+ * Side Menu
+ */
+aside {
+  position: fixed;
+  z-index: 1000;
+  top: 0px;
+  left: 25px;
+  padding: 20px;
+  height: 100%;
+  width: 240px;
+  letter-spacing: .1em;
+  line-height: 2.4em;
+  background-color: rgba(255, 255, 255, 0.9); }
+  aside a:hover {
+    font-weight: bold; }
+  aside h1 {
+    padding-left: 20px;
+    font-weight: normal;
+    font-size: 1.3rem;
+    letter-spacing: .2em; }
+    aside h1 a:hover {
+      font-weight: normal; }
+  aside ul {
+    padding-left: 20px;
+    list-style: none; }
+  aside li {
+    position: relative; }
+    aside li.more::before {
+      content: "+";
+      position: absolute;
+      top: -2px;
+      left: -22px; }
+  aside ul ul {
+    font-size: 0.7rem;
+    margin: 0 0 15px 0;
+    padding: 0 0 0 12px;
+    line-height: 2em;
+    letter-spacing: 0.17em; }
+    aside ul ul li {
+      margin: 0;
+      padding: 0; }
+  @media screen {
+    @media (max-width: 760px) {
+      aside {
+        display: none; } } }
+
+/**
+ * Design Grid
+ */
+.content {
+  margin: 20px auto 50px 290px;
+  max-width: 980px; }
+  .content .container {
+    display: inline-block;
+    padding: 12px;
+    margin-bottom: 20px;
+    width: 32%;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    font-size: .8rem; }
+    .content .container img {
+      width: 100%; }
+    .content .container p {
+      margin: 0.4em 0 0 0; }
+    @media screen {
+      @media (max-width: 1000px) {
+        .content .container {
+          width: 49%; } }
+      @media (max-width: 510px) {
+        .content .container {
+          width: 100%; } } }
+  .content a.container img:hover {
+    opacity: .84; }
+  @media screen and (max-width: 760px) {
+    .content {
+      margin-left: auto; } }
+
+/**
+ * Gallery View
+ */
+.content-full {
+  margin-left: 290px;
+  margin-top: 70px;
+  white-space: nowrap; }
+  .content-full .container {
+    display: inline-block;
+    margin: 0 1px;
+    padding: 0;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    font-size: .8rem; }
+    .content-full .container:last-of-type {
+      margin-right: 50px; }
+    .content-full .container.video {
+      margin-top: 30px; }
+    .content-full .container img {
+      display: inline;
+      height: 600px;
+      padding: 0;
+      margin: 0; }
+    .content-full .container video {
+      height: 500px; }
+    .content-full .container video::-webkit-media-controls-fullscreen-button {
+      display: none; }
+
+/**
+ * Photography Grid
+ */
+.col-5 {
+  -webkit-columns: 100px 4;
+  -moz-columns: 100px 4;
+  columns: 100px 4;
+  -webkit-column-gap: 16px;
+  -mo-column-gap: 16px;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+  padding-right: 10px; }
+  .col-5 > .photoWall-container {
+    width: 100%;
+    padding: 0;
+    display: block;
+    margin-bottom: 10px; }
+    .col-5 > .photoWall-container > img {
+      max-width: 100%; }

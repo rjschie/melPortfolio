@@ -1,0 +1,45 @@
+/**
+ * Design Grid
+ */
+.content {
+	margin: 20px auto 50px 290px;
+	max-width: 980px;
+
+	.container {
+		display: inline-block;
+		padding: 12px;
+		margin-bottom: 20px;
+		width: 32%;
+		text-decoration: none;
+		color: inherit;
+		text-align: center;
+		font-size: .8rem;
+
+		img {
+			width: 100%;
+		}
+
+		p {
+			margin: 0.4em 0 0 0;
+		}
+
+		@media screen {
+			@media (max-width: $break-lg) {
+				width: 49%;
+			}
+			@media (max-width: $break-sm) {
+				width: 100%;
+			}
+		}
+	}
+
+	a.container {
+		img:hover {
+			opacity: .84;
+		}
+	}
+
+	@media screen and (max-width: $break-md) {
+		margin-left: auto;
+	}
+}

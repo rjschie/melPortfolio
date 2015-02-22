@@ -1,0 +1,83 @@
+#!/bin/bash
+
+red='\033[1;31m'
+green='\033[1;32m'
+cyan='\033[1;36m'
+NC='\033[0m' # No Color
+
+####
+## Install Node Modules for Gulp
+####
+if [ ! -d "node_modules" ]; then
+	npm link del
+	npm link gulp
+	npm link gulp-autoprefixer
+	npm link gulp-cdnizer
+	npm link gulp-imagemin
+	npm link gulp-jshint
+	npm link gulp-livereload
+	npm link gulp-load-plugins
+	npm link gulp-minify-css
+	npm link gulp-minify-html
+	npm link gulp-replace
+	npm link gulp-rev
+	npm link gulp-sass
+	npm link gulp-svgmin
+	npm link gulp-uglify
+	npm link gulp-usemin
+	npm link gulp-util
+	npm link svgo
+
+	chown ryanschie: ./node_modules
+	chown -R ryanschie: ./node_modules/*
+
+	echo -e "${green}Added Node Modules${NC}"
+fi
+
+####
+## Install API Vendor
+####
+if [ -d "api" ]; then
+
+	cd api
+
+	if [ ! -d "vendor" ]; then
+		composer install
+	fi
+
+	chown ryanschie: ./vendor
+	chown -R ryanschie: ./vendor/*
+	cd ../
+
+	echo -e "${green}Installed API Vendor Files${NC}"
+fi
+
+if [ ! -d "dev/bower_components" ]; then
+	bower install
+	echo -e "${green}Installed Bower Components${NC}"
+fi
+
+####
+## Rename Title
+####
+if [ $1 ]; then
+	input=`echo $1 | gsed -E "s/(^|-)([a-z])/\ \u\2/g"`
+
+	sed -e "s/angular-boilerplate/$1/g" \
+	 -e "s/\"description\":\ \"My\ Angular\ Boilerplate\"/\"description\":\ \"Project$input\"/g" \
+	 package.json > package.json.tmp && mv package.json.tmp package.json
+
+	sed -e "s/angular-boilerplate/$1/g" \
+	 -e "s/\"description\":\ \"My\ Angular\ Boilerplate\"/\"description\":\ \"Project$input\"/g" \
+	 bower.json > bower.json.tmp && mv bower.json.tmp bower.json
+
+	sed -e "s/Angular Boilerplate/Project$input/g" \
+	 README.md > README.md.tmp && mv README.md.tmp README.md
+
+	sed -e "s/\<title\>Angular Boilerplate\<\/title\>/\<title\>Project$input\<\/title\>/g" \
+	 dev/index.html > dev/index.html.tmp && mv dev/index.html.tmp dev/index.html
+
+	 echo -e "${green}Renamed Project${NC}"
+fi
+
+
