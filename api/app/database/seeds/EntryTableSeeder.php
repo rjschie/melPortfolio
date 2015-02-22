@@ -11,7 +11,7 @@ class EntryTableSeeder extends Seeder {
 			Entry::create([
 				'gallery_id' => rand(1, 9),
 				'title' => 'Entry #' . $i,
-				'filename' => 'entry_' . $i
+				'filename' => 'entry_' . $i . '.png'
 			]);
 		}
 	}
