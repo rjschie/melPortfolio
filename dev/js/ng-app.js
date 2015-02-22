@@ -32,7 +32,8 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			})
 			.state('photography', {
 				url : '/photography',
-				templateUrl : 'partials/photography.html'
+				templateUrl : 'partials/photography.html',
+				controller : 'PhotographyController'
 			})
 			.state('sorted', {
 				url : '/sorted',
