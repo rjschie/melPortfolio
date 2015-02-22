@@ -18,12 +18,12 @@ class GalleryController extends Controller {
 	/**
 	 * Display one resource.
 	 *
-	 * @param  int  $id
+	 * @param  int  $gallery_id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($gallery_id)
 	{
-		return Response::json(Gallery::findOrFail($id));
+		return Response::json(Entry::where('gallery_id', '=', $gallery_id)->get());
 	}
 
 
