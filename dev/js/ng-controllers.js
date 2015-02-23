@@ -15,9 +15,9 @@ angular.module('app.controllers', [])
 			var urlBase = 'http://local.dev/playground/imageCreator/dev/app/image.php';
 			var color = '%23DBA97D';
 
-			for (var i = 1; i <= 9; i++) {
+			for (var i = 1; i <= 12; i++) {
 				var rand = Math.floor( Math.random() * 200 + 200 );
-				arr.push( urlBase + "?w=300&h=" + rand + "&color=" + color + "&text=Photo" + i );
+				arr.push( {"url": urlBase + "?w=300&h=" + rand + "&color=" + color + "&text=Photo" + i } );
 			}
 
 			$scope.photos = arr;
