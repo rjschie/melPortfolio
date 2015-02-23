@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('app.services', [])
-.factory('Task', ['$resource',
+.factory('Photo', ['$resource',
 	function($resource) {
-		return $resource("../api/tasks/:id", { id: '@id' }, {
+		return $resource("../api/photos/:id", { id: '@id' }, {
 			update : {
 				method : 'PUT'
 			}
