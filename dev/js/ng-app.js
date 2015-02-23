@@ -6,7 +6,8 @@ var app = angular.module('app', [
 	'ngResource',
 	'app.services',
 	'app.filters',
-	'app.controllers'
+	'app.controllers',
+	'akoenig.deckgrid'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider',
