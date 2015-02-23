@@ -1,14 +1,12 @@
 /**
  * Design Grid
  */
-.content {
-	margin: 20px auto 50px 290px;
-	max-width: 980px;
+.designGrid {
 
 	.container {
 		display: inline-block;
 		padding: 12px;
-		margin-bottom: 20px;
+		margin-bottom: $margin-top-bottom;
 		width: 32%;
 		text-decoration: none;
 		color: inherit;
@@ -37,9 +35,5 @@
 		img:hover {
 			opacity: .84;
 		}
-	}
-
-	@media screen and (max-width: $break-md) {
-		margin-left: auto;
 	}
 }

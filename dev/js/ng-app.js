@@ -1,12 +1,12 @@
 'use strict';
 
 var app = angular.module('app', [
-	//'ngRoute',
 	'ui.router',
 	'ngResource',
 	'app.services',
 	'app.filters',
-	'app.controllers'
+	'app.controllers',
+	'akoenig.deckgrid'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider',
@@ -32,7 +32,8 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			})
 			.state('photography', {
 				url : '/photography',
-				templateUrl : 'partials/photography.html'
+				templateUrl : 'partials/photography.html',
+				controller : 'PhotographyController'
 			})
 			.state('sorted', {
 				url : '/sorted',

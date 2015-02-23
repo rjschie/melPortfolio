@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Response;
 
-class GalleryController extends Controller {
+class GalleryController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
