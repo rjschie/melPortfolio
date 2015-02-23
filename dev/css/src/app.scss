@@ -23,6 +23,15 @@ body {
 	letter-spacing: .07em;
 }
 
+.content {
+	margin: $margin-top-bottom auto $margin-top-bottom 20.714285714rem;
+	max-width: 980px;
+
+	@media screen and (max-width: $break-md) {
+		margin-left: auto;
+	}
+}
+
 @import 'sideMenu';
 
 @import 'designGrid';
