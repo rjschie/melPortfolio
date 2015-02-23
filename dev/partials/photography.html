@@ -1,3 +1,7 @@
 <div class="content">
-	<div ng-repeat="photo in photos" class="photoWall-container"><img ng-src="{{photo}}"></div>
+
+	<div deckgrid source="photos" class="deckgrid">
+			<img ng-src="{{card.url}}">
+	</div>
+
 </div>
