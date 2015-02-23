@@ -18,3 +18,7 @@ Route::get('/', function() {
 Route::resource('galleries', 'GalleryController',
 	['only' => ['index', 'show', 'store', 'update', 'destroy']
 	]);
+
+Route::resource('photos', 'PhotoController',
+	['only' => ['index', 'show', 'store', 'update', 'destroy']
+	]);
