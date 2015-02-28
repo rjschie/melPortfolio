@@ -25,3 +25,8 @@ FEEDBACK
 TODO
 ----------
 - scroll position when state changes for gallery view
+
+- implement Logo
+- add photography subsections
+- photography home random from section images
+- photography home margins adjusted
