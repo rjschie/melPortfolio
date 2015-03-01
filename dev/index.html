@@ -39,6 +39,16 @@
 					<li><a ui-sref="docs" ng-class="{bold : $state.is('docs')}">DR. MARTENS</a></li>
 				</ul>
 			<li class="more"><a ui-sref="photography" ng-class="{bold : $state.is('photography')}">PHOTOGRAPHY</a></li>
+				<ul ng-show="$state.is('photography') ||
+						$state.is('lifestyle') ||
+						$state.is('portraits') ||
+						$state.is('editorial') ||
+						$state.is('travel')">
+					<li><a ui-sref="lifestyle" ng-class="{bold : $state.is('lifestyle')}">LIFESTYLE</a></li>
+					<li><a ui-sref="portraits" ng-class="{bold : $state.is('portraits')}">PORTRAITS</a></li>
+					<li><a ui-sref="editorial" ng-class="{bold : $state.is('editorial')}">EDITORIAL</a></li>
+					<li><a ui-sref="travel" ng-class="{bold : $state.is('travel')}">TRAVEL</a></li>
+				</ul>
 			<li><a ui-sref="video" ng-class="{bold : $state.is('video')}">VIDEO</a></li>
 			<li>BLOG</li>
 			<li>ABOUT</li>

@@ -26,7 +26,9 @@ TODO
 ----------
 - scroll position when state changes for gallery view
 
+- dr. martens: video height same as others (700?)
+
 + ~~implement Logo~~
-- add photography subsections
++ ~~add photography subsections~~
 - photography home random from section images
 - photography home margins adjusted
