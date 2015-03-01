@@ -31,4 +31,4 @@ TODO
 + ~~implement Logo~~
 + ~~add photography subsections~~
 - photography home random from section images
-- photography home margins adjusted
++ ~~photography home margins adjusted~~
