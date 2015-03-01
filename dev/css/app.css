@@ -130,15 +130,13 @@ aside {
     font-size: .9rem; }
     .content-full .container:last-of-type {
       margin-right: 50px; }
-    .content-full .container.video {
-      margin-top: 30px; }
     .content-full .container img {
       display: inline;
       height: 600px;
       padding: 0;
       margin: 0; }
     .content-full .container video {
-      height: 500px; }
+      height: 600px; }
     .content-full .container video::-webkit-media-controls-fullscreen-button {
       display: none; }
 
