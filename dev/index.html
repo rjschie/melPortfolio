@@ -24,7 +24,7 @@
 <body ng-controller="BaseController">
 
 	<aside>
-		<h1><a ui-sref="design">MELISSA LEITH</a></h1>
+		<a class="logo" ui-sref="design"><img src="img/logo.png" alt="Melissa Leith: Design and Photography"></a>
 		<ul>
 			<li class="more"><a ui-sref="design" ng-class="{bold : $state.is('design')}">DESIGN</a></li>
 				<ul ng-hide="$state.is('design') || $state.is('photography') || $state.is('video')">
