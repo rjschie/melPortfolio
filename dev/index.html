@@ -27,7 +27,12 @@
 		<a class="logo" ui-sref="design"><img src="img/logo.png" alt="Melissa Leith: Design and Photography"></a>
 		<ul>
 			<li class="more"><a ui-sref="design" ng-class="{bold : $state.is('design')}">DESIGN</a></li>
-				<ul ng-hide="$state.is('design') || $state.is('photography') || $state.is('video')">
+				<ul ng-show="$state.is('docs') ||
+						$state.is('valise') ||
+						$state.is('sorted') ||
+						$state.is('typography') ||
+						$state.is('path') ||
+						$state.is('pbr')">
 					<li><a ui-sref="docs" ng-class="{bold : $state.is('docs')}">DR. MARTENS</a></li>
 					<li><a ui-sref="valise" ng-class="{bold : $state.is('valise')}">VALISE</a></li>
 					<li><a ui-sref="sorted" ng-class="{bold : $state.is('sorted')}">SORTED</a></li>
