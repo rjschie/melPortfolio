@@ -4,12 +4,10 @@ Design Section first
 	+ ~~columns grow to a certain point~~
 	+ ~~menu stays fixed left~~
 
-
 Photos
-	- columns up to 4, down to 1 on phone
-	- random on refresh
-	- clicking an image will go to that album
-	- categories listed under Photography
+	+ ~~columns up to 4, down to 1 on phone~~
+	+ ~~clicking an image will go to that album~~
+	+ ~~categories listed under Photography~~
 
 
 
@@ -26,8 +24,11 @@ TODO
 ----------
 - scroll position when state changes for gallery view
 
-- dr. martens: video height same as others (700?)
+- Build DB Relational Tables
+- Put Photography in DB
+- Populate pages based on DB
 
++ ~~dr. martens: video height same as others (600)~~
 + ~~implement Logo~~
 + ~~add photography subsections~~
 - photography home random from section images
