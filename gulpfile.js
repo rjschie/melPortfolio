@@ -52,11 +52,6 @@ gulp.task('images', function() {
 			optimizationLevel: 7
 		}))
 		.pipe(gulp.dest(config.path.dev.assets + '/imgs'));
-	gulp.src(config.path.dev.assets + '/test_photos/**/*')
-		.pipe(plugins.imagemin({
-			optimizationLevel: 7
-		}))
-		.pipe(gulp.dest(config.path.dev.assets + '/test_photos'));
 	gulp.src(config.path.dev.img + '/**/*')
 		.pipe(plugins.imagemin({
 			optimizationLevel: 7
