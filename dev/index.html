@@ -28,6 +28,7 @@
 		<ul>
 			<li class="more"><a ui-sref="design" ng-class="{bold : $state.is('design')}">DESIGN</a></li>
 				<ul ng-hide="$state.is('design') || $state.is('photography') || $state.is('video')">
+					<li><a ui-sref="docs" ng-class="{bold : $state.is('docs')}">DR. MARTENS</a></li>
 					<li><a ui-sref="valise" ng-class="{bold : $state.is('valise')}">VALISE</a></li>
 					<li><a ui-sref="sorted" ng-class="{bold : $state.is('sorted')}">SORTED</a></li>
 					<li><a ui-sref="typography" ng-class="{bold : $state.is('typography')}">TYPOGRAPHY</a></li>
@@ -36,7 +37,6 @@
 					<li>ACOBA FAMILY COFFEE</li>
 					<li>SUCCULENTS</li>
 					<li><a ui-sref="pbr" ng-class="{bold : $state.is('pbr')}">PILL BOTTLE REDESIGN</a></li>
-					<li><a ui-sref="docs" ng-class="{bold : $state.is('docs')}">DR. MARTENS</a></li>
 				</ul>
 			<li class="more"><a ui-sref="photography" ng-class="{bold : $state.is('photography')}">PHOTOGRAPHY</a></li>
 				<ul ng-show="$state.is('photography') ||
