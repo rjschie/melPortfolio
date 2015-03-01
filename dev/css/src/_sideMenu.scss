@@ -29,8 +29,12 @@ aside {
 	}
 
 	ul {
-		padding-left: 20px;
 		list-style: none;
+	}
+
+	& > ul {
+		padding-left: 20px;
+		font-size: 1.1rem;
 	}
 
 	li {
@@ -45,7 +49,7 @@ aside {
 	}
 
 	ul ul {
-		font-size: 0.7rem;
+		font-size: 0.8rem;
 		margin: 0 0 15px 0;
 		padding: 0 0 0 12px;
 		line-height: 2em;
