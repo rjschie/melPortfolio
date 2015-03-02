@@ -7,18 +7,29 @@ class PhotoEntryTableSeeder extends Seeder {
 		DB::table('photo_entries')->delete();
 		DB::unprepared("ALTER TABLE `photo_entries` AUTO_INCREMENT = 1;");
 
-		$urlBase = 'http://local.dev/playground/imageCreator/dev/app/image.php';
-		$color = '#CFA97E';
+		$arr = [
+			'lifestyle',
+			'portraits',
+			'editorial',
+			'travel'
+		];
 
-		for($i=1; $i <= 40; ++$i) {
-			$title = 'Entry #'.$i;
-			$width = rand(400,900);
+		foreach($arr as $key => $gall) {
 
-			PhotoEntry::create([
-				'photo_gallery_id' => rand(1,4),
-				'title' => $title,
-				'image' => $urlBase . '?w='.$width.'&h=600&color='.urlencode($color).'&text='.urlencode($title)
-			]);
+			$dir = '/var/www/http/_projects/melPortfolio/dev/assets/imgs/'.$gall;
+
+			if (is_dir($dir)) {
+				$theFiles = scandir($dir);
+				$theFiles = array_diff($theFiles, array('..', '.', '.DS_Store'));
+
+				foreach($theFiles as $file) {
+					PhotoEntry::create([
+						'photo_gallery_id' => $key+1,
+						'title' => ucwords(explode('.',$file)[0]),
+						'image' => $file
+					]);
+				}
+			}
 		}
 	}
 }
