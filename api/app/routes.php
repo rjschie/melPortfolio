@@ -15,10 +15,10 @@ Route::get('/', function() {
 	return 'Functioning';
 });
 
-Route::resource('galleries', 'GalleryController',
+Route::resource('design_galleries', 'DesignGalleryController',
 	['only' => ['index', 'show', 'store', 'update', 'destroy']
 	]);
 
-Route::resource('photos', 'PhotoController',
+Route::resource('photo_galleries', 'PhotoGalleryController',
 	['only' => ['index', 'show', 'store', 'update', 'destroy']
 	]);

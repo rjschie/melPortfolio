@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Response;
 
-class GalleryController extends \BaseController {
+class DesignGalleryController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -11,7 +11,7 @@ class GalleryController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Response::json(Gallery::all(), 200, [], JSON_NUMERIC_CHECK);
+		return Response::json(DesignGallery::all(), 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
@@ -23,7 +23,7 @@ class GalleryController extends \BaseController {
 	 */
 	public function show($gallery_id)
 	{
-		return Response::json(Entry::where('gallery_id', '=', $gallery_id)->get());
+		return Response::json(DesignEntry::where('design_gallery_id', '=', $gallery_id)->get());
 	}
 
 
@@ -35,7 +35,7 @@ class GalleryController extends \BaseController {
 	public function store()
 	{
 		try {
-			Gallery::create(['text' => Input::get('text')]);
+			DesignGallery::create(['text' => Input::get('text')]);
 		} catch(Exception $e) {
 
 			return Response::make("", 500);
@@ -54,7 +54,7 @@ class GalleryController extends \BaseController {
 	public function update($id)
 	{
 		try {
-			$gallery = Gallery::findOrFail($id);
+			$gallery = DesignGallery::findOrFail($id);
 
 			if (Input::has('completed')) {
 				$input = Input::get('completed');
@@ -88,7 +88,7 @@ class GalleryController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$gallery = Gallery::findOrFail($id);
+		$gallery = DesignGallery::findOrFail($id);
 		$gallery->delete();
 	}
 
