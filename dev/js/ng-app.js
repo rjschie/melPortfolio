@@ -53,21 +53,10 @@ app.config(['$stateProvider', '$urlRouterProvider',
 				templateUrl : 'partials/photography.html',
 				controller : 'PhotographyController'
 			})
-			.state('lifestyle', {
-				url : '/lifestyle',
-				templateUrl : 'partials/lifestyle.html'
-			})
-			.state('portraits', {
-				url : '/portraits',
-				templateUrl : 'partials/portraits.html'
-			})
-			.state('editorial', {
-				url : '/editorial',
-				templateUrl : 'partials/editorial.html'
-			})
-			.state('travel', {
-				url : '/travel',
-				templateUrl : 'partials/travel.html'
+			.state('photo-gallery', {
+				url : '/photography/:gallerySlug',
+				templateUrl : 'partials/photo-gallery.html',
+				controller : 'PhotographyController'
 			})
 		/**
 		 * Other States
@@ -75,6 +64,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
 			.state('video', {
 				url : '/video',
 				templateUrl : 'partials/video.html'
-			});
+			})
+		;
 	}
 ]);
