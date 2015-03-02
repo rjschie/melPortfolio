@@ -5,6 +5,15 @@ angular.module('app.controllers', [])
 	.controller('BaseController', ['$scope', '$state', '$stateParams',
 		function ($scope, $state, $stateParams) {
 			$scope.$state = $state;
+			$scope.$stateParams = $stateParams;
+		}])
+
+	.controller('MenuController', ['$scope', 'Photography', 'DesignGallery',
+		function ($scope, Photography, DesignGallery) {
+			$scope.galleries = {
+				photo : Photography.query(),
+				design : DesignGallery.query()
+			};
 		}])
 
 	.controller('PhotographyController', ['$scope', 'Photography', '$stateParams',

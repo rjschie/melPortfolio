@@ -23,36 +23,18 @@
 </head>
 <body ng-controller="BaseController">
 
-	<aside>
+	<aside ng-controller="MenuController">
 		<a class="logo" ui-sref="design"><img src="img/logo.png" alt="Melissa Leith: Design and Photography"></a>
 		<ul>
 			<li class="more"><a ui-sref="design" ng-class="{bold : $state.is('design')}">DESIGN</a></li>
-				<ul ng-show="$state.is('docs') ||
-						$state.is('valise') ||
-						$state.is('sorted') ||
-						$state.is('typography') ||
-						$state.is('path') ||
-						$state.is('pbr')">
-					<li><a ui-sref="docs" ng-class="{bold : $state.is('docs')}">DR. MARTENS</a></li>
-					<li><a ui-sref="valise" ng-class="{bold : $state.is('valise')}">VALISE</a></li>
-					<li><a ui-sref="sorted" ng-class="{bold : $state.is('sorted')}">SORTED</a></li>
-					<li><a ui-sref="typography" ng-class="{bold : $state.is('typography')}">TYPOGRAPHY</a></li>
-					<li><a ui-sref="path" ng-class="{bold : $state.is('path')}">PATH</a></li>
-					<li>SUBSPLASH</li>
-					<li>ACOBA FAMILY COFFEE</li>
-					<li>SUCCULENTS</li>
-					<li><a ui-sref="pbr" ng-class="{bold : $state.is('pbr')}">PILL BOTTLE REDESIGN</a></li>
-				</ul>
+			<ul ng-show="$state.is('design-gallery')">
+				<li ng-repeat="gallery in galleries.design"><a ui-sref="design-gallery({gallerySlug: gallery.slug})" ng-class="{bold : $state.params.gallerySlug == gallery.slug}">{{ gallery.short_title }}</a></li>
+			</ul>
 			<li class="more"><a ui-sref="photography" ng-class="{bold : $state.is('photography')}">PHOTOGRAPHY</a></li>
-				<ul ng-show="$state.is('lifestyle') ||
-						$state.is('portraits') ||
-						$state.is('editorial') ||
-						$state.is('travel')">
-					<li><a ui-sref="lifestyle" ng-class="{bold : $state.is('lifestyle')}">LIFESTYLE</a></li>
-					<li><a ui-sref="portraits" ng-class="{bold : $state.is('portraits')}">PORTRAITS</a></li>
-					<li><a ui-sref="editorial" ng-class="{bold : $state.is('editorial')}">EDITORIAL</a></li>
-					<li><a ui-sref="travel" ng-class="{bold : $state.is('travel')}">TRAVEL</a></li>
-				</ul>
+			<ul ng-show="$state.is('photo-gallery') ||
+						$state.is('photography')"> <!-- Here for testing; TODO: remove -->
+				<li ng-repeat="gallery in galleries.photo"><a ui-sref="photo-gallery({gallerySlug: gallery.slug})" ng-class="{bold : $state.params.gallerySlug == gallery.slug}">{{ gallery.short_title }}</a></li>
+			</ul>
 			<li><a ui-sref="video" ng-class="{bold : $state.is('video')}">VIDEO</a></li>
 			<li>BLOG</li>
 			<li>ABOUT</li>
