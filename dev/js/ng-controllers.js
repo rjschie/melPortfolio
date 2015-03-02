@@ -17,4 +17,15 @@ angular.module('app.controllers', [])
 				$scope.galleries = Photography.query();
 			}
 		}])
+
+	.controller('DesignGalleryController', ['$scope', 'DesignGallery', '$stateParams',
+		function ($scope, DesignGallery, $stateParams) {
+
+			if($stateParams.gallerySlug) {
+				$scope.slug = $stateParams.gallerySlug;
+				$scope.entries = DesignGallery.query({slug: $stateParams.gallerySlug});
+			} else {
+				$scope.galleries = DesignGallery.query();
+			}
+		}])
 ;
