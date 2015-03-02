@@ -1,6 +1,6 @@
 <?php
 
-class PhotoController extends \BaseController {
+class PhotoGalleryController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class PhotoController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Response::json(Photo::all(), 200, [], JSON_NUMERIC_CHECK);
+		return Response::json(PhotoGallery::all(), 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
