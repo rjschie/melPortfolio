@@ -43,6 +43,7 @@ aside {
 
 	li {
 		position: relative;
+		text-transform: uppercase;
 
 		&.more::before {
 			content: "+";

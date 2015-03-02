@@ -7,16 +7,24 @@ class DesignGalleryTableSeeder extends Seeder {
 		DB::table('design_galleries')->delete();
 		DB::unprepared("ALTER TABLE `design_galleries` AUTO_INCREMENT = 1;");
 
-		$urlBase = 'http://local.dev/playground/imageCreator/dev/app/image.php';
-		$color = '#33E8CA';
+		$arr = [
+			['title'=>'Dr. Martens Brand Platform','short_title'=>'Dr. Martens', 'slug'=>'docs'],
+			['title'=>'Valise - A Travel App', 'short_title'=>'Valise', 'slug'=>'valise'],
+			['title'=>'Sorted', 'short_title'=>'Sorted', 'slug'=>'sorted'],
+			['title'=>'Typography', 'short_title'=>'Typography', 'slug'=>'typography'],
+			['title'=>'Path - Symbol Set', 'short_title'=>'Path', 'slug'=>'path'],
+			['title'=>'Subsplash - Internship Work','short_title'=>'Subsplash', 'slug'=>'subsplash'],
+			['title'=>'Acoba Family Coffee House', 'short_title'=>'Acoba Family Coffee', 'slug'=>'acoba'],
+			['title'=>'Succulent Container Gardens', 'short_title'=>'Succulents', 'slug'=>'succulents'],
+			['title'=>'Pill Bottle Redesign', 'short_title'=>'Pill Bottle Redesign', 'slug'=>'pbr']
+		];
 
-		for($i=1; $i <= 9; ++$i) {
-			$title = 'Design #'.$i;
-
+		foreach($arr as $gall) {
 			DesignGallery::create([
-				'title' => $title,
-				'link' => 'gallery_'.$i,
-				'image' => $urlBase . '?w=300&h=200&color='.urlencode($color).'&text='.urlencode($title)
+				'title' => $gall['title'],
+				'short_title' => $gall['short_title'],
+				'slug' => $gall['slug'],
+				'image' => $gall['slug'].'.jpg'
 			]);
 		}
 	}

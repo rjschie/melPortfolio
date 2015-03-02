@@ -67,7 +67,8 @@ aside {
     padding-left: 20px;
     font-size: 1.1rem; }
   aside li {
-    position: relative; }
+    position: relative;
+    text-transform: uppercase; }
     aside li.more::before {
       content: "+";
       position: absolute;
@@ -98,7 +99,8 @@ aside {
   text-decoration: none;
   color: inherit;
   text-align: center;
-  font-size: 0.9rem; }
+  font-size: 0.9rem;
+  text-transform: uppercase; }
   .designGrid .container img {
     width: 100%; }
   .designGrid .container p {

@@ -18,12 +18,14 @@ class DesignGalleryController extends \BaseController {
 	/**
 	 * Display one resource.
 	 *
-	 * @param  int  $gallery_id
+	 * @param  int  $gallery_slug
 	 * @return Response
 	 */
-	public function show($gallery_id)
+	public function show($gallery_slug)
 	{
-		return Response::json(DesignEntry::where('design_gallery_id', '=', $gallery_id)->get());
+		$gallery = DesignGallery::where('slug', '=', $gallery_slug)->get();
+
+		return Response::json(DesignEntry::where('design_gallery_id', '=', $gallery[0]->id)->get());
 	}
 
 
