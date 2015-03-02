@@ -27,12 +27,12 @@ class PhotoGalleryController extends \BaseController {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  int  $gallery_id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($gallery_id)
 	{
-		//
+		return Response::json(PhotoEntry::where('photo_gallery_id', '=', $gallery_id)->get());
 	}
 
 
