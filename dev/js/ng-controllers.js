@@ -2,8 +2,8 @@
 
 angular.module('app.controllers', [])
 
-	.controller('BaseController', ['$scope', '$state',
-		function ($scope, $state) {
+	.controller('BaseController', ['$scope', '$state', '$stateParams',
+		function ($scope, $state, $stateParams) {
 			$scope.$state = $state;
 		}])
 
