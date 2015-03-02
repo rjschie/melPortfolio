@@ -12,11 +12,12 @@ class PhotoEntryTableSeeder extends Seeder {
 
 		for($i=1; $i <= 40; ++$i) {
 			$title = 'Entry #'.$i;
+			$width = rand(400,900);
 
 			PhotoEntry::create([
 				'photo_gallery_id' => rand(1,4),
 				'title' => $title,
-				'image' => $urlBase . '?w=300&h=200&color='.urlencode($color).'&text='.urlencode($title)
+				'image' => $urlBase . '?w='.$width.'&h=600&color='.urlencode($color).'&text='.urlencode($title)
 			]);
 		}
 	}
