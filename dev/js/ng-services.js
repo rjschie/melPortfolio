@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('app.services', [])
-.factory('Photo', ['$resource',
+.factory('Photography', ['$resource',
 	function($resource) {
-		return $resource("../api/photos/:id", { id: '@id' }, {
-			update : {
-				method : 'PUT'
-			}
-		});
-	}]);
+		return $resource("../api/photo_galleries/:slug", { slug: '@slug' });
+	}])
+
+.factory('DesignGallery', ['$resource',
+	function($resource) {
+		return $resource('../api/design_galleries/:slug', { slug : '@slug' });
+	}])
+;
