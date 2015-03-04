@@ -25,11 +25,15 @@ TODO
 - scroll position when state changes for gallery view
 
 - Build DB Relational Tables
-- Put Photography in DB
-- Populate pages based on DB
++ ~~Put Photography in DB~~
++ ~~Populate pages based on DB~~
 
 + ~~dr. martens: video height same as others (600)~~
 + ~~implement Logo~~
 + ~~add photography subsections~~
 - photography home random from section images
 + ~~photography home margins adjusted~~
+
+
+- Add UNPACK & Subsplash
+	- Proper order for Design subsections
