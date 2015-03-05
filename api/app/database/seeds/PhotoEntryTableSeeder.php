@@ -26,7 +26,7 @@ class PhotoEntryTableSeeder extends Seeder {
 					PhotoEntry::create([
 						'photo_gallery_id' => $key+1,
 						'title' => ucwords(explode('.',$file)[0]),
-						'image' => $file,
+						'image' => $gall.'/'.$file,
 						'sort_pos' => array_shift($randoArr)
 					]);
 				}
