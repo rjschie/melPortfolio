@@ -9,7 +9,7 @@ class PhotoGalleryController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Response::json(PhotoGallery::all(), 200, [], JSON_NUMERIC_CHECK);
+		return Response::json(PhotoGallery::orderBy('sort_pos', 'ASC'), 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
@@ -34,7 +34,7 @@ class PhotoGalleryController extends \BaseController {
 	{
 		$gallery = PhotoGallery::where('slug', '=', $gallery_slug)->get();
 
-		return Response::json(PhotoEntry::where('photo_gallery_id', '=', $gallery[0]->id)->get());
+		return Response::json(PhotoEntry::orderBy('sort_pos', 'ASC')->where('photo_gallery_id', '=', $gallery[0]->id)->get());
 	}
 
 
