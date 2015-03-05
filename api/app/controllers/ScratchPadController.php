@@ -9,7 +9,23 @@ class ScratchPadController extends \BaseController {
 	 */
 	public function index()
 	{
-		return self::matrixCreator();
+		return self::photoReturn();
+	}
+
+
+	public function photoReturn()
+	{
+
+		$result = [];
+		$sortArr = self::matrixCreator();
+
+		$photos = PhotoEntry::all()->lists('title', 'id');
+
+		foreach($sortArr as $value) {
+			$result[] = $photos[$value];
+		}
+
+		var_dump( $result );
 	}
 
 
