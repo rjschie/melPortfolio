@@ -18,6 +18,7 @@ class CreatePhotoGalleriesTable extends Migration {
 			$table->string('title');
 			$table->string('short_title');
 			$table->string('slug')->unique();
+			$table->integer('sort_pos')->unique();
 		});
 	}
 
