@@ -32,7 +32,12 @@ class PhotoGalleryController extends \BaseController {
 	 */
 	public function show($gallery_slug)
 	{
-		$gallery = PhotoGallery::where('slug', '=', $gallery_slug)->get();
+		if(is_numeric($gallery_slug)) {
+			$gallery_id = $gallery_slug;
+		} else {
+			$gallery = PhotoGallery::where('slug', '=', $gallery_slug)->get();
+			$gallery_id = $gallery[0]->id;
+		}
 
 		return Response::json(PhotoEntry::orderBy('sort_pos', 'asc')->where('photo_gallery_id', '=', $gallery_id)->get());
 	}
