@@ -11,7 +11,7 @@ class DesignGalleryController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Response::json(DesignGallery::all(), 200, [], JSON_NUMERIC_CHECK);
+		return Response::json(DesignGallery::orderBy('sort_pos', 'asc')->get(), 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
@@ -23,9 +23,14 @@ class DesignGalleryController extends \BaseController {
 	 */
 	public function show($gallery_slug)
 	{
-		$gallery = DesignGallery::where('slug', '=', $gallery_slug)->get();
+		if(is_numeric($gallery_slug)) {
+			$gallery_id = $gallery_slug;
+		} else {
+			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->get();
+			$gallery_id = $gallery[0]->id;
+		}
 
-		return Response::json(DesignEntry::where('design_gallery_id', '=', $gallery[0]->id)->get());
+		return Response::json(DesignEntry::orderBy('sort_pos', 'asc')->where('design_gallery_id', '=', $gallery_id)->get());
 	}
 
 
