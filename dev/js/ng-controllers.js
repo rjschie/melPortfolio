@@ -16,14 +16,14 @@ angular.module('app.controllers', [])
 			};
 		}])
 
-	.controller('PhotographyController', ['$scope', 'Photography', '$stateParams',
-		function ($scope, Photography, $stateParams) {
+	.controller('PhotographyController', ['$scope', 'Photography', 'PhotographyRandom', '$stateParams',
+		function ($scope, Photography, PhotographyRandom, $stateParams) {
 
 			if($stateParams.gallerySlug) {
 				$scope.slug = $stateParams.gallerySlug;
 				$scope.entries = Photography.query({slug: $stateParams.gallerySlug});
 			} else {
-				$scope.galleries = Photography.query();
+				$scope.entries = PhotographyRandom.query();
 			}
 		}])
 
