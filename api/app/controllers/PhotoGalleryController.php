@@ -9,7 +9,7 @@ class PhotoGalleryController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Response::json(PhotoGallery::orderBy('sort_pos', 'ASC'), 200, [], JSON_NUMERIC_CHECK);
+		return Response::json(PhotoGallery::orderBy('id', 'asc')->get(), 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
@@ -34,7 +34,7 @@ class PhotoGalleryController extends \BaseController {
 	{
 		$gallery = PhotoGallery::where('slug', '=', $gallery_slug)->get();
 
-		return Response::json(PhotoEntry::orderBy('sort_pos', 'ASC')->where('photo_gallery_id', '=', $gallery[0]->id)->get());
+		return Response::json(PhotoEntry::orderBy('sort_pos', 'asc')->where('photo_gallery_id', '=', $gallery_id)->get());
 	}
 
 
@@ -61,5 +61,23 @@ class PhotoGalleryController extends \BaseController {
 		//
 	}
 
+
+	/**
+	 * Return semi-random listing of photos
+	 *
+	 * @return Response
+	 */
+	public function random()
+	{
+		$result = [];
+		$sortArr = PhotoEntry::randomMatrix();
+		$photos = PhotoEntry::all();
+
+		foreach($sortArr as $value) {
+			$result[] = $photos[$value-1];
+		}
+
+		return Response::json($result, 200, [], JSON_NUMERIC_CHECK);
+	}
 
 }

@@ -25,6 +25,4 @@ Route::resource('photo_galleries', 'PhotoGalleryController',
 	['only' => ['index', 'show', 'store', 'update', 'destroy']
 	]);
 
-Route::resource('photo_random', 'PhotoRandomizer',
-	['only' => ['index']
-	]);
+Route::get('/photo_random', 'PhotoGalleryController@random');
