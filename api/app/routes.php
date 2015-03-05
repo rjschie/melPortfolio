@@ -15,10 +15,16 @@ Route::get('/', function() {
 	return 'Functioning';
 });
 
+Route::get('/scratch', 'ScratchPadController@index');
+
 Route::resource('design_galleries', 'DesignGalleryController',
 	['only' => ['index', 'show', 'store', 'update', 'destroy']
 	]);
 
 Route::resource('photo_galleries', 'PhotoGalleryController',
 	['only' => ['index', 'show', 'store', 'update', 'destroy']
+	]);
+
+Route::resource('photo_random', 'PhotoRandomizer',
+	['only' => ['index']
 	]);
