@@ -2,13 +2,13 @@
  * Font Faces
  */
 @font-face {
-  font-family: "univers";
-  src: url("../assets/univers/UniversLTStd-LightCn.otf");
+  font-family: "proxima";
+  src: url("../assets/proxima/ProximaNova-Regular.otf");
   font-weight: normal; }
 
 @font-face {
-  font-family: "univers";
-  src: url("../assets/univers/UniversLTStd-BoldCn.otf");
+  font-family: "proxima";
+  src: url("../assets/proxima/ProximaNova-Bold.otf");
   font-weight: bold; }
 
 a {
@@ -24,9 +24,8 @@ a {
 html {
   margin: 0 auto;
   padding: 0;
-  font-family: "univers", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  letter-spacing: .07em; }
+  font-family: "proxima", Helvetica, Arial, sans-serif;
+  font-size: 14px; }
 
 .content {
   margin: 1.42857rem auto 1.42857rem 20.71429rem;
@@ -46,8 +45,8 @@ aside {
   padding: 20px;
   height: 100%;
   width: 240px;
-  letter-spacing: .1em;
-  line-height: 2.4em;
+  letter-spacing: .15em;
+  line-height: 2em;
   background-color: rgba(255, 255, 255, 0.9); }
   aside a:hover {
     font-weight: bold; }
@@ -65,7 +64,7 @@ aside {
     list-style: none; }
   aside > ul {
     padding-left: 20px;
-    font-size: 1.1rem; }
+    font-size: 0.9rem; }
   aside li {
     position: relative;
     text-transform: uppercase; }
@@ -93,18 +92,19 @@ aside {
  */
 .designGrid .container {
   display: inline-block;
-  padding: 12px;
+  padding: 0.857rem;
   margin-bottom: 1.42857rem;
   width: 32%;
   text-decoration: none;
   color: inherit;
   text-align: center;
   font-size: 0.9rem;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  letter-spacing: .1em; }
   .designGrid .container img {
     width: 100%; }
   .designGrid .container p {
-    margin: 0.4em 0 0 0; }
+    margin: 0.514rem 0 0 0; }
   @media screen {
     @media (max-width: 1000px) {
       .designGrid .container {
