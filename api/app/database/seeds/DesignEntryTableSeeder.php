@@ -10,13 +10,12 @@ class DesignEntryTableSeeder extends Seeder {
 		$arr = [
 			'docs',
 			'valise',
+			'unpack',
 			'sorted',
 			'typography',
-			'path',
 			'subsplash',
-			'acoba',
-			'succulents',
-			'pbr'
+			'pbr',
+			'path'
 		];
 
 		foreach($arr as $key => $gall) {
