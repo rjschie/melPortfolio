@@ -38,5 +38,5 @@ TODO
 + ~~photography home margins adjusted~~
 
 
-- Add UNPACK & Subsplash
-	- Proper order for Design subsections
++ ~~Add UNPACK & Subsplash~~
+	+ ~~Proper order for Design subsections~~
