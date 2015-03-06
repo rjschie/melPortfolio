@@ -26,6 +26,7 @@ TODO
 
 - grid view option for photo subsections
 	- clicking is switching
+- create About page
 
 - Build DB Relational Tables
 + ~~Put Photography in DB~~
