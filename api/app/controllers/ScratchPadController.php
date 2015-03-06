@@ -9,27 +9,36 @@ class ScratchPadController extends \BaseController {
 	 */
 	public function index()
 	{
-		return self::matrixCreator();
+		return self::photoReturn();
+	}
+
+
+	public function photoReturn()
+	{
+
+		$result = [];
+		$sortArr = self::matrixCreator();
+
+		$photos = PhotoEntry::all()->lists('title', 'id');
+
+		foreach($sortArr as $value) {
+			$result[] = $photos[$value];
+		}
+
+		var_dump( $result );
 	}
 
 
 	public function matrixCreator()
 	{
 
-		/**
-		 * TO Do's
-		 * ==================
-		 * - order `galleries` by galleries's ordered pos
-		 * - order `photos` by photos' galleries' ordered pos
-		 */
-
 		$result = [];
-		$galleries = PhotoGallery::orderBy('id', 'ASC')->lists('id');
+		$galleries = PhotoGallery::orderBy('sort_pos', 'ASC')->lists('id');
 		$photo_galleries = [];
 
 		$photo_galleries_length = 0;
 		foreach($galleries as $i => $gallery) {
-			$photo_galleries[$i] = PhotoEntry::orderBy('id', 'ASC')->where('photo_gallery_id', '=', $gallery)->lists('id');
+			$photo_galleries[$i] = PhotoEntry::orderBy('sort_pos', 'ASC')->where('photo_gallery_id', '=', $gallery)->lists('id');
 			$photo_galleries_length += count($photo_galleries[$i]);
 		}
 

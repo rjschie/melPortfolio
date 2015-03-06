@@ -8,10 +8,10 @@ class PhotoGalleryTableSeeder extends Seeder {
 		DB::unprepared("ALTER TABLE `photo_galleries` AUTO_INCREMENT = 1;");
 
 		$galleries = [
-			['title'=>'Lifestyle','short_title'=>'Lifestyle','slug'=>'lifestyle'],
-			['title'=>'Portraits','short_title'=>'Portraits','slug'=>'portraits'],
-			['title'=>'Editorial','short_title'=>'Editorial','slug'=>'editorial'],
-			['title'=>'Travel','short_title'=>'Travel','slug'=>'travel']
+			['title'=>'Lifestyle','short_title'=>'Lifestyle','slug'=>'lifestyle', 'sort_pos'=>1],
+			['title'=>'Portraits','short_title'=>'Portraits','slug'=>'portraits', 'sort_pos'=>2],
+			['title'=>'Editorial','short_title'=>'Editorial','slug'=>'editorial', 'sort_pos'=>3],
+			['title'=>'Travel','short_title'=>'Travel','slug'=>'travel','sort_pos'=>4]
 		];
 
 
@@ -19,7 +19,8 @@ class PhotoGalleryTableSeeder extends Seeder {
 			PhotoGallery::create([
 				'title' => $gallery['title'],
 				'short_title' => $gallery['short_title'],
-				'slug' => $gallery['slug']
+				'slug' => $gallery['slug'],
+				'sort_pos' => $gallery['sort_pos']
 			]);
 		}
 	}

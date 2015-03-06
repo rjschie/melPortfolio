@@ -30,7 +30,7 @@ class DesignEntryTableSeeder extends Seeder {
 					DesignEntry::create([
 						'design_gallery_id' => $key+1,
 						'title' => ucwords(explode('.',$file)[0]),
-						'image' => $file
+						'image' => $gall . '/' . $file
 					]);
 				}
 			}

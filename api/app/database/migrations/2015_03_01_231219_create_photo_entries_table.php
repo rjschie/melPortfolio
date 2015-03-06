@@ -18,6 +18,7 @@ class CreatePhotoEntriesTable extends Migration {
 			$table->integer('photo_gallery_id');
 			$table->string('title');
 			$table->string('image');
+			$table->integer('sort_pos');
 		});
 	}
 

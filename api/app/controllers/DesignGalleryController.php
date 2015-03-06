@@ -23,9 +23,14 @@ class DesignGalleryController extends \BaseController {
 	 */
 	public function show($gallery_slug)
 	{
-		$gallery = DesignGallery::where('slug', '=', $gallery_slug)->get();
+		if(is_numeric($gallery_slug)) {
+			$gallery_id = $gallery_slug;
+		} else {
+			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->get();
+			$gallery_id = $gallery[0]->id;
+		}
 
-		return Response::json(DesignEntry::where('design_gallery_id', '=', $gallery[0]->id)->get());
+		return Response::json(DesignEntry::where('design_gallery_id', '=', $gallery_id)->get());
 	}
 
 

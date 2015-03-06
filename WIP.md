@@ -18,11 +18,15 @@ FEEDBACK
 + ~~not as much for grid of images~~
 + ~~white space at right of Valise images~~
 + ~~grid image title closer to image~~
++ ~~dr. martens: video height same as others (600)~~
 
 
 TODO
 ----------
+
 - scroll position when state changes for gallery view
+- account for videos in Design Galleries
+- look into 'packery' or 'isotope' grid libraries
 
 - grid view option for photo subsections
 	- clicking is switching
@@ -32,10 +36,9 @@ TODO
 + ~~Put Photography in DB~~
 + ~~Populate pages based on DB~~
 
-+ ~~dr. martens: video height same as others (600)~~
 + ~~implement Logo~~
 + ~~add photography subsections~~
-- photography home random from section images
++ ~~photography home random from section images~~
 + ~~photography home margins adjusted~~
 
 
