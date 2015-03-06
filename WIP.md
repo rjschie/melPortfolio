@@ -24,6 +24,9 @@ TODO
 ----------
 - scroll position when state changes for gallery view
 
+- grid view option for photo subsections
+	- clicking is switching
+
 - Build DB Relational Tables
 + ~~Put Photography in DB~~
 + ~~Populate pages based on DB~~
