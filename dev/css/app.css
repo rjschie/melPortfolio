@@ -124,7 +124,7 @@ aside {
   white-space: nowrap; }
   .content-full .container {
     display: inline-block;
-    margin: 0 1px;
+    margin: 0 4px;
     padding: 0;
     text-decoration: none;
     color: inherit;
