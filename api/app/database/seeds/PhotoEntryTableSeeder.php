@@ -16,7 +16,7 @@ class PhotoEntryTableSeeder extends Seeder {
 
 		foreach($arr as $key => $gall) {
 
-			$dir = '/var/www/http/_projects/melPortfolio/dev/assets/imgs/'.$gall;
+			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/assets/imgs/'.$gall;
 
 			if (is_dir($dir)) {
 				$theFiles = scandir($dir);
