@@ -45,6 +45,7 @@ if [ -d "api" ]; then
 		composer install
 	fi
 
+	chmod -R 777 app/storage
 	chown ryanschie: ./vendor
 	chown -R ryanschie: ./vendor/*
 	cd ../
@@ -53,7 +54,7 @@ if [ -d "api" ]; then
 fi
 
 if [ ! -d "dev/bower_components" ]; then
-	bower install
+	bower install --allow-root
 	echo -e "${green}Installed Bower Components${NC}"
 fi
 
