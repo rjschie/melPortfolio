@@ -27,6 +27,7 @@ TODO
 - scroll position when state changes for gallery view
 - account for videos in Design Galleries
 - look into 'packery' or 'isotope' grid libraries
+- create thumbnail sizes of images
 
 - grid view option for photo subsections
 	- clicking is switching
@@ -40,7 +41,5 @@ TODO
 + ~~add photography subsections~~
 + ~~photography home random from section images~~
 + ~~photography home margins adjusted~~
-
-
 + ~~Add UNPACK & Subsplash~~
 	+ ~~Proper order for Design subsections~~
