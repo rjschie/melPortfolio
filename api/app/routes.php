@@ -15,7 +15,9 @@ Route::get('/', function() {
 	return 'Functioning';
 });
 
-Route::get('/scratch', 'ScratchPadController@index');
+if(App::environment('local')) {
+	Route::get('/scratch', 'ScratchPadController@index');
+}
 
 Route::resource('design_galleries', 'DesignGalleryController',
 	['only' => ['index', 'show', 'store', 'update', 'destroy']

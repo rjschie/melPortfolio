@@ -26,7 +26,8 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('ubuntuServer','Sjaelland.local'),
+	'local' => array('ubuntuServer'),
+	'staging' => array('simple-http')
 
 ));
 
