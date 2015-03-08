@@ -1,7 +1,8 @@
-<div class="content photoWall">
-
-	<div deckgrid source="entries" class="deckgrid">
-			<img ng-src="assets/imgs/{{ card.image }}">
+<div class="content">
+	<div class="photoWall" masonry="{'transitionDuration': '0', 'gutter': '.gutter-sizer'}" preserve-order>
+		<div class="gutter-sizer"></div>
+		<div class="masonry-brick" ng-repeat="entry in entries">
+			<img ng-src="assets/imgs/{{ entry.image }}">
+		</div>
 	</div>
-
 </div>
