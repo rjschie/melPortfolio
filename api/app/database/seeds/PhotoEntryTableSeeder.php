@@ -11,7 +11,7 @@ class PhotoEntryTableSeeder extends Seeder {
 
 		foreach($arr as $key => $gall) {
 
-			$randoArr = [];
+			$countArr = [];
 			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/assets/imgs/'.$gall;
 
 			if (is_dir($dir)) {
@@ -19,15 +19,14 @@ class PhotoEntryTableSeeder extends Seeder {
 				$theFiles = array_diff($theFiles, array('..', '.', '.DS_Store'));
 
 				for($i=1; $i <= count($theFiles); $i++)
-					$randoArr[] = $i;
-				shuffle($randoArr);
+					$countArr[] = $i;
 
 				foreach($theFiles as $file) {
 					PhotoEntry::create([
 						'photo_gallery_id' => $key+1,
 						'title' => ucwords(explode('.',$file)[0]),
 						'image' => $gall.'/'.$file,
-						'sort_pos' => array_shift($randoArr)
+						'sort_pos' => array_shift($countArr)
 					]);
 				}
 			}
