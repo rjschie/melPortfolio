@@ -23,26 +23,7 @@
 </head>
 <body ng-controller="BaseController">
 
-	<!--<div ng-include="'partials/menu.html'"></div>-->
-
-	<aside ng-controller="MenuController">
-		<a class="logo" ui-sref="design"><img src="img/logo.png" alt="Melissa Leith: Design and Photography"></a>
-		<ul>
-			<li class="more"><a ui-sref="design" ng-class="{bold : $state.is('design')}">DESIGN</a></li>
-			<ul ng-show="$state.is('design-gallery')">
-				<li ng-repeat="gallery in galleries.design"><a ui-sref="design-gallery({gallerySlug: gallery.slug})" ng-class="{bold : $state.params.gallerySlug == gallery.slug}">{{ gallery.short_title }}</a></li>
-			</ul>
-			<li class="more"><a ui-sref="photography" ng-class="{bold : $state.is('photography')}">PHOTOGRAPHY</a></li>
-			<ul ng-show="$state.is('photo-gallery') ||
-						$state.is('photography')"> <!-- Here for testing; TODO: remove -->
-				<li ng-repeat="gallery in galleries.photo"><a ui-sref="photo-gallery({gallerySlug: gallery.slug})" ng-class="{bold : $state.params.gallerySlug == gallery.slug}">{{ gallery.short_title }}</a></li>
-			</ul>
-			<li><a ui-sref="video" ng-class="{bold : $state.is('video')}">VIDEO</a></li>
-			<li>BLOG</li>
-			<li>ABOUT</li>
-			<li>CONTACT</li>
-		</ul>
-	</aside>
+	<div ng-include="'partials/menu.html'"></div>
 
 	<div ui-view></div>
 
