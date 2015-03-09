@@ -24,8 +24,8 @@ FEEDBACK
 TODO
 ----------
 
-- photography page: margin-top is too short
-- scroll position when state changes for gallery view
++ ~~photography page: margin-top is too short~~
+- scroll position when state changes for video gallery
 - account for videos in Design Galleries
 + ~~look into 'packery' or 'isotope' grid libraries; ended with 'masonry'~~
 - create thumbnail sizes of images; for faster loading on photography random wall
