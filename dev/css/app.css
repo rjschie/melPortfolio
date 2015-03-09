@@ -83,10 +83,9 @@ aside {
     aside ul ul li {
       margin: 0;
       padding: 0; }
-  @media screen {
-    @media (max-width: 760px) {
-      aside {
-        display: none; } } }
+  @media screen and (max-width: 760px) {
+    aside {
+      display: none; } }
 
 /**
  * Design Grid
@@ -142,6 +141,9 @@ aside {
       height: 600px; }
     .content-full .container video::-webkit-media-controls-fullscreen-button {
       display: none; }
+  @media screen and (max-width: 760px) {
+    .content-full {
+      margin-left: 2rem; } }
 
 /**
  * Photography Grid

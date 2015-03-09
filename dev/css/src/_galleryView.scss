@@ -33,4 +33,8 @@
 			display: none;
 		}
 	}
+
+	@media screen and (max-width: $break-md) {
+		margin-left: 2rem;
+	}
 }

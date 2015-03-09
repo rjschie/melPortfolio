@@ -69,9 +69,7 @@ aside {
 		}
 	}
 
-	@media screen {
-		@media (max-width: $break-md) {
-			display: none;
-		}
+	@media screen and (max-width: $break-md) {
+		display: none;
 	}
 }
