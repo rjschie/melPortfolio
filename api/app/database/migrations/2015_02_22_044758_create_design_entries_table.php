@@ -17,7 +17,8 @@ class CreateDesignEntriesTable extends Migration {
 			$table->increments('id');
 			$table->integer('design_gallery_id');
 			$table->string('title');
-			$table->string('image');
+			$table->string('location');
+			$table->string('is_vid');
 		});
 	}
 
