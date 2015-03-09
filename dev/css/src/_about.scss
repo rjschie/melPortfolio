@@ -1,0 +1,88 @@
+/**
+ * About Page
+ */
+
+.about {
+	margin-top: 3.95rem;
+	margin-right: 6rem;
+	letter-spacing: .03em;
+	line-height: 1.3em;
+	font-size: 1.08rem;
+	color: #777;
+
+	&::after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: ".";
+		clear: both;
+		height: 0;
+	}
+
+	.portrait, .description {
+		float: left;
+	}
+
+	.portrait {
+		width: 60%;
+		max-width: 560px;
+
+		img {
+			width: 100%;
+		}
+
+	}
+
+	.description {
+		width: 40%;
+		padding-left: 2rem;
+
+		p:first-of-type {
+			margin-top: -3px;
+		}
+
+		.icons {
+			margin-top: 1.3rem;
+
+			a {
+				width: 1.4rem;
+				display: inline-block;
+				margin-right: 0.8rem;
+
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $break-lgr) {
+		.portrait {
+			width: 50%;
+		}
+		.description {
+			width: 50%;
+		}
+	}
+	@media screen and (max-width: $break-lg) {
+		.portrait, .description {
+			float: none;
+			width: 100%;
+		}
+		.portrait {
+			margin-bottom: 2rem;
+			max-width: 100%;
+		}
+		.description {
+			padding-right: 2rem;
+		}
+	}
+	@media screen and (max-width: $break-md) {
+		margin-right: 2rem;
+		margin-left: 2rem;
+
+		.description {
+			padding: 0;
+		}
+	}
+}
