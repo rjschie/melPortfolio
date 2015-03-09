@@ -37,4 +37,11 @@ angular.module('app.controllers', [])
 				$scope.galleries = DesignGallery.query();
 			}
 		}])
+
+	.controller('AboutController', ['$scope', 'InstagramFeed',
+		function ($scope, InstagramFeed) {
+			InstagramFeed.get(function(data) {
+				$scope.instagrams = data;
+			});
+		}])
 ;
