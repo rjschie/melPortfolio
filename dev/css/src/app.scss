@@ -1,13 +1,12 @@
 @import 'settings';
 @import 'fontFaces';
 
-a {
-	color: inherit;
-}
-
-
 * {
 	box-sizing: border-box;
+}
+
+a {
+	color: inherit;
 }
 
 .bold {
@@ -22,7 +21,7 @@ html,body {
 }
 
 .content {
-	margin: $margin-top-bottom auto $margin-top-bottom 20.714285714rem;
+	margin: 3.95rem auto $margin-top-bottom 20rem;
 	max-width: 1200px;
 
 	@media screen and (max-width: $break-md) {

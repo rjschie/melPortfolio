@@ -11,12 +11,11 @@
   src: url("../assets/proxima/ProximaNova-Bold.otf");
   font-weight: bold; }
 
-a {
-  text-decoration: none;
-  color: inherit; }
-
 * {
   box-sizing: border-box; }
+
+a {
+  color: inherit; }
 
 .bold {
   font-weight: bold; }
@@ -28,7 +27,7 @@ html, body {
   font-size: 14px; }
 
 .content {
-  margin: 1.42857rem auto 1.42857rem 20.71429rem;
+  margin: 3.95rem auto 1.42857rem 20rem;
   max-width: 1200px; }
   @media screen and (max-width: 760px) {
     .content {
@@ -42,19 +41,21 @@ aside {
   z-index: 1000;
   top: 0;
   left: 25px;
-  padding: 20px;
+  padding: 3.95rem 2.2rem 2.2rem;
   height: 100%;
   width: 240px;
   letter-spacing: .15em;
   line-height: 2em;
-  background-color: rgba(255, 255, 255, 0.9); }
-  aside a:hover {
-    font-weight: bold; }
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: scroll; }
+  aside a {
+    text-decoration: none; }
+    aside a:hover {
+      font-weight: bold; }
   aside .logo {
     display: block;
     padding: 0;
-    margin-top: 2.7rem;
-    margin-bottom: 25px; }
+    margin-bottom: 1.5rem; }
     aside .logo img {
       width: 100%;
       margin: 0;
@@ -74,11 +75,11 @@ aside {
       top: -2px;
       left: -22px; }
   aside ul ul {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     margin: 0 0 15px 0;
     padding: 0 0 0 12px;
     line-height: 2em;
-    letter-spacing: 0.17em; }
+    letter-spacing: 0.12em; }
     aside ul ul li {
       margin: 0;
       padding: 0; }
@@ -92,7 +93,7 @@ aside {
  */
 .designGrid .container {
   display: inline-block;
-  padding: 0.857rem;
+  padding: 0 0.857rem 0.857rem;
   margin-bottom: 1.42857rem;
   width: 32%;
   text-decoration: none;
@@ -119,8 +120,8 @@ aside {
  * Gallery View
  */
 .content-full {
-  margin-left: 290px;
-  margin-top: 70px;
+  margin-left: 19rem;
+  margin-top: 3.95rem;
   white-space: nowrap; }
   .content-full .container {
     display: inline-block;
@@ -164,3 +165,68 @@ aside {
 @media screen and (max-width: 760px) {
   .photoWall {
     margin-left: 24px; } }
+
+/**
+ * About Page
+ */
+.about {
+  margin-top: 3.95rem;
+  margin-right: 6rem;
+  letter-spacing: .03em;
+  line-height: 1.3em;
+  font-size: 1.08rem;
+  color: #777; }
+  .about::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: ".";
+    clear: both;
+    height: 0; }
+  .about .portrait, .about .description {
+    float: left; }
+  .about .portrait {
+    width: 60%;
+    max-width: 560px; }
+    .about .portrait img {
+      width: 100%; }
+  .about .description {
+    width: 40%;
+    padding-left: 2rem; }
+    .about .description p:first-of-type {
+      margin-top: -3px; }
+    .about .description .icons {
+      margin-top: 1.3rem; }
+      .about .description .icons a {
+        width: 1.4rem;
+        display: inline-block;
+        margin-right: 0.8rem; }
+        .about .description .icons a img {
+          width: 100%; }
+  .about #instagram-feed .feed-card {
+    margin-right: 10px;
+    padding-right: 0px;
+    width: calc(33.3333% - 10px);
+    float: left; }
+    .about #instagram-feed .feed-card img {
+      width: 100%; }
+  @media screen and (max-width: 1150px) {
+    .about .portrait {
+      width: 50%; }
+    .about .description {
+      width: 50%; } }
+  @media screen and (max-width: 1000px) {
+    .about .portrait, .about .description {
+      float: none;
+      width: 100%; }
+    .about .portrait {
+      margin-bottom: 2rem;
+      max-width: 100%; }
+    .about .description {
+      padding-right: 2rem; } }
+  @media screen and (max-width: 760px) {
+    .about {
+      margin-right: 2rem;
+      margin-left: 2rem; }
+      .about .description {
+        padding: 0; } }
