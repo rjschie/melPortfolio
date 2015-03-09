@@ -32,7 +32,8 @@ TODO
 
 - grid view option for photo subsections
 	- clicking is switching
-- create About page
++ ~~create About page~~
+	+ ~~Instagram feed~~
 
 - Build DB Relational Tables
 + ~~Put Photography in DB~~
