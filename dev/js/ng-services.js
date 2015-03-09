@@ -15,4 +15,17 @@ angular.module('app.services', [])
 	function($resource) {
 		return $resource('../api/design_galleries/:slug', { slug : '@slug' });
 	}])
+
+.factory('InstagramFeed', ['$http',
+	function($http) {
+		return {
+			get: function (callback) {
+				var endPoint = 'https://api.instagram.com/v1/users/328782452/media/recent/?client_id=6c30a75a54da4efa8343ef682a86995a&count=3&callback=JSON_CALLBACK';
+
+				$http.jsonp(endPoint).success(function(response) {
+					callback(response.data);
+				});
+			}
+		};
+	}])
 ;
