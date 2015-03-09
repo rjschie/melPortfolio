@@ -33,17 +33,17 @@ var config = {
  */
 gulp.task('css', function() {
 	return gulp.src(config.path.dev.scss + '/*.scss')
-		.pipe(plugins.sass({ style: 'expanded' }))
+		.pipe(plugins.sass({ style: 'expanded', errLogToConsole: true }))
 		.pipe(plugins.autoprefixer('last 2 version', 'safari 5', 'ie 8',
 			'ie 9', 'opera 12.1'))
-		.pipe(gulp.dest(config.path.dev.css)
-		.on('error',plugins.util.log));
+		.on('error',plugins.util.log)
+		.pipe(gulp.dest(config.path.dev.css));
 });
 
 gulp.task('js', function() {
 	return gulp.src(config.path.dev.js + '/*.js')
-		.pipe(plugins.jshint()
-		.on('error',plugins.util.log));
+		.on('error',plugins.util.log)
+		.pipe(plugins.jshint());
 });
 
 gulp.task('images', function() {
