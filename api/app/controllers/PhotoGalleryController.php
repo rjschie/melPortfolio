@@ -39,7 +39,7 @@ class PhotoGalleryController extends \BaseController {
 			$gallery_id = $gallery[0]->id;
 		}
 
-		return Response::json(PhotoEntry::orderBy('sort_pos', 'asc')->where('photo_gallery_id', '=', $gallery_id)->get());
+		return Response::json(PhotoEntry::orderBy('sort_pos', 'asc')->where('photo_gallery_id', '=', $gallery_id)->get(), 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
