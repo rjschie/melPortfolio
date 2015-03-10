@@ -18,7 +18,7 @@ class CreateDesignEntriesTable extends Migration {
 			$table->integer('design_gallery_id');
 			$table->string('title');
 			$table->string('location');
-			$table->string('is_vid');
+			$table->boolean('is_vid');
 		});
 	}
 
