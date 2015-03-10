@@ -139,5 +139,5 @@ gulp.task('build:main', function() {
  * Command Liners
  */
 gulp.task('default', ['css', 'js', 'watch']);
-gulp.task('build', ['build:clean', 'images', 'build:move', 'css', 'build:main']);
+gulp.task('build', ['build:clean', 'build:move', 'css', 'build:main']);
 
