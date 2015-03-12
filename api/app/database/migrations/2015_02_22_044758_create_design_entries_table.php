@@ -15,7 +15,6 @@ class CreateDesignEntriesTable extends Migration {
 		Schema::create('design_entries', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('design_gallery_id');
 			$table->string('title');
 			$table->string('location');
 			$table->boolean('is_vid');

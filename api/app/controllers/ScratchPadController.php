@@ -9,9 +9,13 @@ class ScratchPadController extends \BaseController {
 	 */
 	public function index()
 	{
-		return self::photoReturn();
+		return self::returnMyStuff();
 	}
 
+	public function returnMyStuff()
+	{
+		return DesignGallery::orderBy('id', 'asc')->get(['id','slug']);
+	}
 
 	public function photoReturn()
 	{

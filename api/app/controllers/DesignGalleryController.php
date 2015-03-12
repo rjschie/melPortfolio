@@ -30,7 +30,7 @@ class DesignGalleryController extends \BaseController {
 			$gallery_id = $gallery[0]->id;
 		}
 
-		return Response::json(DesignEntry::where('design_gallery_id', '=', $gallery_id)->get(), 200, [], JSON_NUMERIC_CHECK);
+		return Response::json(DesignGallery::find($gallery_id)->entries, 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
