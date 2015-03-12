@@ -7,4 +7,9 @@ class DesignEntry extends Eloquent {
 	public $table = 'design_entries';
 	public $timestamps = false;
 
+	public function galleries()
+	{
+		return $this->belongsToMany('DesignGallery', 'design_galleries_entries', 'gallery_id', 'entry_id');
+	}
+
 }
