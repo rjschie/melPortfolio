@@ -18,8 +18,8 @@ class DesignEntryTableSeeder extends Seeder {
 			if (is_dir($dir)) {
 				$theFiles = scandir($dir);
 				$theFiles = array_diff($theFiles, array('..', '.', '.DS_Store'));
+				$theFiles = array_values($theFiles);
 
-						'design_gallery_id' => $key+1,
 				foreach($theFiles as $fKey => $file) {
 					$entry = DesignEntry::create([
 						'title' => ucwords(explode('.',$file)[0]),
