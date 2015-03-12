@@ -6,32 +6,29 @@ class DesignEntryTableSeeder extends Seeder {
 	{
 		DB::table('design_entries')->delete();
 		DB::unprepared("ALTER TABLE `design_entries` AUTO_INCREMENT = 1;");
+		DB::table('design_galleries_entries')->delete();
+		DB::unprepared("ALTER TABLE `design_galleries_entries` AUTO_INCREMENT = 1;");
 
-		$arr = [
-			'docs',
-			'valise',
-			'infographic',
-			'subsplash',
-			'sorted',
-			'typography',
-			'path',
-			'unpack',
-			'pbr'
-		];
+		$galleries = DesignGallery::orderBy('id', 'asc')->get(['id','slug']);
 
-		foreach($arr as $key => $gall) {
+		foreach($galleries as $key => $gall) {
 
-			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/assets/imgs/'.$gall;
+			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/assets/imgs/'.$gall['slug'];
 
 			if (is_dir($dir)) {
 				$theFiles = scandir($dir);
 				$theFiles = array_diff($theFiles, array('..', '.', '.DS_Store'));
 
-				foreach($theFiles as $file) {
-					DesignEntry::create([
 						'design_gallery_id' => $key+1,
+				foreach($theFiles as $fKey => $file) {
+					$entry = DesignEntry::create([
 						'title' => ucwords(explode('.',$file)[0]),
-						'location' => $gall . '/' . $file
+						'location' => $gall['slug'] . '/' . $file
+					]);
+					DesignGalleryEntry::create([
+						'gallery_id' => $gall['id'],
+						'entry_id' => $entry['id'],
+						'sort_pos' => $fKey+1,
 					]);
 				}
 			}
