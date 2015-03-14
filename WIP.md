@@ -9,40 +9,39 @@ Photos
 	+ ~~clicking an image will go to that album~~
 	+ ~~categories listed under Photography~~
 
-
-
-FEEDBACK
-----------------
-+ ~~no bold plus~~
-+ ~~padding at top to not cutoff name~~
-+ ~~not as much for grid of images~~
-+ ~~white space at right of Valise images~~
-+ ~~grid image title closer to image~~
-+ ~~dr. martens: video height same as others (600)~~
+Initial Feedback
+	+ ~~no bold plus~~
+	+ ~~padding at top to not cutoff name~~
+	+ ~~not as much for grid of images~~
+	+ ~~white space at right of Valise images~~
+	+ ~~grid image title closer to image~~
+	+ ~~dr. martens: video height same as others (600)~~
 
 
 TODO
 ----------
 
-+ ~~photography page: margin-top is too short~~
-- scroll position when state changes for video gallery
-- account for videos in Design Galleries
-+ ~~look into 'packery' or 'isotope' grid libraries; ended with 'masonry'~~
-- create thumbnail sizes of images; for faster loading on photography random wall
-- images based on height of viewport
-
-- grid view option for photo subsections
-	- clicking is switching
-+ ~~create About page~~
-	+ ~~Instagram feed~~
-
-- Build DB Relational Tables
++ ~~Build DB Relational Tables~~
 + ~~Put Photography in DB~~
 + ~~Populate pages based on DB~~
-
 + ~~implement Logo~~
 + ~~add photography subsections~~
 + ~~photography home random from section images~~
 + ~~photography home margins adjusted~~
 + ~~Add UNPACK & Subsplash~~
 	+ ~~Proper order for Design subsections~~
++ ~~photography page: margin-top is too short~~
++ ~~look into 'packery' or 'isotope' grid libraries; ended with 'masonry'~~
++ ~~create thumbnail sizes of images; for faster loading on photography random wall~~
++ ~~create About page~~
+	+ ~~Instagram feed~~
+
+- scroll position when state changes for video gallery
+- account for videos in Design Galleries
+- images based on height of viewport
+- add text items/entries to design
+
+- grid view option for photo subsections
+	- clicking is switching
+	- set image width/height before painting images
+	- utilize $anchorScroll and asyncAnchor directive
