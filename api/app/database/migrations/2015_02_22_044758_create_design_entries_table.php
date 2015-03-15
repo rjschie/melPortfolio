@@ -16,9 +16,14 @@ class CreateDesignEntriesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('title');
-			$table->string('location');
-			$table->boolean('is_vid');
+			$table->string('subtitle')->nullable()->default('NULL');
+			$table->text('body')->nullable();
+			$table->string('footer')->nullable()->default('NULL');
+			$table->string('bgColor')->nullable()->default('333');
+			$table->string('location')->nullable()->default('NULL');
 		});
+		DB::statement("ALTER TABLE `design_entries` ADD
+									 is_vidOrText TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0 = img; 1 = vid; 2 = text'");
 	}
 
 	/**
