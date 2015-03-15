@@ -1,5 +1,11 @@
 <div class="content-full">
-	<div class="container" ng-repeat="entry in entries">
-		<img ng-src="assets/imgs/{{ entry.location }}">
+	<div class="container" ng-repeat="entry in entries" ng-switch="entry.is_vidOrText">
+		<article ng-switch-when="2" ng-style="{'background-color': '#{{entry.bgColor}}'}">
+			<section class="head">{{ entry.title }}</section>
+			<section class="subtitle">{{ entry.subtitle }}</section>
+			<section class="body">{{ entry.body }}</section>
+			<section class="foot">{{ entry.footer }}</section>
+		</article>
+		<img ng-switch-default ng-src="assets/imgs/{{ entry.location }}">
 	</div>
 </div>
