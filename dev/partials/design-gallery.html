@@ -6,6 +6,12 @@
 			<section class="body">{{ entry.body }}</section>
 			<section class="foot">{{ entry.footer }}</section>
 		</article>
-		<img ng-switch-default ng-src="assets/imgs/{{ entry.location }}">
+		<video ng-switch-when="1"
+					 ng-attr-poster="{{ entry.location }}-poster.jpg"
+					 controls
+					 ng-src="{{ entry.location }}"
+					 type="video/mp4">
+		</video>
+		<img ng-switch-default ng-src="{{ entry.location }}">
 	</div>
 </div>
