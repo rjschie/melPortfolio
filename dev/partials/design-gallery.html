@@ -1,11 +1,20 @@
 <div class="content-full">
-	<div class="container" ng-repeat="entry in entries" ng-switch="entry.is_vidOrText">
+	<div id="{{entry.id}}" class="container" ng-repeat="entry in entries" ng-switch="entry.is_vidOrText">
 		<article ng-switch-when="2" ng-style="{'background-color': '#{{entry.bgColor}}'}">
 			<section class="head">{{ entry.title }}</section>
 			<section class="subtitle">{{ entry.subtitle }}</section>
 			<section class="body">{{ entry.body }}</section>
 			<section class="foot">{{ entry.footer }}</section>
 		</article>
-		<img ng-switch-default ng-src="assets/imgs/{{ entry.location }}">
+		<div class="video-frame" ng-switch-when="1">
+			<img class="poster-image" ng-src="{{entry.location}}-poster.jpg">
+			<div class="play-button"
+					 ng-click="playVideo($index)">
+			</div>
+			<video controls>
+				<source ng-src="{{entry.location}}" type="video/mp4">
+			</video>
+		</div>
+		<img ng-switch-default ng-src="{{ entry.location }}">
 	</div>
 </div>

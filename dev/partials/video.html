@@ -1,22 +1,50 @@
 <div class="content-full">
 	<div class="container video">
-		<video poster="assets/vids/docs.mp4-poster.jpg" controls>
-			<source src="assets/vids/docs.mp4" type="video/mp4">
-		</video>
+		<div class="video-frame">
+			<img class="poster-image" ng-src="assets/vids/docs.mp4-poster.jpg">
+			<div class="play-button"
+					 ng-click="playVideo(0)">
+			</div>
+			<video controls>
+				<source ng-src="assets/vids/docs.mp4" type="video/mp4">
+				<source ng-src="assets/vids/docs.webm" type="video/webm">
+			</video>
+		</div>
 	</div>
 	<div class="container video">
-		<video poster="assets/vids/unpack.mp4-poster.jpg" controls>
-			<source src="assets/vids/unpack.mp4" type="video/mp4">
-		</video>
+		<div class="video-frame">
+			<img class="poster-image" ng-src="assets/vids/unpack.mp4-poster.jpg">
+			<div class="play-button"
+					 ng-click="playVideo(1)">
+			</div>
+			<video controls>
+				<source ng-src="assets/vids/unpack.mp4" type="video/mp4">
+				<source ng-src="assets/vids/unpack.webm" type="video/webm">
+			</video>
+		</div>
 	</div>
 	<div class="container video">
-		<video poster="assets/vids/lighthouse.mp4-poster.jpg" controls>
-			<source src="assets/vids/lighthouse.mp4" type="video/mp4">
-		</video>
+		<div class="video-frame">
+			<img class="poster-image" ng-src="assets/vids/lighthouse.mp4-poster.jpg">
+			<div class="play-button"
+					 ng-click="playVideo(2)">
+			</div>
+			<video controls>
+				<source ng-src="assets/vids/lighthouse.mp4" type="video/mp4">
+				<source ng-src="assets/vids/lighthouse.webm" type="video/webm">
+			</video>
+		</div>
 	</div>
 	<div class="container video">
-		<video poster="assets/vids/switch.mp4-poster.jpg" controls>
-			<source src="assets/vids/switch.mp4" type="video/mp4">
-		</video>
+		<div class="video-frame">
+			<img class="poster-image" ng-src="assets/vids/switch.mp4-poster.jpg">
+			<div class="play-button"
+					 ng-click="playVideo(3)">
+			</div>
+			<video controls>
+				<source ng-src="assets/vids/switch.mp4" type="video/mp4">
+				<source ng-src="assets/vids/switch.webm" type="video/webm">
+			</video>
+		</div>
 	</div>
 </div>
