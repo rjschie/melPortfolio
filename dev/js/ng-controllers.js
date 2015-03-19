@@ -30,12 +30,47 @@ angular.module('app.controllers', [])
 	.controller('DesignGalleryController', ['$scope', 'DesignGallery', '$stateParams',
 		function ($scope, DesignGallery, $stateParams) {
 
+			$scope.playVideo = function(index) {
+				var element = jQuery('.container').eq(index);
+				var video = element.find('video');
+				var webmsrc = element.find('source').attr('src').replace('.mp4', '.webm');
+				video.append('<source src="'+webmsrc+'" type="video/webm">');
+				element.find('.poster-image, .play-button').hide();
+				video.show();
+				video[0].play();
+				video.on('click', function() {
+					if(video[0].paused) {
+						video[0].play();
+					} else {
+						video[0].pause();
+					}
+				});
+			};
+
 			if($stateParams.gallerySlug) {
 				$scope.slug = $stateParams.gallerySlug;
 				$scope.entries = DesignGallery.query({slug: $stateParams.gallerySlug});
 			} else {
 				$scope.galleries = DesignGallery.query();
 			}
+		}])
+
+	.controller('VideoController', ['$scope',
+		function($scope) {
+			$scope.playVideo = function(index) {
+				var element = jQuery('.container').eq(index);
+				var video = element.find('video');
+				element.find('.poster-image, .play-button').hide();
+				video.show();
+				video[0].play();
+				video.on('click', function() {
+					if(video[0].paused) {
+						video[0].play();
+					} else {
+						video[0].pause();
+					}
+				});
+			};
 		}])
 
 	.controller('AboutController', ['$scope', 'InstagramFeed',

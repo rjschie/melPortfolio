@@ -45,7 +45,8 @@ app.config(['$stateProvider', '$urlRouterProvider',
 		 */
 			.state('video', {
 				url : '/video',
-				templateUrl : 'partials/video.html'
+				templateUrl : 'partials/video.html',
+				controller : 'VideoController'
 			})
 			.state('about', {
 				url : '/about',
