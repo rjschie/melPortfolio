@@ -182,15 +182,39 @@ aside {
         right: 0;
         font-size: 1.1rem;
         letter-spacing: 0.2em; }
+    .content-full .container .video-frame, .content-full .container .poster-image > img, .content-full .container video {
+      height: 100%;
+      position: relative; }
+    .content-full .container .video-frame .play-button {
+      width: 140px;
+      height: 90px;
+      background-color: rgba(20, 20, 20, 0.8);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -45px auto auto -70px;
+      border-radius: 5px;
+      z-index: 100; }
+      .content-full .container .video-frame .play-button::after {
+        content: "";
+        background: url('../img/play.png') no-repeat;
+        background-size: cover;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin: -25px auto 0;
+        height: 50px;
+        width: 50px; }
+      .content-full .container .video-frame .play-button:hover {
+        cursor: pointer; }
+    .content-full .container .video-frame video {
+      display: none; }
     .content-full .container img {
       display: inline;
       height: 100%;
       padding: 0;
       margin: 0; }
-    .content-full .container video {
-      height: 600px; }
-    .content-full .container video::-webkit-media-controls-fullscreen-button {
-      display: none; }
   @media screen and (max-width: 760px) {
     .content-full {
       margin-left: 2rem; } }
