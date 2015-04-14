@@ -38,8 +38,9 @@ TODO
 
 - scroll position when state changes for video gallery
 - account for videos in Design Galleries
-- images based on height of viewport
-- add text items/entries to design
+- images based on height of viewport if landscape
+- images based on width if portrait
++ ~~add text items/entries to design~~
 
 - grid view option for photo subsections
 	- clicking is switching
