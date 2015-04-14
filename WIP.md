@@ -40,6 +40,7 @@ TODO
 - account for videos in Design Galleries
 - images based on height of viewport if landscape
 - images based on width if portrait
+- sort pos for everything (design galleries, photos)
 + ~~add text items/entries to design~~
 
 - grid view option for photo subsections
