@@ -1,0 +1,28 @@
+<form class="content">
+	<div class="form-block first">
+		<label for="title" class="form-label">Title</label>
+		<input ng-model="design_gallery.title" id="title" class="form-input border" type="text">
+	</div>
+	<div class="form-block">
+		<label for="short_title" class="form-label">Menu Title</label>
+		<input ng-model="design_gallery.short_title" id="short_title" class="form-input border" type="text">
+	</div>
+	<div class="form-block">
+		<label for="slug" class="form-label">Slug</label>
+		<input ng-model="design_gallery.slug" id="slug" class="form-input border" type="text">
+	</div>
+	<div class="form-block">
+		<label for="image" class="form-label">Image</label>
+		<div class="form-uploader"></div>
+		<input ng-model="design_gallery.image" id="image" class="form-input hidden" type="file">
+	</div>
+	<div class="form-block last">
+		<input class="form-button" type="button" ng-click="reset()" value="Reset">
+		<input class="form-button" type="submit" ng-click="save(design_gallery)" value="Save">
+	</div>
+</form>
+
+<div class="content">
+	<pre>form = {{ design_gallery | json }}</pre>
+	<pre>master = {{ master | json }}</pre>
+</div>

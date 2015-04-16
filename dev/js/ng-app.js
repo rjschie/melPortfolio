@@ -53,6 +53,14 @@ app.config(['$stateProvider', '$urlRouterProvider',
 				templateUrl : 'partials/about.html',
 				controller : 'AboutController'
 			})
+		/**
+		 * Form States
+		 */
+			.state('add-design-gallery', {
+				url : '/admin/add-design-gallery',
+				templateUrl : 'partials/form.design-gallery.html',
+				controller : 'FormController'
+			})
 		;
 	}
 ]);
