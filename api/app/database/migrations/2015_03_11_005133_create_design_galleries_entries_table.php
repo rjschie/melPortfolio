@@ -16,9 +16,9 @@ class CreateDesignGalleriesEntriesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('gallery_id')->unsigned();
-			$table->foreign('gallery_id')->references('id')->on('design_galleries');
+			$table->foreign('gallery_id')->references('id')->on('design_galleries')->onDelete('cascade');
 			$table->integer('entry_id')->unsigned();
-			$table->foreign('entry_id')->references('id')->on('design_entries');
+			$table->foreign('entry_id')->references('id')->on('design_entries')->onDelete('cascade');
 			$table->integer('sort_pos');
 		});
 	}
