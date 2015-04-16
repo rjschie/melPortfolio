@@ -42,13 +42,32 @@ class DesignGalleryController extends \BaseController {
 	public function store()
 	{
 		try {
-			DesignGallery::create(['text' => Input::get('text')]);
+
+			$title = Input::has('title');
+			$short_title = Input::has('short_title');
+			$slug = Input::has('slug');
+
+			if($title && $short_title && $slug) {
+				DesignGallery::create([
+					'title'				=> Input::get('title'),
+					'short_title' => Input::get('short_title'),
+					'slug'				=> Input::get('slug'),
+					'image'				=> 'unpack.jpg'
+				]);
+			} else {
+				$errors[] = $title ? null : array("error" => "Missing `title`");
+				$errors[] = $short_title ? null : array("error" => "Missing `short_title`");
+				$errors[] = $slug ? null : array("error" => "Missing `slug`");
+
+				return Response::json($errors, 422);
+			}
+
 		} catch(Exception $e) {
 
-			return Response::make("", 500);
+			return Response::make("{\"error\":\"".$e->getMessage()."\"}", 500);
 		}
 
-		return Response::make("", 200);
+		return Response::make("", 201);
 	}
 
 
@@ -61,19 +80,17 @@ class DesignGalleryController extends \BaseController {
 	public function update($id)
 	{
 		try {
+
 			$gallery = DesignGallery::findOrFail($id);
 
-			if (Input::has('completed')) {
-				$input = Input::get('completed');
-				$completed_time = ($input) ? DB::raw('NOW()') : null;
-
-				$gallery->completed = $input;
-				$gallery->completed_at = $completed_time;
-
+			if (Input::has('title')) {
+				$gallery->title = Input::get('text');
 			}
-
-			if (Input::has('text')) {
-				$gallery->text = Input::get('text');
+			if(Input::has('short_title')) {
+				$gallery->short_title = Input::get('short_title');
+			}
+			if(Input::has('slug')) {
+				$gallery->slug = Input::get('slug');
 			}
 
 			$gallery->save();
