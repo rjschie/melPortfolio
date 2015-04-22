@@ -1,5 +1,5 @@
 <div class="content-full">
-	<div id="{{entry.id}}" class="container" ng-repeat="entry in entries" ng-switch="entry.is_vidOrText">
+	<div id="{{entry.id}}" class="container" ng-repeat="entry in entries" ng-switch="entry.isVidOrText">
 		<article ng-switch-when="2" ng-style="{'background-color': '#{{entry.bgColor}}'}">
 			<section class="head">{{ entry.title }}</section>
 			<section class="subtitle">{{ entry.subtitle }}</section>
