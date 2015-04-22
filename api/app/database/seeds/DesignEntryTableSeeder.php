@@ -13,7 +13,7 @@ class DesignEntryTableSeeder extends Seeder {
 
 		foreach($galleries as $key => $gall) {
 
-			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/assets/imgs/'.$gall['slug'];
+			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/uploads/'.$gall['slug'];
 
 			switch($gall['slug']) {
 				case 'valise':
@@ -68,7 +68,7 @@ class DesignEntryTableSeeder extends Seeder {
 
 					$entry = DesignEntry::create([
 						'title' => ucwords(explode('.',$file)[0]),
-						'location' => 'assets/imgs/' . $gall['slug'] . '/' . $file
+						'location' => 'uploads/' . $gall['slug'] . '/' . $file
 					]);
 					DesignGalleryEntry::create([
 						'gallery_id' => $gall['id'],
