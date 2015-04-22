@@ -31,8 +31,8 @@
 	border: 1px solid #434343;
 }
 .form-input.hidden {
-//	display:none;
-//	visibility: hidden;
+	display:none;
+	visibility: hidden;
 }
 
 .form-button {
@@ -56,9 +56,14 @@
 	background-color: #eee;
 	font-size: 6em;
 
-	&::after {
+	&.add-sign::after {
 		content: "+";
 		text-align: center;
+		display: block;
+	}
+
+	> img {
+		width: 100%;
 		display: block;
 	}
 }
