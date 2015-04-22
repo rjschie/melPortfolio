@@ -43,24 +43,34 @@ class DesignGalleryController extends \BaseController {
 	{
 		try {
 
-			$title = Input::has('title');
-			$short_title = Input::has('short_title');
-			$slug = Input::has('slug');
-
-			if($title && $short_title && $slug) {
-				DesignGallery::create([
-					'title'				=> Input::get('title'),
-					'short_title' => Input::get('short_title'),
-					'slug'				=> Input::get('slug'),
-					'image'				=> 'unpack.jpg'
-				]);
-			} else {
-				$errors[] = $title ? null : array("error" => "Missing `title`");
-				$errors[] = $short_title ? null : array("error" => "Missing `short_title`");
-				$errors[] = $slug ? null : array("error" => "Missing `slug`");
-
-				return Response::json($errors, 422);
+			foreach(Input::all() as $key => $val) {
+				$$key = $val;
 			}
+
+			if (!isset($title)) {
+				throw new Exception("Missing title.");
+			}
+			if (!isset($short_title)) {
+				throw new Exception("Missing short_title.");
+			}
+			if (!isset($slug)) {
+				throw new Exception("Missing slug.");
+			}
+			if(!isset($image)) {
+				throw new Exception("Missing image.");
+			}
+
+			$image->move(
+				dirname(base_path()).'/dev/uploads/design-home',
+				$image->getClientOriginalName()
+			);
+			DesignGallery::create([
+				'title'				=> Input::get('title'),
+				'short_title' => Input::get('short_title'),
+				'slug'				=> Input::get('slug'),
+				'image'				=> $image->getClientOriginalName()
+			]);
+
 
 		} catch(Exception $e) {
 
