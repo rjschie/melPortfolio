@@ -14,7 +14,8 @@ class ScratchPadController extends \BaseController {
 
 	public function returnMyStuff()
 	{
-		return DesignGallery::orderBy('id', 'asc')->get(['id','slug']);
+		var_dump(dirname(base_path()));
+		return;
 	}
 
 	public function photoReturn()
