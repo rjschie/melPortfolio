@@ -43,32 +43,30 @@ class DesignGalleryController extends \BaseController {
 	{
 		try {
 
-			foreach(Input::all() as $key => $val) {
-				$$key = $val;
-			}
+			extract(Input::all());
 
-			if (!isset($title)) {
+			if (!isset($new_title)) {
 				throw new Exception("Missing title.");
 			}
-			if (!isset($short_title)) {
+			if (!isset($new_short_title)) {
 				throw new Exception("Missing short_title.");
 			}
-			if (!isset($slug)) {
+			if (!isset($new_slug)) {
 				throw new Exception("Missing slug.");
 			}
-			if(!isset($image)) {
+			if(!isset($new_image['data']) || !isset($new_image['name'])) {
 				throw new Exception("Missing image.");
 			}
 
-			$image->move(
-				dirname(base_path()).'/dev/uploads/design-home',
-				$image->getClientOriginalName()
+			file_put_contents(
+				dirname(base_path()) . '/dev/uploads/design-home/' . $new_image['name'],
+				base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
 			);
 			DesignGallery::create([
-				'title'				=> Input::get('title'),
-				'short_title' => Input::get('short_title'),
-				'slug'				=> Input::get('slug'),
-				'image'				=> $image->getClientOriginalName()
+				'title'				=> $new_title,
+				'short_title' => $new_short_title,
+				'slug'				=> $new_slug,
+				'image'				=> $new_image['name']
 			]);
 
 
