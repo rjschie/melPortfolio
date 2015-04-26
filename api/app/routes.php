@@ -20,11 +20,15 @@ if(App::environment('local')) {
 }
 
 Route::resource('design_galleries', 'DesignGalleryController',
-	['only' => ['index', 'show', 'store', 'update', 'destroy']
-	]);
+	['only' => ['index', 'show', 'store', 'update', 'destroy']]
+);
+
+Route::resource('design_entries', 'DesignEntryController',
+	['only' => ['store', 'update', 'destroy']]
+);
 
 Route::resource('photo_galleries', 'PhotoGalleryController',
-	['only' => ['index', 'show', 'store', 'update', 'destroy']
-	]);
+	['only' => ['index', 'show', 'store', 'update', 'destroy']]
+);
 
 Route::get('/photo_random', 'PhotoGalleryController@random');

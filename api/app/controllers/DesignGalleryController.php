@@ -42,13 +42,40 @@ class DesignGalleryController extends \BaseController {
 	public function store()
 	{
 		try {
-			DesignGallery::create(['text' => Input::get('text')]);
+
+			extract(Input::all());
+
+			if (!isset($new_title)) {
+				throw new Exception("Missing title.");
+			}
+			if (!isset($new_short_title)) {
+				throw new Exception("Missing short_title.");
+			}
+			if (!isset($new_slug)) {
+				throw new Exception("Missing slug.");
+			}
+			if(!isset($new_image['data']) || !isset($new_image['name'])) {
+				throw new Exception("Missing image.");
+			}
+
+			file_put_contents(
+				dirname(base_path()) . '/dev/uploads/design-home/' . $new_image['name'],
+				base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
+			);
+			DesignGallery::create([
+				'title'				=> $new_title,
+				'short_title' => $new_short_title,
+				'slug'				=> $new_slug,
+				'image'				=> $new_image['name']
+			]);
+
+
 		} catch(Exception $e) {
 
-			return Response::make("", 500);
+			return Response::make("{\"error\":\"".$e->getMessage()."\"}", 500);
 		}
 
-		return Response::make("", 200);
+		return Response::make("", 201);
 	}
 
 
@@ -61,19 +88,17 @@ class DesignGalleryController extends \BaseController {
 	public function update($id)
 	{
 		try {
+
 			$gallery = DesignGallery::findOrFail($id);
 
-			if (Input::has('completed')) {
-				$input = Input::get('completed');
-				$completed_time = ($input) ? DB::raw('NOW()') : null;
-
-				$gallery->completed = $input;
-				$gallery->completed_at = $completed_time;
-
+			if (Input::has('title')) {
+				$gallery->title = Input::get('text');
 			}
-
-			if (Input::has('text')) {
-				$gallery->text = Input::get('text');
+			if(Input::has('short_title')) {
+				$gallery->short_title = Input::get('short_title');
+			}
+			if(Input::has('slug')) {
+				$gallery->slug = Input::get('slug');
 			}
 
 			$gallery->save();

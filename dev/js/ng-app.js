@@ -4,6 +4,7 @@ var app = angular.module('app', [
 	'ui.router',
 	'ngResource',
 	'app.services',
+	'app.directives',
 	'app.filters',
 	'app.controllers',
 	'wu.masonry'
@@ -19,12 +20,17 @@ app.config(['$stateProvider', '$urlRouterProvider',
 		 */
 			.state('design', {
 				url : '/design',
-				templateUrl : 'partials/design.html',
+				templateUrl : 'partials/design-galleries.html',
 				controller : 'DesignGalleryController'
+			})
+			.state('add-design-gallery', {
+				url: '/design/add-gallery',
+				templateUrl : 'partials/design-galleries-add-form.html',
+				controller : 'FormController'
 			})
 			.state('design-gallery', {
 				url : '/design/:gallerySlug',
-				templateUrl : 'partials/design-gallery.html',
+				templateUrl : 'partials/design-entries.html',
 				controller : 'DesignGalleryController'
 			})
 		/**

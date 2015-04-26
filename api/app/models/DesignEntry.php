@@ -2,7 +2,15 @@
 
 class DesignEntry extends Eloquent {
 
-	protected $fillable = [ 'title','location', 'is_vid' ];
+	protected $fillable = [
+		'title',
+		'subtitle',
+		'body',
+		'footer',
+		'bgColor',
+		'location',
+		'isVidOrText'
+	];
 
 	public $table = 'design_entries';
 	public $timestamps = false;

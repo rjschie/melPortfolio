@@ -47,3 +47,18 @@ TODO
 	- clicking is switching
 	- set image width/height before painting images
 	- utilize $anchorScroll and asyncAnchor directive
+
+
+
+ADDING
+--------------
+
+- API backend
+	- adding entries
+	- adding galleries
+	- file upload
+
+- Frontend
+	- forms
+	- form functionality
+	- file upload

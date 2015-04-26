@@ -13,7 +13,7 @@ class DesignEntryTableSeeder extends Seeder {
 
 		foreach($galleries as $key => $gall) {
 
-			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/assets/imgs/'.$gall['slug'];
+			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/uploads/'.$gall['slug'];
 
 			switch($gall['slug']) {
 				case 'valise':
@@ -23,7 +23,7 @@ class DesignEntryTableSeeder extends Seeder {
 						'body' => 'Valise connects the wanderlust with local employers as they travel around the world. Travelers exchange labor for their basic travel needs such as lodging, food, or transportation so travel doesn\'t have to stop when your pockets are empty. The custom symbol set allows power users to quickly browse for the form of compensation they are looking for.',
 						'footer' => 'MOBILE DESIGN + SYMBOL SET',
 						'bgColor' => 'ba8a38',
-						'is_vidOrText' => 2
+						'isVidOrText' => 2
 					]);
 					DesignGalleryEntry::create([
 						'gallery_id' => $gall['id'],
@@ -38,7 +38,7 @@ class DesignEntryTableSeeder extends Seeder {
 						'body' => 'A foundational feature of SORTED is the ability to rearrange tasks from global to daily task lists; this encourages students to schedule. SORTED allows students to organize their assignments and class times and as well as monitor projected degree requirements. Navigating the university campus is made seamless with SORTED as well. Whether quickly mapping classroom locations, finding food near campus, or locating rental equipment for an upcoming project, the map features makes it easy.',
 						'footer' => 'WEB + MOBILE DESIGN',
 						'bgColor' => 'e46942',
-						'is_vidOrText' => 2
+						'isVidOrText' => 2
 					]);
 					DesignGalleryEntry::create([
 						'gallery_id' => $gall['id'],
@@ -68,7 +68,7 @@ class DesignEntryTableSeeder extends Seeder {
 
 					$entry = DesignEntry::create([
 						'title' => ucwords(explode('.',$file)[0]),
-						'location' => 'assets/imgs/' . $gall['slug'] . '/' . $file
+						'location' => 'uploads/' . $gall['slug'] . '/' . $file
 					]);
 					DesignGalleryEntry::create([
 						'gallery_id' => $gall['id'],

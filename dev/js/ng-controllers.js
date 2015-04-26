@@ -79,4 +79,19 @@ angular.module('app.controllers', [])
 				$scope.instagrams = data;
 			});
 		}])
+
+	.controller('FormController', ['$scope', 'DesignGallery',
+		function($scope, DesignGallery) {
+			$scope.formData = {};
+
+			$scope.save = function(formData) {
+				var newGallery = new DesignGallery(formData);
+				newGallery.$save();
+			};
+
+			$scope.clear = function() {
+				$scope.formData = {};
+			};
+
+		}])
 ;
