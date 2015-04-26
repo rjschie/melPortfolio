@@ -20,12 +20,17 @@ app.config(['$stateProvider', '$urlRouterProvider',
 		 */
 			.state('design', {
 				url : '/design',
-				templateUrl : 'partials/design.html',
+				templateUrl : 'partials/design-galleries.html',
 				controller : 'DesignGalleryController'
+			})
+			.state('add-design-gallery', {
+				url: '/design/add-gallery',
+				templateUrl : 'partials/design-galleries-add-form.html',
+				controller : 'FormController'
 			})
 			.state('design-gallery', {
 				url : '/design/:gallerySlug',
-				templateUrl : 'partials/design-gallery.html',
+				templateUrl : 'partials/design-entries.html',
 				controller : 'DesignGalleryController'
 			})
 		/**
@@ -53,14 +58,6 @@ app.config(['$stateProvider', '$urlRouterProvider',
 				url : '/about',
 				templateUrl : 'partials/about.html',
 				controller : 'AboutController'
-			})
-		/**
-		 * Form States
-		 */
-			.state('add-design-gallery', {
-				url : '/admin/add-design-gallery',
-				templateUrl : 'partials/form.design-gallery.html',
-				controller : 'FormController'
 			})
 		;
 	}
