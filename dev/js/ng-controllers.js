@@ -55,6 +55,29 @@ angular.module('app.controllers', [])
 			}
 		}])
 
+	.controller('DesignGalleryAdminController', ['$scope', 'DesignGallery', 'DesignEntry',
+		function($scope, DesignGallery, DesignEntry) {
+
+			$scope.formData = {};
+
+			$scope.save = function(formData) {
+				var formModel;
+
+				switch($scope.$state.current.name) {
+					case 'design-add-gallery':
+						formModel = new DesignGallery(formData);
+						break;
+				}
+
+				formModel.$save();
+			};
+
+			$scope.clear = function() {
+				$scope.formData = {};
+			};
+
+		}])
+
 	.controller('VideoController', ['$scope',
 		function($scope) {
 			$scope.playVideo = function(index) {
@@ -78,20 +101,5 @@ angular.module('app.controllers', [])
 			InstagramFeed.get(function(data) {
 				$scope.instagrams = data;
 			});
-		}])
-
-	.controller('FormController', ['$scope', 'DesignGallery',
-		function($scope, DesignGallery) {
-			$scope.formData = {};
-
-			$scope.save = function(formData) {
-				var newGallery = new DesignGallery(formData);
-				newGallery.$save();
-			};
-
-			$scope.clear = function() {
-				$scope.formData = {};
-			};
-
 		}])
 ;
