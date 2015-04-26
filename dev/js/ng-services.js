@@ -16,6 +16,11 @@ angular.module('app.services', [])
 		return $resource('../api/design_galleries/:slug', { slug : '@slug' });
 	}])
 
+.factory('DesignEntry', ['$resource',
+	function($resource) {
+		return $resource('../api/design_entries/:id', { id : '@id' });
+	}])
+
 .factory('InstagramFeed', ['$http',
 	function($http) {
 		return {

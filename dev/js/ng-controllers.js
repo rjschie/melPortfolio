@@ -67,6 +67,9 @@ angular.module('app.controllers', [])
 					case 'design-add-gallery':
 						formModel = new DesignGallery(formData);
 						break;
+					case 'design-add-entry':
+						formModel = new DesignEntry(formData);
+						break;
 				}
 
 				formModel.$save();
