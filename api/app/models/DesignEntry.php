@@ -9,7 +9,7 @@ class DesignEntry extends Eloquent {
 		'footer',
 		'bgColor',
 		'location',
-		'isVidOrText'
+		'type'
 	];
 
 	public $table = 'design_entries';

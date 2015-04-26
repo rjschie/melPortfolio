@@ -15,14 +15,14 @@ class DesignEntryController extends \BaseController {
 
 			extract(Input::all());
 
-			if(!isset($isVidOrText)) {
+			if(!isset($type)) {
 				throw new Exception("Must define entry type.");
 			}
 			if(!isset($gallery_id)) {
 				throw new Exception("Must define gallery id.");
 			}
 
-			switch($isVidOrText) {
+			switch($type) {
 				case 0: // Image Item
 					if(empty($title) || empty($location)) {
 						throw new Exception("Image: Must define all of the following: title, location.");
@@ -30,7 +30,7 @@ class DesignEntryController extends \BaseController {
 					$entry = DesignEntry::create([
 						'title'				=> $title,
 						'location'		=> $location,
-						'isVidOrText'	=> 0
+						'type'	=> 0
 					]);
 					break;
 				case 1: // Video Item
@@ -40,7 +40,7 @@ class DesignEntryController extends \BaseController {
 					$entry = DesignEntry::create([
 						'title'				=> $title,
 						'location'		=> $location,
-						'isVidOrText'	=> 1
+						'type'	=> 1
 					]);
 					break;
 				case 2: // Text Item
@@ -53,7 +53,7 @@ class DesignEntryController extends \BaseController {
 						'body'				=> $body,
 						'footer'			=> $footer,
 						'bgColor'			=> $bgColor,
-						'isVidOrText'	=> 2
+						'type'	=> 2
 					]);
 					break;
 			}

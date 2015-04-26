@@ -23,7 +23,7 @@ class CreateDesignEntriesTable extends Migration {
 			$table->string('location')->nullable()->default('NULL');
 		});
 		DB::statement("ALTER TABLE `design_entries` ADD
-									 isVidOrText TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0 = img; 1 = vid; 2 = text'");
+									 type TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0 = img; 1 = vid; 2 = text'");
 	}
 
 	/**
