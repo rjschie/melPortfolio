@@ -13,9 +13,7 @@ class DesignEntryController extends \BaseController {
 	{
 		try {
 
-			foreach(Input::all() as $key => $val) {
-				$$key = $val;
-			}
+			extract(Input::all());
 
 			if(!isset($isVidOrText)) {
 				throw new Exception("Must define entry type.");
@@ -26,7 +24,7 @@ class DesignEntryController extends \BaseController {
 
 			switch($isVidOrText) {
 				case 0: // Image Item
-					if(!isset($title) || !isset($location)) {
+					if(empty($title) || empty($location)) {
 						throw new Exception("Image: Must define all of the following: title, location.");
 					}
 					$entry = DesignEntry::create([
@@ -36,7 +34,7 @@ class DesignEntryController extends \BaseController {
 					]);
 					break;
 				case 1: // Video Item
-					if(!isset($title) || !isset($location)) {
+					if(empty($title) || empty($location)) {
 						throw new Exception("Vid: Must define all of the following: title, location.");
 					}
 					$entry = DesignEntry::create([
@@ -46,7 +44,7 @@ class DesignEntryController extends \BaseController {
 					]);
 					break;
 				case 2: // Text Item
-					if(!isset($title) || !isset($subtitle) || !isset($body) || !isset($footer) || !isset($bgColor)) {
+					if(empty($title) || empty($subtitle) || empty($body) || empty($footer) || empty($bgColor)) {
 						throw new Exception("Text: Must define all of the following: title, subtitle, body, footer, bgColor.");
 					}
 					$entry = DesignEntry::create([

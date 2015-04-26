@@ -45,16 +45,16 @@ class DesignGalleryController extends \BaseController {
 
 			extract(Input::all());
 
-			if (!isset($new_title)) {
+			if (empty($new_title)) {
 				throw new Exception("Missing title.");
 			}
-			if (!isset($new_short_title)) {
+			if (empty($new_short_title)) {
 				throw new Exception("Missing short_title.");
 			}
-			if (!isset($new_slug)) {
+			if (empty($new_slug)) {
 				throw new Exception("Missing slug.");
 			}
-			if(!isset($new_image['data']) || !isset($new_image['name'])) {
+			if(empty($new_image)) {
 				throw new Exception("Missing image.");
 			}
 
