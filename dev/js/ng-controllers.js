@@ -80,16 +80,17 @@ angular.module('app.controllers', [])
 			});
 		}])
 
-	.controller('FormController', ['$scope',
-		function($scope) {
-			$scope.master = {};
+	.controller('FormController', ['$scope', 'DesignGallery',
+		function($scope, DesignGallery) {
+			$scope.formData = {};
 
-			$scope.save = function(design_gallery) {
-				$scope.master = angular.copy(design_gallery);
+			$scope.save = function(formData) {
+				var newGallery = new DesignGallery(formData);
+				newGallery.$save();
 			};
 
-			$scope.reset = function() {
-				$scope.design_gallery = angular.copy($scope.master);
+			$scope.clear = function() {
+				$scope.formData = {};
 			};
 
 		}])
