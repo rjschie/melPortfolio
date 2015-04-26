@@ -14,7 +14,17 @@ class ScratchPadController extends \BaseController {
 
 	public function returnMyStuff()
 	{
-		var_dump(dirname(base_path()));
+		$arr = [
+			'key1' => 'val1',
+			'key2' => 'val2',
+			'keyArr' => [
+				'key1' => 'val3',
+				'key2' => 'val4'
+			]
+		];
+		extract($arr);
+
+		var_dump($key1, $key2, $keyArr['key1'], $keyArr['key2']);
 		return;
 	}
 
