@@ -361,6 +361,8 @@ aside {
     content: "+";
     text-align: center;
     display: block; }
+  .form-uploader.dragging {
+    background-color: #ddd; }
   .form-uploader > img {
     width: 100%;
     display: block; }
