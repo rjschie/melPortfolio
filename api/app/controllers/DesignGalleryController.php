@@ -11,7 +11,7 @@ class DesignGalleryController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Response::json(DesignGallery::all(), 200, [], JSON_NUMERIC_CHECK);
+		return Response::json(DesignGallery::orderBy('sort_pos')->get(), 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
