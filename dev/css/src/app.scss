@@ -29,6 +29,9 @@ html,body {
 	}
 }
 
+.no-scroll {
+	overflow: hidden;
+}
 
 @import 'modal';
 

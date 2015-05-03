@@ -2,10 +2,15 @@
 
 angular.module('app.controllers', [])
 
-	.controller('BaseController', ['$scope', '$state', '$stateParams',
-		function ($scope, $state, $stateParams) {
+	.controller('BaseController', ['$scope', '$state', '$stateParams', '$rootScope',
+		function ($scope, $state, $stateParams, $rootScope) {
 			$scope.$state = $state;
 			$scope.$stateParams = $stateParams;
+
+			$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+				$scope.noScroll = (toParams.noScroll) ? true : false;
+			});
+
 		}])
 
 	.controller('MenuController', ['$scope', 'Photography', 'DesignGallery',
