@@ -22,10 +22,10 @@ angular.module('app.directives', [])
 				formData: '='
 			},
 			template: '<img ng-src="{{formData.new_image.data}}" ng-show=formData.new_image>',
-			link: function(scope, element, attrs) {
+			link: function(scope, elem, attrs) {
 
 				var file;
-				var fileInput = $('<input type="file">');
+				var fileInput = jQuery('<input type="file">');
 				var reader = new FileReader();
 
 				/**
@@ -50,7 +50,7 @@ angular.module('app.directives', [])
 				/**
 				 * Bring in File Selection Dialog when clicking dropzone
 				 */
-				element.on('click', function() {
+				elem.on('click', function() {
 					fileInput.trigger('click');
 				});
 
@@ -66,24 +66,24 @@ angular.module('app.directives', [])
 				 * Stop browser from opening with file:// protocol
 				 * Add defined dragClass when dragging
 				 */
-				element.on('dragover', function(event) {
+				elem.on('dragover', function(event) {
 					event.stopPropagation();
 					event.preventDefault();
 
 					if(attrs.dragClass) {
-						element.addClass(attrs.dragClass);
+						elem.addClass(attrs.dragClass);
 					}
 				});
 
 				/**
 				 * Remove defined dragClass when no longer dragging
 				 */
-				element.on('dragleave', function(event) {
+				elem.on('dragleave', function(event) {
 					event.stopPropagation();
 					event.preventDefault();
 
 					if(attrs.dragClass) {
-						element.removeClass(attrs.dragClass);
+						elem.removeClass(attrs.dragClass);
 					}
 				});
 
@@ -91,7 +91,7 @@ angular.module('app.directives', [])
 				 * Stop browser from opening with file:// protocol
 				 * Add file to Form Data after dropping
 				 */
-				element.on('drop', function(event) {
+				elem.on('drop', function(event) {
 					event.stopPropagation();
 					event.preventDefault();
 					file = event.originalEvent.dataTransfer.files[0];
