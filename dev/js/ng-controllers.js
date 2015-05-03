@@ -64,10 +64,10 @@ angular.module('app.controllers', [])
 				var formModel;
 
 				switch($scope.$state.current.name) {
-					case 'design-add-gallery':
+					case 'design.add-gallery':
 						formModel = new DesignGallery(formData);
 						break;
-					case 'design-add-entry':
+					case 'design.add-entry':
 						formModel = new DesignEntry(formData);
 						break;
 				}

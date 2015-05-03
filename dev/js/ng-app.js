@@ -23,13 +23,13 @@ app.config(['$stateProvider', '$urlRouterProvider',
 				templateUrl : 'partials/design-galleries.html',
 				controller : 'DesignGalleryController'
 			})
-			.state('design-add-gallery', {
-				url: '/design/add-gallery',
+			.state('design.add-gallery', {
+				url: '/add-gallery',
 				templateUrl : 'partials/design-galleries-add-form.html',
 				controller : 'DesignGalleryAdminController'
 			})
-			.state('design-add-entry', {
-				url: '/design/add-entry',
+			.state('design.add-entry', {
+				url: '/add-entry',
 				templateUrl: 'partials/design-entries-add-form.html',
 				controller: 'DesignGalleryAdminController'
 			})
