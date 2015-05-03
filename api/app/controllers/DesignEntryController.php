@@ -15,44 +15,44 @@ class DesignEntryController extends \BaseController {
 
 			extract(Input::all());
 
-			if(!isset($type)) {
+			if(!isset($new_type)) {
 				throw new Exception("Must define entry type.");
 			}
 			if(!isset($gallery_id)) {
 				throw new Exception("Must define gallery id.");
 			}
 
-			switch($type) {
+			switch($new_type) {
 				case 0: // Image Item
-					if(empty($title) || empty($location)) {
+					if(empty($new_title) || empty($new_location)) {
 						throw new Exception("Image: Must define all of the following: title, location.");
 					}
 					$entry = DesignEntry::create([
-						'title'				=> $title,
-						'location'		=> $location,
+						'title'				=> $new_title,
+						'location'		=> $new_location,
 						'type'	=> 0
 					]);
 					break;
 				case 1: // Video Item
-					if(empty($title) || empty($location)) {
+					if(empty($new_title) || empty($new_location)) {
 						throw new Exception("Vid: Must define all of the following: title, location.");
 					}
 					$entry = DesignEntry::create([
-						'title'				=> $title,
-						'location'		=> $location,
+						'title'				=> $new_title,
+						'location'		=> $new_location,
 						'type'	=> 1
 					]);
 					break;
 				case 2: // Text Item
-					if(empty($title) || empty($subtitle) || empty($body) || empty($footer) || empty($bgColor)) {
+					if(empty($new_title) || empty($new_subtitle) || empty($new_body) || empty($new_footer) || empty($new_bgColor)) {
 						throw new Exception("Text: Must define all of the following: title, subtitle, body, footer, bgColor.");
 					}
 					$entry = DesignEntry::create([
-						'title' 			=> $title,
-						'subtitle'		=> $subtitle,
-						'body'				=> $body,
-						'footer'			=> $footer,
-						'bgColor'			=> $bgColor,
+						'title' 			=> $new_title,
+						'subtitle'		=> $new_subtitle,
+						'body'				=> $new_body,
+						'footer'			=> $new_footer,
+						'bgColor'			=> $new_bgColor,
 						'type'	=> 2
 					]);
 					break;
