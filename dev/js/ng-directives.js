@@ -100,4 +100,26 @@ angular.module('app.directives', [])
 			}
 		}
 	})
+
+	.directive('modal', ['$rootScope', function($rootScope) {
+		return {
+			template: [
+				'<div class="modal-overlay modal-close-action"></div>',
+				'<div class="modal-close-button modal-close-action"></div>',
+				'<ng-transclude></ng-transclude>'
+			],
+			transclude: true,
+			link: function(scope, elem, attrs) {
+				elem.on('click', '.modal-close-action', function() {
+					scope.$state.go('^');
+				});
+				jQuery(window).one('keyup', function(e) {
+					if(e.keyCode == 27) {
+						scope.$state.go('^');
+						console.log("escaped");
+					}
+				});
+			}
+		}
+	}])
 ;
