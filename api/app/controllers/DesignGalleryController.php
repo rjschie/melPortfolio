@@ -67,6 +67,8 @@ class DesignGalleryController extends \BaseController {
 				'short_title' => $new_short_title,
 				'slug'				=> $new_slug,
 				'image'				=> $new_image['name']
+				'image'				=> $new_image['name'],
+				'sort_pos'		=> DesignGallery::max('sort_pos')+1
 			]);
 
 

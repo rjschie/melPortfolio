@@ -2,7 +2,7 @@
 
 class DesignGallery extends Eloquent {
 
-	protected $fillable = [ 'title', 'short_title', 'slug','image' ];
+	protected $fillable = [ 'title', 'short_title', 'slug','image', 'sort_pos' ];
 
 	public $table = 'design_galleries';
 	public $timestamps = false;

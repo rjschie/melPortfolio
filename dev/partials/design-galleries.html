@@ -1,5 +1,7 @@
 <div class="content designGrid">
-	<a ng-repeat="gallery in galleries" ui-sref="design-gallery({ gallerySlug: gallery.slug })" class="container">
+	<a ng-repeat="gallery in galleries | orderBy : 'sort_pos' track by $index"
+		 ui-sref="design-gallery({ gallerySlug: gallery.slug })"
+		 class="container">
 		<img ng-src="uploads/design-home/{{ gallery.image }}">
 		<p>{{ gallery.title }}</p>
 	</a>
