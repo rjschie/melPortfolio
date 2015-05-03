@@ -1,22 +1,36 @@
+.form-content, .form-input {
+	text-align: left;
+	font-size: 1.2rem;
+	line-height: 1.4em;
+}
+
+.form-button:hover, .form-uploader, .form-label {
+	cursor: pointer;
+}
+
+.form-label.no-pointer {
+	cursor: initial;
+}
+
 .form-block {
 	display: block;
 	line-height: 2.5em;
 	margin: 0 auto;
 	padding: 1rem;
-}
-.form-block.first {
-	padding-top: 0;
-}
-.form-block.last {
-	padding-bottom: 0;
+
+	&.first {
+		padding-top: 0;
+	}
+	&.last {
+		padding-bottom: 0;
+	}
 }
 
-.form-label, .form-input {
-	font-size: 1.6rem;
 }
 
 .form-label, .form-input {
 	display: block;
+	width: 100%;
 }
 
 .form-input {
@@ -26,13 +40,18 @@
 	padding-right: 5px;
 	width: 80%;
 	max-width: 30rem;
+	&.border {
+		border: 1px solid #434343;
+	}
+	&.inline {
+		display: inline;
+	}
+	&.hidden {
+		display: none;
+		visibility: hidden;
+	}
 }
-.form-input.border {
-	border: 1px solid #434343;
 }
-.form-input.hidden {
-	display:none;
-	visibility: hidden;
 }
 
 .form-button {
