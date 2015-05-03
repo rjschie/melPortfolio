@@ -1,56 +1,79 @@
 /**
  * Design Grid
  */
-.designGrid {
+.grid-container, .grid-link {
+	display: inline-block;
+}
 
-	.container {
-		display: inline-block;
-		padding: 0 0.857rem 0.857rem;
-		margin-bottom: $margin-top-bottom;
-		width: 32%;
-		text-decoration: none;
-		color: inherit;
-		text-align: center;
-		font-size: 0.9rem;
-		text-transform: uppercase;
-		letter-spacing: .1em;
+.grid-container {
+	margin-bottom: $margin-top-bottom;
+	width: 32%;
+	z-index: 10;
+	padding: 0 0.857rem 0.857rem;
 
-		img {
+	@media screen {
+		@media (max-width: $break-lg) {
+			width: 49%;
+		}
+		@media (max-width: $break-sm) {
 			width: 100%;
 		}
-
-		p {
-			margin: 0.514rem 0 0 0;
-		}
-
-		@media screen {
-			@media (max-width: $break-lg) {
-				width: 49%;
-			}
-			@media (max-width: $break-sm) {
-				width: 100%;
-			}
-		}
 	}
+}
 
-	a.container:hover {
-		img {
-			opacity: .84;
-		}
-	}
+.grid-link {
+	text-decoration: none;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+	color: inherit;
+	text-align: center;
 
-	.gallery-add-ratio {
+	> img {
 		width: 100%;
-		position: relative;
-		padding-top: 66.66%;
 	}
 
-	.gallery-add-shape {
+	> p {
+		margin: 0.514rem 0 0 0;
+	}
+
+	&:hover > img {
+		opacity: .84;
+	}
+}
+
+.gallery-add-ratio {
+	width: 100%;
+	position: relative;
+	padding-top: 66.66%;
+}
+
+.gallery-add-shape {
+	display: block;
+	background-color: #eee;
+	width: 100%;
+	border: 3px dashed #ddd;
+	font-size: 6em;
+	position: absolute;
+	top: -3px; bottom: 3px; left: -3px; right: 3px;
+	height: 100%;
+
+	&::after {
+		content: "+";
+		text-align: center;
 		display: block;
-		background-color: #eee;
-		width: 100%;
-		border: 3px dashed #ddd;
-		font-size: 6em;
+		color: #ccc;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	&:hover {
+		background-color: #e6e6e6;
+		color: #ccc;
+	}
+}
+
 		position: absolute;
 		top: -3px; bottom: 3px; left: -3px; right: 3px;
 		height: 100%;

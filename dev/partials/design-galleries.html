@@ -1,11 +1,13 @@
 <div class="content designGrid">
-	<a ng-repeat="gallery in galleries | orderBy : 'sort_pos' track by $index"
-		 ui-sref="design-gallery({ gallerySlug: gallery.slug })"
-		 class="container">
-		<img ng-src="uploads/design-home/{{ gallery.image }}">
-		<p>{{ gallery.title }}</p>
-	</a>
-	<a ui-sref="design.add-gallery" class="container">
+	<div ng-repeat="gallery in galleries | orderBy : 'sort_pos' track by $index"
+			 class="grid-container">
+		<a ui-sref="design-gallery({ gallerySlug: gallery.slug })"
+			 class="grid-link">
+			<img ng-src="uploads/design-home/{{ gallery.image }}">
+			<p>{{ gallery.title }}</p>
+		</a>
+	</div>
+	<a ui-sref="design.add-gallery" class="grid-container grid-link">
 		<div class="gallery-add-ratio">
 			<div class="gallery-add-shape"></div>
 		</div>
