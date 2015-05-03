@@ -1,8 +1,9 @@
 'use strict';
 
 var app = angular.module('app', [
-	'ui.router',
 	'ngResource',
+	'ngAnimate',
+	'ui.router',
 	'app.services',
 	'app.directives',
 	'app.filters',
