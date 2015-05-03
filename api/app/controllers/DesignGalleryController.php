@@ -62,11 +62,10 @@ class DesignGalleryController extends \BaseController {
 				dirname(base_path()) . '/dev/uploads/design-home/' . $new_image['name'],
 				base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
 			);
-			DesignGallery::create([
+			$newGallery = DesignGallery::create([
 				'title'				=> $new_title,
 				'short_title' => $new_short_title,
 				'slug'				=> $new_slug,
-				'image'				=> $new_image['name']
 				'image'				=> $new_image['name'],
 				'sort_pos'		=> DesignGallery::max('sort_pos')+1
 			]);
@@ -77,7 +76,7 @@ class DesignGalleryController extends \BaseController {
 			return Response::make("{\"error\":\"".$e->getMessage()."\"}", 500);
 		}
 
-		return Response::make("", 201);
+		return Response::json($newGallery, 201, [], JSON_NUMERIC_CHECK);
 	}
 
 
