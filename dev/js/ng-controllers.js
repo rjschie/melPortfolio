@@ -77,7 +77,13 @@ angular.module('app.controllers', [])
 						break;
 				}
 
-				formModel.$save();
+				formModel.$save().then(function(result) {
+					$scope.$parent.galleries.push(result);
+					$scope.$state.go('^');
+				},function(result) {
+					$scope.error = 'Failed to save: ' + result.data.error;
+					console.log("Error: " + JSON.stringify(result.data));
+				});
 			};
 
 			$scope.clear = function() {
