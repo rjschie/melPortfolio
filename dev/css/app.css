@@ -38,12 +38,96 @@ html, body {
     .content {
       margin-left: auto; } }
 
+.no-scroll {
+  overflow: hidden; }
+
+.modal-overlay {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(220, 220, 220, 0.4);
+  overflow: hidden;
+  cursor: pointer; }
+
+.modal, .modal-close-button {
+  width: 45%;
+  max-width: 30rem; }
+
+.modal, .modal-close-button::before {
+  box-shadow: 0 0 10px #777; }
+
+.modal, .modal-close-button::after, .modal-close-button::before {
+  background-color: white; }
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.3rem .8rem;
+  overflow: scroll; }
+
+.modal-close-button {
+  position: fixed;
+  right: 0;
+  top: 0;
+  color: black;
+  z-index: 1001; }
+  .modal-close-button::after, .modal-close-button::before {
+    position: absolute;
+    top: 1.3rem;
+    display: block;
+    height: 2.5rem; }
+  .modal-close-button::after {
+    content: "";
+    width: 0.9rem;
+    left: -3px; }
+  .modal-close-button::before {
+    content: "x";
+    font-size: 1.8rem;
+    text-align: center;
+    line-height: 2.5rem;
+    cursor: pointer;
+    width: 2rem;
+    left: -2rem; }
+
+/**
+ * Animations
+ */
+.modal-view-container, .modal, .modal-close-button {
+  -webkit-transition: .2s ease-out -webkit-transform;
+          transition: .2s ease-out transform; }
+
+.modal-view-container.ng-enter .modal, .modal-view-container.ng-enter .modal-close-button {
+  -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%); }
+
+.modal-view-container.ng-enter.ng-enter-active .modal, .modal-view-container.ng-enter.ng-enter-active .modal-close-button {
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0); }
+
+.modal-view-container.ng-leave .modal, .modal-view-container.ng-leave .modal-close-button {
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0); }
+
+.modal-view-container.ng-leave.ng-leave-active .modal, .modal-view-container.ng-leave.ng-leave-active .modal-close-button {
+  -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%); }
+
 /**
  * Side Menu
  */
 aside {
   position: fixed;
-  z-index: 1000;
+  z-index: 100;
   top: 0;
   left: 25px;
   padding: 3.95rem 2.2rem 2.2rem;
@@ -117,8 +201,37 @@ aside {
     @media (max-width: 510px) {
       .designGrid .container {
         width: 100%; } } }
-.designGrid a.container img:hover {
+.designGrid a.container:hover img {
   opacity: .84; }
+.designGrid .gallery-add-ratio {
+  width: 100%;
+  position: relative;
+  padding-top: 66.66%; }
+.designGrid .gallery-add-shape {
+  display: block;
+  background-color: #eee;
+  width: 100%;
+  border: 3px dashed #ddd;
+  font-size: 6em;
+  position: absolute;
+  top: -3px;
+  bottom: 3px;
+  left: -3px;
+  right: 3px;
+  height: 100%; }
+  .designGrid .gallery-add-shape::after {
+    content: "+";
+    text-align: center;
+    display: block;
+    color: #ccc;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%); }
+  .designGrid .gallery-add-shape:hover {
+    background-color: #e6e6e6;
+    color: #ccc; }
 
 /**
  * Gallery View
@@ -307,60 +420,104 @@ aside {
       .about .description {
         padding: 0; } }
 
+.form-content, .form-input {
+  text-align: left;
+  font-size: 1.2rem;
+  line-height: 1.4em; }
+
+.form-button:hover, .form-uploader, .form-label {
+  cursor: pointer; }
+
+.form-label.no-pointer {
+  cursor: initial; }
+
 .form-block {
   display: block;
-  line-height: 2.5em;
   margin: 0 auto;
   padding: 1rem; }
+  .form-block.first {
+    padding-top: 0; }
+  .form-block.last {
+    padding-bottom: 0; }
 
-.form-block.first {
-  padding-top: 0; }
+.form-error {
+  background-color: tomato;
+  margin-bottom: 1rem;
+  padding: 0.3rem 1rem;
+  color: white;
+  word-wrap: break-word; }
 
-.form-block.last {
-  padding-bottom: 0; }
-
-.form-label, .form-input {
-  font-size: 1.6rem; }
-
-.form-label, .form-input {
-  display: block; }
+.form-label, .form-input, .form-select {
+  display: block;
+  width: 100%; }
 
 .form-input {
   font-family: "proxima", Helvetica, Arial, sans-serif;
-  line-height: 1.5em;
+  line-height: 1.7em;
   padding-left: 5px;
   padding-right: 5px;
-  width: 80%;
-  max-width: 30rem; }
+  padding-top: 4px; }
+  .form-input.border {
+    border: 1px solid #434343; }
+  .form-input.inline {
+    display: inline; }
+  .form-input.hidden {
+    display: none;
+    visibility: hidden; }
 
-.form-input.border {
-  border: 1px solid #434343; }
+.form-radio {
+  position: relative;
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  margin: 0 10px 0 24px;
+  top: -2px; }
 
-.form-input.hidden {
-  display: none;
-  visibility: hidden; }
+.form-select {
+  font-size: 1.3rem;
+  height: 2em; }
+
+.form-color {
+  height: 50px;
+  width: 100px;
+  padding: 0;
+  border: none;
+  background-color: white; }
 
 .form-button {
   background-color: #eee;
   border: 1px solid #999;
-  font-size: 1.2em;
+  font-size: 1rem;
   padding: 0.3em 0.8em; }
   .form-button:hover {
-    cursor: pointer; }
+    background-color: #ddd; }
+
+.form-uploader-ratio {
+  width: 100%;
+  position: relative;
+  padding-top: 66.66%; }
 
 .form-uploader {
   display: block;
-  width: 80%;
-  max-width: 30rem;
-  line-height: 20rem;
   border: 6px dashed #ccc;
   color: #ccc;
   background-color: #eee;
-  font-size: 6em; }
+  font-size: 5em;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%; }
   .form-uploader.add-sign::after {
     content: "+";
     text-align: center;
-    display: block; }
+    display: block;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%); }
   .form-uploader.dragging {
     background-color: #ddd; }
   .form-uploader > img {

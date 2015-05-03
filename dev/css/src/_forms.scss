@@ -14,7 +14,6 @@
 
 .form-block {
 	display: block;
-	line-height: 2.5em;
 	margin: 0 auto;
 	padding: 1rem;
 
@@ -41,11 +40,11 @@
 
 .form-input {
 	font-family: "proxima", Helvetica, Arial, sans-serif;
-	line-height: 1.5em;
+	line-height: 1.7em;
 	padding-left: 5px;
 	padding-right: 5px;
-	width: 80%;
-	max-width: 30rem;
+	padding-top: 4px;
+
 	&.border {
 		border: 1px solid #434343;
 	}
@@ -81,11 +80,11 @@
 .form-button {
 	background-color: #eee;
 	border: 1px solid #999;
-	font-size: 1.2em;
+	font-size: 1rem;
 	padding: 0.3em 0.8em;
 
 	&:hover {
-		cursor: pointer;
+		background-color: #ddd;
 	}
 }
 
@@ -97,18 +96,21 @@
 
 .form-uploader {
 	display: block;
-	width: 80%;
-	max-width: 30rem;
-	line-height: 20rem;
 	border: 6px dashed #ccc;
 	color: #ccc;
 	background-color: #eee;
-	font-size: 6em;
+	font-size: 5em;
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	height: 100%;
 
 	&.add-sign::after {
 		content: "+";
 		text-align: center;
 		display: block;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 
 	&.dragging {
