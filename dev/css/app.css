@@ -179,35 +179,42 @@ aside {
 /**
  * Design Grid
  */
-.designGrid .container {
-  display: inline-block;
-  padding: 0 0.857rem 0.857rem;
+.grid-container, .grid-link {
+  display: inline-block; }
+
+.grid-container {
   margin-bottom: 1.42857rem;
   width: 32%;
-  text-decoration: none;
-  color: inherit;
-  text-align: center;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: .1em; }
-  .designGrid .container img {
-    width: 100%; }
-  .designGrid .container p {
-    margin: 0.514rem 0 0 0; }
+  z-index: 10;
+  padding: 0 0.857rem 0.857rem; }
   @media screen {
     @media (max-width: 1000px) {
-      .designGrid .container {
+      .grid-container {
         width: 49%; } }
     @media (max-width: 510px) {
-      .designGrid .container {
+      .grid-container {
         width: 100%; } } }
-.designGrid a.container:hover img {
-  opacity: .84; }
-.designGrid .gallery-add-ratio {
+
+.grid-link {
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: inherit;
+  text-align: center; }
+  .grid-link > img {
+    width: 100%; }
+  .grid-link > p {
+    margin: 0.514rem 0 0 0; }
+  .grid-link:hover > img {
+    opacity: .84; }
+
+.gallery-add-ratio {
   width: 100%;
   position: relative;
   padding-top: 66.66%; }
-.designGrid .gallery-add-shape {
+
+.gallery-add-shape {
   display: block;
   background-color: #eee;
   width: 100%;
@@ -219,7 +226,7 @@ aside {
   left: -3px;
   right: 3px;
   height: 100%; }
-  .designGrid .gallery-add-shape::after {
+  .gallery-add-shape::after {
     content: "+";
     text-align: center;
     display: block;
@@ -229,9 +236,47 @@ aside {
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
             transform: translateY(-50%); }
-  .designGrid .gallery-add-shape:hover {
+  .gallery-add-shape:hover {
     background-color: #e6e6e6;
     color: #ccc; }
+
+.edit-bar {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: relative;
+  top: 1.5rem;
+  height: 1.5rem;
+  width: 100%;
+  z-index: 20; }
+
+.edit-bar-menu {
+  list-style: none;
+  padding: 0; }
+  .edit-bar-menu > li {
+    padding: .5rem 1rem;
+    cursor: pointer; }
+
+.edit-bar-popover {
+  background-color: white;
+  position: absolute;
+  top: -25px;
+  left: 20px;
+  padding: .5rem 0;
+  border: 2px solid black;
+  border-radius: 2px; }
+  .edit-bar-popover::after, .edit-bar-popover::before {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    height: 0;
+    width: 0; }
+  .edit-bar-popover::before {
+    border-right: 10px solid black;
+    margin-left: -2px; }
+  .edit-bar-popover::after {
+    border-right: 10px solid white; }
 
 /**
  * Gallery View

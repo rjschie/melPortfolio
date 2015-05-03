@@ -107,7 +107,7 @@ angular.module('app.directives', [])
 				'<div class="modal-overlay modal-close-action"></div>',
 				'<div class="modal-close-button modal-close-action"></div>',
 				'<ng-transclude></ng-transclude>'
-			],
+			].join(''),
 			transclude: true,
 			link: function(scope, elem, attrs) {
 				elem.on('click', '.modal-close-action', function() {
@@ -122,4 +122,22 @@ angular.module('app.directives', [])
 			}
 		}
 	}])
+
+	.directive('editBar', function() {
+		return {
+			template: [
+				'<div class="edit-bar-menu-button" ng-click="editBarMenu.show = !editBarMenu.show">+</div>',
+				'<ul class="edit-bar-menu edit-bar-popover" ng-show="editBarMenu.show">',
+					'<li>Edit</li>',
+					'<li>Delete</li>',
+				'</ul>',
+				'<i class="edit-bar-dragger"></i>'
+			].join(''),
+			restrict: 'A',
+			controller: function($scope) {
+				$scope.editBarMenu = { show: true };
+			}
+		}
+	})
+
 ;

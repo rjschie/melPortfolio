@@ -74,23 +74,67 @@
 	}
 }
 
+.edit-bar {
+	background-color: rgba(0,0,0,0.4);
+	position: relative;
+	top: 1.5rem;
+	height: 1.5rem;
+	width: 100%;
+	z-index: 20;
+}
+
+.edit-bar-menu-button {
+//	background-color: red;
+}
+
+.edit-bar-menu {
+	list-style: none;
+	padding: 0;
+
+	> li {
+		padding: .5rem 1rem;
+		cursor: pointer;
+	}
+
+//	> li:hover {
+//		background-color: gray;
+//	}
+
+//	> li ~ ::after {
+//		border-right-color: red;
+//	}
+
+}
+
+
+$edit-bar-popover-color: rgba(255,255,255,1);
+.edit-bar-popover {
+	background-color: $edit-bar-popover-color;
+	position: absolute;
+	top: -25px;
+	left: 20px;
+	padding: .5rem 0;
+	border: 2px solid black;
+	border-radius: 2px;
+
+	&::after, &::before {
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent;
+		content: "";
 		position: absolute;
-		top: -3px; bottom: 3px; left: -3px; right: 3px;
-		height: 100%;
+		top: 10px;
+		left: -10px;
+		height: 0;
+		width: 0;
+	}
 
-		&::after {
-			content: "+";
-			text-align: center;
-			display: block;
-			color: #ccc;
-			position: relative;
-			top: 50%;
-			transform: translateY(-50%);
-		}
+	&::before {
+		border-right: 10px solid black;
+		margin-left: -2px;
+	}
 
-		&:hover {
-			background-color: #e6e6e6;
-			color: #ccc;
-		}
+	&::after {
+		border-right: 10px solid $edit-bar-popover-color;
+//		margin-left: 1px;
 	}
 }
