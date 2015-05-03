@@ -1,0 +1,98 @@
+.modal-overlay {
+	position: fixed;
+	z-index: 900;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: rgba(220,220,220,0.4);
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.modal, .modal-close-button {
+	width: 45%;
+	max-width: 30rem;
+}
+
+.modal, .modal-close-button::before {
+	box-shadow: 0 0 10px #777;
+}
+
+.modal, .modal-close-button::after, .modal-close-button::before {
+	background-color: white;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 1000;
+	padding: 1.3rem .8rem;
+	overflow: scroll;
+}
+
+.modal-close-button {
+	position: fixed;
+	right: 0;
+	top: 0;
+	color: black;
+	z-index: 1001;
+
+	&::after, &::before {
+		position: absolute;
+		top: 1.3rem;
+		display: block;
+		height: 2.5rem;
+	}
+
+	&::after {
+		content: "";
+		width: 0.9rem;
+		left: -3px;
+	}
+
+	&::before {
+		content: "x";
+		font-size: 1.8rem;
+		text-align: center;
+		line-height: 2.5rem;
+		cursor: pointer;
+		width: 2rem;
+		left: -2rem;
+	}
+}
+
+
+
+/**
+ * Animations
+ */
+
+.modal-view-container, .modal, .modal-close-button {
+	transition: .2s ease-out transform;
+}
+
+.modal-view-container.ng-enter {
+	.modal, .modal-close-button {
+		transform: translateX(100%);
+	}
+}
+.modal-view-container.ng-enter.ng-enter-active {
+	.modal, .modal-close-button {
+		transform: translateX(0);
+	}
+}
+
+.modal-view-container.ng-leave {
+	.modal, .modal-close-button {
+		transform: translateX(0);
+	}
+}
+
+.modal-view-container.ng-leave.ng-leave-active {
+	.modal, .modal-close-button {
+		transform: translateX(100%);
+	}
+}

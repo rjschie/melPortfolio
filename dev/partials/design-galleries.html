@@ -5,4 +5,11 @@
 		<img ng-src="uploads/design-home/{{ gallery.image }}">
 		<p>{{ gallery.title }}</p>
 	</a>
+	<a ui-sref="design.add-gallery" class="container">
+		<div class="gallery-add-ratio">
+			<div class="gallery-add-shape"></div>
+		</div>
+		<p>Add Gallery</p>
+	</a>
+	<div ui-view class="modal-view-container"></div>
 </div>
