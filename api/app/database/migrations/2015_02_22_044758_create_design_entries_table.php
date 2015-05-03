@@ -15,7 +15,7 @@ class CreateDesignEntriesTable extends Migration {
 		Schema::create('design_entries', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('title');
+			$table->string('title')->nullable()->default('NULL');
 			$table->string('subtitle')->nullable()->default('NULL');
 			$table->text('body')->nullable();
 			$table->string('footer')->nullable()->default('NULL');
