@@ -82,17 +82,20 @@ class DesignGalleryController extends \BaseController {
 	/**
 	 * Update a resource with given information.
 	 *
-	 * @param  int  $id
+	 * @param  mixed  $gallery_slug
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($gallery_slug)
 	{
 		try {
-
-			$gallery = DesignGallery::findOrFail($id);
+			if(is_numeric($gallery_slug)) {
+				$gallery = DesignGallery::findOrFail($gallery_slug);
+			} else {
+				$gallery = DesignGallery::where('slug', '=', $gallery_slug)->firstOrFail();
+			}
 
 			if (Input::has('title')) {
-				$gallery->title = Input::get('text');
+				$gallery->title = Input::get('title');
 			}
 			if(Input::has('short_title')) {
 				$gallery->short_title = Input::get('short_title');
