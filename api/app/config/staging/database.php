@@ -25,7 +25,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'app_melPortfolio',
 			'username'  => 'root',
-			'password'  => 'rskjei',
+			'password'  => 'aV604yG6w!', //No longer 'rskjei'
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
