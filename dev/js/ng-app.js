@@ -30,6 +30,12 @@ app.config(['$stateProvider', '$urlRouterProvider',
 				controller : 'DesignGalleryAdminController',
 				params: {noScroll:true}
 			})
+			.state('design.edit-gallery', {
+				url: '/edit-gallery/:id',
+				templateUrl: 'partials/design-galleries-edit-form.html',
+				controller: 'DesignGalleryAdminController',
+				params: {noScroll:true}
+			})
 			.state('design.add-entry', {
 				url: '/add-entry',
 				templateUrl: 'partials/design-entries-add-form.html',
