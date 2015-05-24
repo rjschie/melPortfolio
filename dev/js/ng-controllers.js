@@ -63,7 +63,20 @@ angular.module('app.controllers', [])
 	.controller('DesignGalleryAdminController', ['$scope', 'DesignGallery', 'DesignEntry',
 		function($scope, DesignGallery, DesignEntry) {
 
-			$scope.formData = {};
+			switch($scope.$state.current.name) {
+				case 'design.edit-gallery':
+					$scope.galleries.$promise.then(function(galleryList) {
+						galleryList.forEach(function(gallery) {
+							if(gallery.id == $scope.$stateParams.id) {
+								$scope.formData = gallery;
+							}
+						});
+					});
+					break;
+				default:
+					$scope.formData = {};
+					break;
+			}
 
 			$scope.save = function(formData) {
 				var formModel;
