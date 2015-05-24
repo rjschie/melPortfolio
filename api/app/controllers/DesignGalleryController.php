@@ -18,19 +18,18 @@ class DesignGalleryController extends \BaseController {
 	/**
 	 * Display one resource.
 	 *
-	 * @param  int  $gallery_slug
+	 * @param  mixed  $gallery_slug
 	 * @return Response
 	 */
 	public function show($gallery_slug)
 	{
 		if(is_numeric($gallery_slug)) {
-			$gallery_id = $gallery_slug;
+			$gallery = DesignGallery::findOrFail($gallery_slug);
 		} else {
-			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->get();
-			$gallery_id = $gallery[0]->id;
+			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->firstOrFail();
 		}
 
-		return Response::json(DesignGallery::find($gallery_id)->entries, 200, [], JSON_NUMERIC_CHECK);
+		return Response::json($gallery->entries, 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
@@ -116,12 +115,22 @@ class DesignGalleryController extends \BaseController {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  mixed  $gallery_slug
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($gallery_slug)
 	{
-		$gallery = DesignGallery::findOrFail($id);
+
+		if(is_numeric($gallery_slug)) {
+			$gallery = DesignGallery::findOrFail($gallery_slug);;
+		} else {
+			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->firstOrFail();
+		}
+
+		// TODO: find image and delete it
+
+
+
 		$gallery->delete();
 	}
 
