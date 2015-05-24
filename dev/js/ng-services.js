@@ -13,7 +13,8 @@ angular.module('app.services', [])
 
 .factory('DesignGallery', ['$resource',
 	function($resource) {
-		return $resource('../api/design_galleries/:slug', { slug : '@slug' });
+		return $resource('../api/design_galleries/:id', { id : '@id' },
+			{ update : {method:'PUT'} });
 	}])
 
 .factory('DesignEntry', ['$resource',

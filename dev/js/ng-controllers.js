@@ -78,6 +78,14 @@ angular.module('app.controllers', [])
 					break;
 			}
 
+			$scope.update = function(formData) {
+				formData.$update().then(function(result) {
+					console.log("Success: " + JSON.stringify(result.data));
+				}, function(result) {
+					console.log("Error: " + JSON.stringify(result.data));
+				});
+			};
+
 			$scope.save = function(formData) {
 				var formModel;
 
