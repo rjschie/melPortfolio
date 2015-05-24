@@ -10,7 +10,8 @@
 		Edit
 	</li>
 	<li ng-click="editBarMenu.confirm = true">
-		<i class="fa fa-ban fa-fw"></i>
+		<i class="fa fa-ban fa-fw"
+			 ng-class="{'edit-bar-menu-confirm': editBarMenu.confirm}"></i>
 		Delete
 	</li>
 </ul>

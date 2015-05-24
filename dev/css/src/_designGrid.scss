@@ -116,16 +116,12 @@
 		margin-right: .5rem;
 	}
 
-	> li {
+	li {
 		padding: .5rem 1rem .5rem .7rem;
 		cursor: pointer;
 	}
 
-	> li:hover {
-		color: #333;
-	}
-
-	> li.confirm-delete {
+	li:hover .fa, .edit-bar-menu-confirm {
 		color: red;
 	}
 
