@@ -170,8 +170,8 @@ angular.module('app.directives', [])
 						});
 					}
 				};
-				$scope.editGallery = function(gallery) {
-					$scope.$state.go('design.edit-gallery', {id: gallery.id});
+				$scope.editGallery = function(gallery, index) {
+					$scope.$state.go('design.edit-gallery', {gallerySlug: gallery.slug});
 				};
 			},
 			link: function(scope, elem, attrs) {

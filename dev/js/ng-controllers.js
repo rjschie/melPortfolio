@@ -67,7 +67,7 @@ angular.module('app.controllers', [])
 				case 'design.edit-gallery':
 					$scope.galleries.$promise.then(function(galleryList) {
 						galleryList.forEach(function(gallery) {
-							if(gallery.id == $scope.$stateParams.id) {
+							if(gallery.slug == $scope.$stateParams.gallerySlug) {
 								$scope.formData = gallery;
 							}
 						});
