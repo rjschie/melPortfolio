@@ -75,66 +75,59 @@
 }
 
 .edit-bar {
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.7);
 	position: relative;
 	top: 1.5rem;
 	height: 1.5rem;
 	width: 100%;
 	z-index: 20;
+
+	color: white;
+
+	.fa {
+		margin-top: .3rem;
+	}
 }
 
-.edit-bar-menu-button {
-//	background-color: red;
+.edit-bar-button {
+	display: inline-block;
+	height: 100%;
+	width: 2rem;
+	text-align: center;
+	cursor: pointer;
+}
+
+.edit-bar-button-menu {
+	float: none;
+}
+
+.edit-bar-button-drag {
+	cursor: move;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .edit-bar-menu {
 	list-style: none;
-	padding: 0;
+	padding: .6rem .1rem;
+
+	.fa {
+		margin-right: .5rem;
+	}
 
 	> li {
-		padding: .5rem 1rem;
+		padding: .5rem 1rem .5rem .7rem;
 		cursor: pointer;
 	}
 
-//	> li:hover {
-//		background-color: gray;
-//	}
-
-//	> li ~ ::after {
-//		border-right-color: red;
-//	}
-
-}
-
-
-$edit-bar-popover-color: rgba(255,255,255,1);
-.edit-bar-popover {
-	background-color: $edit-bar-popover-color;
-	position: absolute;
-	top: -25px;
-	left: 20px;
-	padding: .5rem 0;
-	border: 2px solid black;
-	border-radius: 2px;
-
-	&::after, &::before {
-		border-top: 10px solid transparent;
-		border-bottom: 10px solid transparent;
-		content: "";
-		position: absolute;
-		top: 10px;
-		left: -10px;
-		height: 0;
-		width: 0;
+	> li:hover {
+		color: #333;
+//		text-shadow: 1px 1px #ccc;
 	}
 
-	&::before {
-		border-right: 10px solid black;
-		margin-left: -2px;
+	> li.confirm-delete {
+		color: red;
 	}
 
-	&::after {
-		border-right: 10px solid $edit-bar-popover-color;
-//		margin-left: 1px;
-	}
 }

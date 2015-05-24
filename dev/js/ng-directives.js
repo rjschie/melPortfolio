@@ -123,19 +123,59 @@ angular.module('app.directives', [])
 		}
 	}])
 
-	.directive('editBar', function() {
+	.directive('editBarGallery', function() {
 		return {
 			template: [
-				'<div class="edit-bar-menu-button" ng-click="editBarMenu.show = !editBarMenu.show">+</div>',
-				'<ul class="edit-bar-menu edit-bar-popover" ng-show="editBarMenu.show">',
-					'<li>Edit</li>',
-					'<li>Delete</li>',
+				'<div class="edit-bar-button edit-bar-button-menu"',
+							'ng-click="editBarMenu.toggleEdit()">',
+					'<i class="fa fa-ellipsis-v"></i>',
+				'</div>',
+				'<div class="edit-bar-button edit-bar-button-drag">',
+					'<i class="fa fa-bars"></i>',
+				'</div>',
+				'<ul class="edit-bar-menu popover popover-left popover-edit-bar" ng-show="editBarMenu.show">',
+					'<li ng-click="editGallery(gallery)">',
+						'<i class="fa fa-sliders fa-fw"></i>',
+						'Edit',
+					'</li>',
+					'<li ng-click="editBarMenu.confirm = true">',
+						'<i class="fa fa-ban fa-fw"></i>',
+						'Delete',
+					'</li>',
 				'</ul>',
-				'<i class="edit-bar-dragger"></i>'
+				'<div ng-if="editBarMenu.confirm" class="popover popover-top popover-edit-bar-confirm">',
+					'<p>Are you sure?</p>',
+					'<span class="button button-tiny" ng-click="editBarMenu.confirm = false">No</span>',
+					'<span class="button button-tiny button-negative" ng-click="deleteGallery(gallery, $index)">Yes</span>',
+				'</div>'
 			].join(''),
 			restrict: 'A',
 			controller: function($scope) {
-				$scope.editBarMenu = { show: true };
+				$scope.editBarMenu = { show: false, confirm: false };
+
+				$scope.editBarMenu.toggleEdit = function() {
+					$scope.editBarMenu.show = !$scope.editBarMenu.show;
+					$scope.editBarMenu.confirm = false;
+				};
+
+				$scope.deleteGallery = function(gallery, index) {
+
+					if($scope.editBarMenu.confirm) {
+						gallery.$delete().then(function() {
+							$scope.galleries.splice(index, 1);
+							$scope.editBarMenu.confirm = false;
+							$scope.editBarMenu.show = false;
+						}, function() {
+							console.log("Didn't Delete!");
+						});
+					}
+				};
+				$scope.editGallery = function(gallery) {
+					//
+				};
+			},
+			link: function(scope, elem, attrs) {
+				//
 			}
 		}
 	})

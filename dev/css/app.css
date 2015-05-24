@@ -41,6 +41,104 @@ html, body {
 .no-scroll {
   overflow: hidden; }
 
+.button {
+  padding: .5rem .7rem;
+  text-align: center;
+  background: -webkit-linear-gradient(bottom, #ccc, #eee);
+  background: linear-gradient(to top, #ccc, #eee);
+  margin: auto 3px;
+  border-radius: 3px;
+  display: inline-block;
+  border: 1px solid #777;
+  color: #111;
+  opacity: 0.9;
+  text-shadow: rgba(200, 200, 200, 0.6) .5px .5px 0;
+  cursor: pointer; }
+
+.button:hover {
+  opacity: 1; }
+
+.button-tiny {
+  font-weight: bold; }
+
+.button-warn {
+  background-color: #ffb854;
+  background: -webkit-linear-gradient(bottom, #ffb854, #ffd478);
+  background: linear-gradient(to top, #ffb854, #ffd478);
+  border-color: #ff9d2b; }
+
+.button-negative {
+  background-color: #ff4536;
+  background: -webkit-linear-gradient(bottom, #ff675f, #ff7a6e);
+  background: linear-gradient(to top, #ff675f, #ff7a6e);
+  border-color: #772f32; }
+
+.button-positive {
+  background-color: #54d765;
+  background: -webkit-linear-gradient(bottom, #54d765, #89e081);
+  background: linear-gradient(to top, #54d765, #89e081);
+  border-color: #54d765; }
+
+.popover {
+  background-color: white;
+  color: black;
+  padding: .8rem .5rem;
+  border: 1px solid #111;
+  box-shadow: 1px 1px 4px #111;
+  border-radius: 2px;
+  background-clip: padding-box;
+  z-index: 1000; }
+  .popover::after, .popover::before {
+    border: 8px solid transparent;
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0; }
+  .popover.popover-top::after, .popover.popover-top::before {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    top: -8px; }
+  .popover.popover-top::before {
+    border-bottom: 8px solid #111;
+    margin-top: -9px; }
+  .popover.popover-top::after {
+    border-bottom: 8px solid white;
+    margin-top: -8px; }
+  .popover.popover-left::after, .popover.popover-left::before {
+    top: 11px;
+    left: -8px; }
+  .popover.popover-left::before {
+    border-right: 8px solid #111;
+    margin-left: -9px; }
+  .popover.popover-left::after {
+    border-right: 8px solid white;
+    margin-left: -8px; }
+
+.popover-overlay {
+  z-index: 200;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3); }
+
+.popover-edit-bar {
+  position: absolute;
+  top: -25px;
+  left: 2.5rem; }
+
+.popover-edit-bar-confirm {
+  position: absolute;
+  top: 5.4rem;
+  left: 2.5rem;
+  text-align: center;
+  padding: .8rem; }
+  .popover-edit-bar-confirm p {
+    margin: .5rem; }
+
 .modal-overlay {
   position: fixed;
   z-index: 900;
@@ -241,42 +339,46 @@ aside {
     color: #ccc; }
 
 .edit-bar {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.7);
   position: relative;
   top: 1.5rem;
   height: 1.5rem;
   width: 100%;
-  z-index: 20; }
+  z-index: 20;
+  color: white; }
+  .edit-bar .fa {
+    margin-top: .3rem; }
+
+.edit-bar-button {
+  display: inline-block;
+  height: 100%;
+  width: 2rem;
+  text-align: center;
+  cursor: pointer; }
+
+.edit-bar-button-menu {
+  float: none; }
+
+.edit-bar-button-drag {
+  cursor: move;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%); }
 
 .edit-bar-menu {
   list-style: none;
-  padding: 0; }
+  padding: .6rem .1rem; }
+  .edit-bar-menu .fa {
+    margin-right: .5rem; }
   .edit-bar-menu > li {
-    padding: .5rem 1rem;
+    padding: .5rem 1rem .5rem .7rem;
     cursor: pointer; }
-
-.edit-bar-popover {
-  background-color: white;
-  position: absolute;
-  top: -25px;
-  left: 20px;
-  padding: .5rem 0;
-  border: 2px solid black;
-  border-radius: 2px; }
-  .edit-bar-popover::after, .edit-bar-popover::before {
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: -10px;
-    height: 0;
-    width: 0; }
-  .edit-bar-popover::before {
-    border-right: 10px solid black;
-    margin-left: -2px; }
-  .edit-bar-popover::after {
-    border-right: 10px solid white; }
+  .edit-bar-menu > li:hover {
+    color: #333; }
+  .edit-bar-menu > li.confirm-delete {
+    color: red; }
 
 /**
  * Gallery View

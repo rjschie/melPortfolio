@@ -1,0 +1,125 @@
+
+.button {
+	padding: .5rem .7rem;
+	text-align: center;
+	background: linear-gradient(to top, #ccc, #eee);
+	margin: auto 3px;
+	border-radius: 3px;
+	display: inline-block;
+	border: 1px solid #777;
+	color: #111;
+	opacity: 0.9;
+	text-shadow: rgba(200,200,200,.6) .5px .5px 0;
+	cursor: pointer;
+}
+
+.button:hover {
+	opacity: 1;
+}
+
+.button-tiny {
+//	width: 2.2rem;
+	font-weight: bold;
+}
+
+.button-warn {
+	background-color: #ffb854;
+	background: linear-gradient(to top, #ffb854, #ffd478);
+	border-color: #ff9d2b;
+}
+
+.button-negative {
+	background-color: #ff4536;
+	background: linear-gradient(to top, #ff675f, #ff7a6e);
+	border-color: #772f32;
+}
+
+.button-positive {
+	background-color: #54d765;
+	background: linear-gradient(to top, #54d765, #89e081);
+	border-color: #54d765;
+}
+
+
+
+
+
+
+$popover-bg-color: white;
+$popover-border-width: 1px;
+$popover-border-arrow-width: 8px;
+$popover-border-color: #111;
+.popover {
+	background-color: $popover-bg-color;
+	color: black;
+	padding: .8rem .5rem;
+	border: $popover-border-width solid $popover-border-color;
+	box-shadow: 1px 1px 4px #111;
+	border-radius: 2px;
+	background-clip: padding-box;
+	z-index: 1000;
+
+	&::after, &::before {
+		border: $popover-border-arrow-width solid transparent;
+		content: "";
+		position: absolute;
+		height: 0;
+		width: 0;
+	}
+
+	&.popover-top {
+
+		&::after, &::before {
+			left: 50%;
+			transform: translateX(-50%);
+			top: -$popover-border-arrow-width;
+		}
+		&::before {
+			border-bottom: $popover-border-arrow-width solid $popover-border-color;
+			margin-top: -($popover-border-arrow-width+$popover-border-width); }
+		&::after {
+			border-bottom: $popover-border-arrow-width solid $popover-bg-color;
+			margin-top: -$popover-border-arrow-width; }
+	}
+	&.popover-left {
+
+		&::after, &::before {
+			top: 11px;
+			left: -$popover-border-arrow-width;
+		}
+		&::before {
+			border-right: $popover-border-arrow-width solid $popover-border-color;
+			margin-left: -($popover-border-arrow-width+$popover-border-width); }
+		&::after {
+			border-right: $popover-border-arrow-width solid $popover-bg-color;
+			margin-left: -$popover-border-arrow-width; }
+	}
+}
+
+.popover-overlay {
+	z-index: 200;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,.3);
+//	opacity: 0;
+}
+
+.popover-edit-bar {
+	position: absolute;
+	top: -25px;
+	left: 2.5rem;
+}
+.popover-edit-bar-confirm {
+	position: absolute;
+	top: 5.4rem;
+	left: 2.5rem;
+	text-align: center;
+	padding: .8rem;
+
+	p {
+		margin: .5rem;
+	}
+}
