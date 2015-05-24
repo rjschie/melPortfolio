@@ -104,13 +104,13 @@ angular.module('app.directives', [])
 	.directive('modal', ['$rootScope', function($rootScope) {
 		return {
 			template: [
-				'<div class="modal-overlay modal-close-action"></div>',
-				'<div class="modal-close-button modal-close-action"></div>',
+				'<div class="modal-overlay js-modal-close-action"></div>',
+				'<div class="modal-close-button js-modal-close-action"></div>',
 				'<ng-transclude></ng-transclude>'
 			].join(''),
 			transclude: true,
 			link: function(scope, elem, attrs) {
-				elem.on('click', '.modal-close-action', function() {
+				elem.on('click', '.js-modal-close-action', function() {
 					scope.$state.go('^');
 				});
 				jQuery(window).one('keyup', function(e) {
@@ -136,7 +136,6 @@ angular.module('app.directives', [])
 				};
 
 				$scope.deleteGallery = function(gallery, index) {
-
 					if($scope.editBarMenu.confirm) {
 						gallery.$delete().then(function() {
 							$scope.galleries.splice(index, 1);
