@@ -116,15 +116,6 @@ html, body {
     border-right: 8px solid white;
     margin-left: -8px; }
 
-.popover-overlay {
-  z-index: 200;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.3); }
-
 .popover-edit-bar {
   position: absolute;
   top: -25px;
@@ -372,12 +363,10 @@ aside {
   padding: .6rem .1rem; }
   .edit-bar-menu .fa {
     margin-right: .5rem; }
-  .edit-bar-menu > li {
+  .edit-bar-menu li {
     padding: .5rem 1rem .5rem .7rem;
     cursor: pointer; }
-  .edit-bar-menu > li:hover {
-    color: #333; }
-  .edit-bar-menu > li.confirm-delete {
+  .edit-bar-menu li:hover .fa, .edit-bar-menu .edit-bar-menu-confirm {
     color: red; }
 
 /**

@@ -2,8 +2,8 @@
 
 angular.module('app.controllers', [])
 
-	.controller('BaseController', ['$scope', '$state', '$stateParams', '$rootScope',
-		function ($scope, $state, $stateParams, $rootScope) {
+	.controller('BaseController', ['$scope', '$state', '$stateParams', '$rootScope', 'Photography', 'DesignGallery',
+		function ($scope, $state, $stateParams, $rootScope, Photography, DesignGallery) {
 			$scope.$state = $state;
 			$scope.$stateParams = $stateParams;
 
@@ -11,10 +11,6 @@ angular.module('app.controllers', [])
 				$scope.noScroll = (toParams.noScroll) ? true : false;
 			});
 
-		}])
-
-	.controller('MenuController', ['$scope', 'Photography', 'DesignGallery',
-		function ($scope, Photography, DesignGallery) {
 			$scope.galleries = {
 				photo : Photography.query(),
 				design : DesignGallery.query()
@@ -55,15 +51,37 @@ angular.module('app.controllers', [])
 			if($stateParams.gallerySlug) {
 				$scope.slug = $stateParams.gallerySlug;
 				$scope.entries = DesignGallery.query({slug: $stateParams.gallerySlug});
-			} else {
-				$scope.galleries = DesignGallery.query();
 			}
 		}])
 
 	.controller('DesignGalleryAdminController', ['$scope', 'DesignGallery', 'DesignEntry',
 		function($scope, DesignGallery, DesignEntry) {
 
-			$scope.formData = {};
+			switch($scope.$state.current.name) {
+				case 'design.edit-gallery':
+					$scope.galleries.design.$promise.then(function(galleryList) {
+						galleryList.forEach(function(gallery, key) {
+							if(gallery.slug == $scope.$stateParams.gallerySlug) {
+								$scope.formData = angular.copy(gallery);
+								$scope.galleryIndex = key;
+							}
+						});
+					});
+					break;
+				default:
+					$scope.formData = {};
+					break;
+			}
+
+			$scope.update = function(formData) {
+				formData.$update().then(function(result) {
+					$scope.$parent.galleries.design[$scope.galleryIndex] = result;
+					$scope.$state.go('^');
+				}, function(result) {
+					$scope.error = 'Failed to save: ' + result.data.error;
+					console.log("Error: " + JSON.stringify(result.data));
+				});
+			};
 
 			$scope.save = function(formData) {
 				var formModel;
@@ -78,7 +96,7 @@ angular.module('app.controllers', [])
 				}
 
 				formModel.$save().then(function(result) {
-					$scope.$parent.galleries.push(result);
+					$scope.$parent.galleries.design.push(result);
 					$scope.$state.go('^');
 				},function(result) {
 					$scope.error = 'Failed to save: ' + result.data.error;

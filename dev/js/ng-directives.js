@@ -21,12 +21,23 @@ angular.module('app.directives', [])
 			scope: {
 				formData: '='
 			},
-			template: '<img ng-src="{{formData.new_image.data}}" ng-show=formData.new_image>',
+			template: '<img ng-src="{{formData.image}}" ng-show=formData.image>',
 			link: function(scope, elem, attrs) {
 
 				var file;
 				var fileInput = jQuery('<input type="file">');
 				var reader = new FileReader();
+
+				/**
+				 * Populate image field if attribute is present
+				 */
+				if(attrs.imageUploaderImage) {
+					scope.$watch('formData', function(newVal) {
+						if(newVal) {
+							newVal.image = attrs.imageUploaderImage;
+						}
+					});
+				}
 
 				/**
 				 * Add file to Form Data via FileReader API
@@ -40,6 +51,7 @@ angular.module('app.directives', [])
 							scope.$apply(function(scope) {
 								scope.formData.new_image.data = e.target.result;
 								scope.formData.new_image.name = file.name;
+								scope.formData.image = e.target.result;
 							});
 						};
 
@@ -104,13 +116,13 @@ angular.module('app.directives', [])
 	.directive('modal', ['$rootScope', function($rootScope) {
 		return {
 			template: [
-				'<div class="modal-overlay modal-close-action"></div>',
-				'<div class="modal-close-button modal-close-action"></div>',
+				'<div class="modal-overlay js-modal-close-action"></div>',
+				'<div class="modal-close-button js-modal-close-action"></div>',
 				'<ng-transclude></ng-transclude>'
 			].join(''),
 			transclude: true,
 			link: function(scope, elem, attrs) {
-				elem.on('click', '.modal-close-action', function() {
+				elem.on('click', '.js-modal-close-action', function() {
 					scope.$state.go('^');
 				});
 				jQuery(window).one('keyup', function(e) {
@@ -125,30 +137,7 @@ angular.module('app.directives', [])
 
 	.directive('editBarGallery', function() {
 		return {
-			template: [
-				'<div class="edit-bar-button edit-bar-button-menu"',
-							'ng-click="editBarMenu.toggleEdit()">',
-					'<i class="fa fa-ellipsis-v"></i>',
-				'</div>',
-				'<div class="edit-bar-button edit-bar-button-drag">',
-					'<i class="fa fa-bars"></i>',
-				'</div>',
-				'<ul class="edit-bar-menu popover popover-left popover-edit-bar" ng-show="editBarMenu.show">',
-					'<li ng-click="editGallery(gallery)">',
-						'<i class="fa fa-sliders fa-fw"></i>',
-						'Edit',
-					'</li>',
-					'<li ng-click="editBarMenu.confirm = true">',
-						'<i class="fa fa-ban fa-fw"></i>',
-						'Delete',
-					'</li>',
-				'</ul>',
-				'<div ng-if="editBarMenu.confirm" class="popover popover-top popover-edit-bar-confirm">',
-					'<p>Are you sure?</p>',
-					'<span class="button button-tiny" ng-click="editBarMenu.confirm = false">No</span>',
-					'<span class="button button-tiny button-negative" ng-click="deleteGallery(gallery, $index)">Yes</span>',
-				'</div>'
-			].join(''),
+			templateUrl: 'partials/templates/edit-bar-menu.html',
 			restrict: 'A',
 			controller: function($scope) {
 				$scope.editBarMenu = { show: false, confirm: false };
@@ -159,10 +148,9 @@ angular.module('app.directives', [])
 				};
 
 				$scope.deleteGallery = function(gallery, index) {
-
 					if($scope.editBarMenu.confirm) {
 						gallery.$delete().then(function() {
-							$scope.galleries.splice(index, 1);
+							$scope.galleries.design.splice(index, 1);
 							$scope.editBarMenu.confirm = false;
 							$scope.editBarMenu.show = false;
 						}, function() {
@@ -170,12 +158,9 @@ angular.module('app.directives', [])
 						});
 					}
 				};
-				$scope.editGallery = function(gallery) {
-					//
+				$scope.editGallery = function(gallery, index) {
+					$scope.$state.go('design.edit-gallery', {gallerySlug: gallery.slug});
 				};
-			},
-			link: function(scope, elem, attrs) {
-				//
 			}
 		}
 	})
