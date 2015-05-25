@@ -94,14 +94,27 @@ class DesignGalleryController extends \BaseController {
 				$gallery = DesignGallery::where('slug', '=', $gallery_slug)->firstOrFail();
 			}
 
-			if (Input::has('title')) {
-				$gallery->title = Input::get('title');
+			extract(Input::all());
+
+			if (!empty($title)) {
+				$gallery->title = $title;
 			}
-			if(Input::has('short_title')) {
-				$gallery->short_title = Input::get('short_title');
+			if(!empty($short_title)) {
+				$gallery->short_title = $short_title;
 			}
-			if(Input::has('slug')) {
-				$gallery->slug = Input::get('slug');
+			if(!empty($slug)) {
+				$gallery->slug = $slug;
+			}
+			if(!empty($new_image)) {
+				// TODO: uncomment
+//				if(file_exists(dirname(base_path()) . '/dev/uploads/design-home/' . $gallery->image)) {
+//					unlink(dirname(base_path()) . '/dev/uploads/design-home/' . $gallery->image);
+//				}
+				file_put_contents(
+					dirname(base_path()) . '/dev/uploads/design-home/' . $new_image['name'],
+					base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
+				);
+				$gallery->image = $new_image['name'];
 			}
 
 			$gallery->save();
@@ -111,7 +124,7 @@ class DesignGalleryController extends \BaseController {
 			return Response::make("{\"error\":\"".$e->getMessage()."\"}", 500);
 		}
 
-		return Response::make("", 200);
+		return Response::json($gallery, 200, [], JSON_NUMERIC_CHECK);
 	}
 
 

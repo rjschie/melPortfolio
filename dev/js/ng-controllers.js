@@ -59,10 +59,11 @@ angular.module('app.controllers', [])
 
 			switch($scope.$state.current.name) {
 				case 'design.edit-gallery':
-						galleryList.forEach(function(gallery) {
 					$scope.galleries.design.$promise.then(function(galleryList) {
+						galleryList.forEach(function(gallery, key) {
 							if(gallery.slug == $scope.$stateParams.gallerySlug) {
-								$scope.formData = gallery;
+								$scope.formData = angular.copy(gallery);
+								$scope.galleryIndex = key;
 							}
 						});
 					});
@@ -74,8 +75,10 @@ angular.module('app.controllers', [])
 
 			$scope.update = function(formData) {
 				formData.$update().then(function(result) {
-					console.log("Success: " + JSON.stringify(result.data));
+					$scope.$parent.galleries.design[$scope.galleryIndex] = result;
+					$scope.$state.go('^');
 				}, function(result) {
+					$scope.error = 'Failed to save: ' + result.data.error;
 					console.log("Error: " + JSON.stringify(result.data));
 				});
 			};
