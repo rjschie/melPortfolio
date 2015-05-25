@@ -138,7 +138,7 @@ angular.module('app.directives', [])
 				$scope.deleteGallery = function(gallery, index) {
 					if($scope.editBarMenu.confirm) {
 						gallery.$delete().then(function() {
-							$scope.galleries.splice(index, 1);
+							$scope.galleries.design.splice(index, 1);
 							$scope.editBarMenu.confirm = false;
 							$scope.editBarMenu.show = false;
 						}, function() {
