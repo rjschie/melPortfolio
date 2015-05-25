@@ -21,12 +21,23 @@ angular.module('app.directives', [])
 			scope: {
 				formData: '='
 			},
-			template: '<img ng-src="{{formData.new_image.data}}" ng-show=formData.new_image>',
+			template: '<img ng-src="{{formData.image}}" ng-show=formData.image>',
 			link: function(scope, elem, attrs) {
 
 				var file;
 				var fileInput = jQuery('<input type="file">');
 				var reader = new FileReader();
+
+				/**
+				 * Populate image field if attribute is present
+				 */
+				if(attrs.imageUploaderImage) {
+					scope.$watch('formData', function(newVal) {
+						if(newVal) {
+							newVal.image = attrs.imageUploaderImage;
+						}
+					});
+				}
 
 				/**
 				 * Add file to Form Data via FileReader API
@@ -40,6 +51,7 @@ angular.module('app.directives', [])
 							scope.$apply(function(scope) {
 								scope.formData.new_image.data = e.target.result;
 								scope.formData.new_image.name = file.name;
+								scope.formData.image = e.target.result;
 							});
 						};
 
