@@ -5,7 +5,9 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+		"tymon/jwt-auth": "0.4.*",
+		"barryvdh/laravel-cors": "0.2.*"
 	},
 	"autoload": {
 		"classmap": [
