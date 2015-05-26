@@ -19,6 +19,8 @@ if(App::environment('local')) {
 	Route::get('/scratch', 'ScratchPadController@index');
 }
 
+Route::post('/login', 'AuthController@authenticate');
+
 Route::resource('design_galleries', 'DesignGalleryController',
 	['only' => ['index', 'show', 'store', 'update', 'destroy']]
 );
