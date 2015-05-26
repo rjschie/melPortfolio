@@ -11,9 +11,25 @@ var app = angular.module('app', [
 	'wu.masonry'
 ]);
 
-app.config(['$stateProvider', '$urlRouterProvider',
-	function($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+	function($stateProvider, $urlRouterProvider, $httpProvider) {
 		$urlRouterProvider.otherwise('/design');
+
+		$httpProvider.interceptors.push(['$q', '$window',
+			function($q, $window) {
+				return {
+					'request' : function(config) {
+						config.headers = config.headers || {};
+
+						if($window.localStorage.sessionInfo) {
+							var sessionInfo = JSON.parse($window.localStorage.sessionInfo);
+							config.headers.Authorization = 'Bearer ' + sessionInfo.token;
+						}
+
+						return config;
+					}
+				}
+			}]);
 
 		$stateProvider
 		/**
