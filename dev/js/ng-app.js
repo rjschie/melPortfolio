@@ -72,6 +72,16 @@ app.config(['$stateProvider', '$urlRouterProvider',
 				templateUrl : 'partials/about.html',
 				controller : 'AboutController'
 			})
+			.state('login', {
+				url: '/login',
+				templateUrl: 'partials/login.html',
+				controller: 'AuthController'
+			})
+			.state('logout', {
+				url: '/logout',
+				templateUrl: 'partials/logout.html',
+				controller: 'AuthController'
+			})
 		;
 	}
 ]);

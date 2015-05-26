@@ -38,6 +38,11 @@ html, body {
     .content {
       margin-left: auto; } }
 
+.content-center {
+  width: 100%;
+  margin: auto auto;
+  max-width: 25rem; }
+
 .no-scroll {
   overflow: hidden; }
 
