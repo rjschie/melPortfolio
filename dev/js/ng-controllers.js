@@ -2,14 +2,26 @@
 
 angular.module('app.controllers', [])
 
-	.controller('BaseController', ['$scope', '$state', '$stateParams', '$rootScope', 'Photography', 'DesignGallery',
-		function ($scope, $state, $stateParams, $rootScope, Photography, DesignGallery) {
+	.controller('BaseController', ['$scope', '$state', '$stateParams', '$rootScope', 'AuthServ', 'Photography', 'DesignGallery',
+		function ($scope, $state, $stateParams, $rootScope, AuthServ, Photography, DesignGallery) {
 			$scope.$state = $state;
 			$scope.$stateParams = $stateParams;
 
 			$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 				$scope.noScroll = (toParams.noScroll) ? true : false;
 			});
+
+			$scope.Auth = {
+				login : function(email, password) {
+					AuthServ.login(email, password);
+				},
+				logout : function() {
+					AuthServ.logout();
+				},
+				isAuth : function() {
+					return AuthServ.isAuth();
+				}
+			};
 
 			$scope.galleries = {
 				photo : Photography.query(),
@@ -56,6 +68,10 @@ angular.module('app.controllers', [])
 
 	.controller('DesignGalleryAdminController', ['$scope', 'DesignGallery', 'DesignEntry',
 		function($scope, DesignGallery, DesignEntry) {
+
+			if( ! $scope.Auth.isAuth()) {
+				return false;
+			}
 
 			switch($scope.$state.current.name) {
 				case 'design.edit-gallery':
@@ -129,7 +145,7 @@ angular.module('app.controllers', [])
 		}])
 
 	.controller('AboutController', ['$scope', 'InstagramFeed',
-		function ($scope, InstagramFeed) {
+		function($scope, InstagramFeed) {
 			InstagramFeed.get(function(data) {
 				$scope.instagrams = data;
 			});

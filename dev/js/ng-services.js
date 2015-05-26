@@ -1,6 +1,41 @@
 'use strict';
 
 angular.module('app.services', [])
+
+.factory('AuthServ', ['$http', '$q', '$window',
+	function($http, $q, $window) {
+
+		function login(email, password) {
+			var deferred = $q.defer();
+
+			$http.post("../api/login", {
+				email: email,
+				password: password
+			}).then(function(result) {
+				var sessionInfo = { token : result.data.token };
+				$window.localStorage['sessionInfo'] = JSON.stringify(sessionInfo);
+				deferred.resolve(sessionInfo);
+			}, function(error) {
+				console.log(error);
+				deferred.reject(error);
+			});
+
+			return deferred.promise;
+		}
+
+		return {
+			login: login,
+			logout: function() {
+				delete $window.localStorage.sessionInfo;
+				return ($window.localStorage.sessionInfo) ? true : false;
+			},
+			isAuth: function() {
+				return ($window.localStorage.sessionInfo) ? true : false;
+			}
+		};
+
+	}])
+
 .factory('Photography', ['$resource',
 	function($resource) {
 		return $resource("../api/photo_galleries/:slug", { slug: '@slug' });
