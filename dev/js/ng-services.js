@@ -30,7 +30,9 @@ angular.module('app.services', [])
 				return ($window.localStorage.sessionInfo) ? true : false;
 			},
 			isAuth: function() {
-				return ($window.localStorage.sessionInfo) ? true : false;
+				return ($window.localStorage.sessionInfo)
+								? JSON.parse($window.localStorage.sessionInfo).hasOwnProperty('token')
+								: false;
 			}
 		};
 

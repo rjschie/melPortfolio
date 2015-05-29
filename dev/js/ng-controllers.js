@@ -2,14 +2,11 @@
 
 angular.module('app.controllers', [])
 
-	.controller('BaseController', ['$scope', '$state', '$stateParams', '$rootScope', 'AuthServ', 'Photography', 'DesignGallery',
+	.controller('BaseController', ['$scope', '$state', '$stateParams', '$rootScope', 'AuthServ',
+		'Photography', 'DesignGallery',
 		function ($scope, $state, $stateParams, $rootScope, AuthServ, Photography, DesignGallery) {
 			$scope.$state = $state;
 			$scope.$stateParams = $stateParams;
-
-			$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-				$scope.noScroll = (toParams.noScroll) ? true : false;
-			});
 
 			$scope.Auth = {
 				login : function(email, password) {
@@ -22,6 +19,10 @@ angular.module('app.controllers', [])
 					return AuthServ.isAuth();
 				}
 			};
+
+			$rootScope.$on('$stateChangeSuccess', function(e, toState, toParams) {
+				$scope.noScroll = (toParams.noScroll) ? true : false;
+			});
 
 			$scope.galleries = {
 				photo : Photography.query(),
