@@ -1,14 +1,14 @@
 <div class="content designGrid">
 	<div ng-repeat="gallery in galleries.design | orderBy : 'sort_pos' track by $index"
 			 class="grid-container">
-		<div class="edit-bar" edit-bar-gallery ></div>
+		<div ng-if="Auth.isAuth()" class="edit-bar" edit-bar-gallery ></div>
 		<a ui-sref="design-gallery({ gallerySlug: gallery.slug })"
 			 class="grid-link">
 			<img ng-src="uploads/design-home/{{ gallery.image }}">
 			<p>{{ gallery.title }}</p>
 		</a>
 	</div>
-	<a ui-sref="design.add-gallery" class="grid-container grid-link">
+	<a ng-if="Auth.isAuth()" ui-sref="design.add-gallery" class="grid-container grid-link">
 		<div class="gallery-add-ratio">
 			<div class="gallery-add-shape"></div>
 		</div>
