@@ -20,6 +20,13 @@ angular.module('app.controllers', [])
 				}
 			};
 
+			$rootScope.$on('$stateChangeStart', function(e, toState, toParams) {
+				if( ! toParams.requireAuth) return;
+				if( ! $scope.Auth.isAuth()) {
+					e.preventDefault();
+				}
+			});
+
 			$rootScope.$on('$stateChangeSuccess', function(e, toState, toParams) {
 				$scope.noScroll = (toParams.noScroll) ? true : false;
 			});
