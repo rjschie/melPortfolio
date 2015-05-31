@@ -77,11 +77,15 @@ aside {
 .menu-footer {
 	position: absolute;
 	bottom: 0;
-	padding: 1rem 3.6rem;
 	width: 100%;
 	margin-left: -2.2rem;
-}
 
-.menu-footer:hover {
-	background-color: rgba(240,240,240,0.5);
+	li {
+		cursor: pointer;
+		padding: .3rem 1rem;
+
+		&:hover {
+			background-color: rgba(240,240,240,0.5);
+		}
+	}
 }
