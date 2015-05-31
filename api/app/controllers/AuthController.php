@@ -26,13 +26,28 @@ class AuthController extends \BaseController {
 
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Change Users Password
 	 *
 	 * @return Response
 	 */
-	public function logout()
+	public function changePass()
 	{
-		//
+		extract(Input::all());
+
+		$user = JWTAuth::parseToken()->toUser();
+
+		try {
+			if( Hash::check($old_password, $user->password) ) {
+				$user->password = Hash::make($new_password);
+				$user->save();
+				return $this->refreshToken();
+			} else {
+				return Response::json(['error' => "Incorrect Password."], 401);
+			}
+		} catch (Exception $e) {
+			return Response::json(['error' => "Couldn't update password."], 400);
+		}
+
 	}
 
 
