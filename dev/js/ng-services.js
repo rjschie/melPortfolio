@@ -49,6 +49,22 @@ angular.module('app.services', [])
 
 				return deferred.promise;
 			},
+			changePass: function(old_pass, new_pass) {
+				var deferred = $q.defer();
+
+				$http.post("../api/changePass", {
+					old_password: old_pass,
+					new_password: new_pass
+				}).then(function(res) {
+					var sessionInfo = { token : res.data.token };
+					$window.localStorage.setItem('sessionInfo', JSON.stringify(sessionInfo));
+					deferred.resolve(sessionInfo);
+				}, function(res) {
+					deferred.reject(res);
+				});
+
+				return deferred.promise;
+			},
 			logout: function() {
 				delete $window.localStorage.sessionInfo;
 				return ($window.localStorage.sessionInfo) ? true : false;

@@ -1,0 +1,37 @@
+<div class="content">
+	<form class="form-content content-center">
+		<div class="form-block form-error" ng-show="error">
+			<p>{{ error }}</p>
+		</div>
+		<div class="form-block">
+			<label for="old_password" class="form-label">Old Password</label>
+			<input ng-model="formData.old_password"
+						 id="old_password"
+						 class="form-input border"
+						 required
+						 type="password">
+		</div>
+		<div class="form-block">
+			<label for="new_password" class="form-label">New Password</label>
+			<input ng-model="formData.new_password"
+						 id="new_password"
+						 class="form-input border"
+						 required
+						 type="password">
+		</div>
+		<div class="form-block">
+			<label for="new_password_confirm" class="form-label">Confirm New Password</label>
+			<input ng-model="formData.new_password_confirm"
+						 id="new_password_confirm"
+						 class="form-input border"
+						 required
+						 type="password">
+		</div>
+		<div class="form-block last">
+			<input class="form-button"
+						 type="submit"
+						 ng-click="Auth.changePass(formData)"
+						 value="Change Password">
+		</div>
+	</form>
+</div>

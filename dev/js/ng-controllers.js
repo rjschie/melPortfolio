@@ -19,6 +19,20 @@ angular.module('app.controllers', [])
 				logout : function() {
 					AuthServ.logout();
 				},
+				changePass : function(formData) {
+
+					if(formData.new_password !== formData.new_password_confirm) {
+						$scope.error = "New Passwords do not match.";
+						return false;
+					}
+
+					AuthServ.changePass(formData.old_password, formData.new_password)
+						.then(function() {
+							$location.url('/');
+						}, function(res) {
+							$scope.error = res.data.error;
+						});
+				},
 				authenticate : function() {
 					return AuthServ.authenticate();
 				},

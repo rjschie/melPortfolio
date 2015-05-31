@@ -95,6 +95,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 				url: '/login',
 				templateUrl: 'partials/login.html'
 			})
+			.state('change-pass', {
+				url: '/change-pass',
+				templateUrl: 'partials/change-pass.html',
+				params: {requireAuth: true}
+			})
 			.state('logout', {
 				url: '/logout',
 				controller: function($scope, $location) {
