@@ -36,4 +36,24 @@ class AuthController extends \BaseController {
 	}
 
 
+	/**
+	 * Refresh the token
+	 *
+	 * @return Response
+	 */
+	public function refreshToken()
+	{
+		try {
+			$old_token = JWTAuth::getToken();
+			$new_token = JWTAuth::fromUser( JWTAuth::parseToken()->toUser() );
+			if($new_token) {
+				JWTAuth::invalidate($old_token);
+			}
+			return Response::json(['token' => $new_token]);
+		} catch (JWTException $e) {
+			return $e->getMessage();
+		}
+	}
+
+
 }
