@@ -11,13 +11,12 @@ angular.module('app.services', [])
 			$http.post("../api/login", {
 				email: email,
 				password: password
-			}).then(function(result) {
-				var sessionInfo = { token : result.data.token };
+			}).then(function(res) {
+				var sessionInfo = { token : res.data.token };
 				$window.localStorage['sessionInfo'] = JSON.stringify(sessionInfo);
 				deferred.resolve(sessionInfo);
-			}, function(error) {
-				console.log(error);
-				deferred.reject(error);
+			}, function(res) {
+				deferred.reject(res);
 			});
 
 			return deferred.promise;
