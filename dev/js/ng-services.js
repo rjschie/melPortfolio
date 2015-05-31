@@ -37,10 +37,13 @@ angular.module('app.services', [])
 				delete $window.localStorage.sessionInfo;
 				return ($window.localStorage.sessionInfo) ? true : false;
 			},
-			isAuth: function() {
-				return ($window.localStorage.sessionInfo)
-								? JSON.parse($window.localStorage.sessionInfo).hasOwnProperty('token')
-								: false;
+			authenticate: function() {
+
+				if($window.localStorage.sessionInfo && JSON.parse($window.localStorage.sessionInfo).hasOwnProperty('token')) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		};
 

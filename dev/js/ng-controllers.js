@@ -19,16 +19,21 @@ angular.module('app.controllers', [])
 				logout : function() {
 					AuthServ.logout();
 				},
-				isAuth : function() {
-					return AuthServ.isAuth();
-				}
+				authenticate : function() {
+					return AuthServ.authenticate();
+				},
+				isAuth : false
 			};
 
 			$rootScope.$on('$stateChangeStart', function(e, toState, toParams) {
+
+				$scope.Auth.isAuth = ($scope.Auth.authenticate()) ? true : false;
+
 				if( ! toParams.requireAuth) return;
-				if( ! $scope.Auth.isAuth()) {
+				if( ! $scope.Auth.isAuth) {
 					e.preventDefault();
 				}
+
 			});
 
 			$rootScope.$on('$stateChangeSuccess', function(e, toState, toParams) {
@@ -40,11 +45,6 @@ angular.module('app.controllers', [])
 				design : DesignGallery.query()
 			};
 		}])
-
-	//.controller('AuthController', ['$scope',
-	//	function ($scope) {
-	//		$scope.login = function() {};
-	//	}])
 
 	.controller('PhotographyController', ['$scope', 'Photography', 'PhotographyRandom', '$stateParams',
 		function ($scope, Photography, PhotographyRandom, $stateParams) {
@@ -86,7 +86,7 @@ angular.module('app.controllers', [])
 	.controller('DesignGalleryAdminController', ['$scope', 'DesignGallery', 'DesignEntry',
 		function($scope, DesignGallery, DesignEntry) {
 
-			if( ! $scope.Auth.isAuth()) {
+			if( ! $scope.Auth.isAuth) {
 				return false;
 			}
 

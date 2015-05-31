@@ -140,7 +140,7 @@ angular.module('app.directives', [])
 			templateUrl: 'partials/templates/edit-bar-menu.html',
 			restrict: 'A',
 			controller: function($scope) {
-				if( ! $scope.Auth.isAuth()) return;
+				if( ! $scope.Auth.isAuth) return;
 
 				$scope.editBarMenu = { show: false, confirm: false };
 

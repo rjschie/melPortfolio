@@ -13,5 +13,7 @@
 		<li><a ui-sref="video" ng-class="{bold : $state.is('video')}">VIDEO</a></li>
 		<li><a ui-sref="about" ng-class="{bold : $state.is('about')}">ABOUT</a></li>
 	</ul>
-	<a ng-show="Auth.isAuth()" class="menu-footer" ui-sref="logout">Logout</a>
+	<ul ng-show="Auth.isAuth" class="menu-footer">
+		<a ui-sref="logout"><li>Logout</li></a>
+	</ul>
 </aside>
