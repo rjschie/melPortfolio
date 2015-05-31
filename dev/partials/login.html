@@ -1,0 +1,29 @@
+<div class="content">
+	<form class="form-content content-center">
+		<div class="form-block form-error" ng-show="error">
+			<p>{{ error }}</p>
+		</div>
+		<div class="form-block first">
+			<label for="email" class="form-label">Email</label>
+			<input ng-model="formData.email"
+						 id="email"
+						 class="form-input border"
+						 type="text"
+						 required>
+		</div>
+		<div class="form-block">
+			<label for="password" class="form-label">Password</label>
+			<input ng-model="formData.password"
+						 id="password"
+						 class="form-input border"
+						 required
+						 type="password">
+		</div>
+		<div class="form-block last">
+			<input class="form-button"
+						 type="submit"
+						 ng-click="Auth.login(formData.email, formData.password)"
+						 value="Login">
+		</div>
+	</form>
+</div>

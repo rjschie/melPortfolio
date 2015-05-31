@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'America/Los_Angeles',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -121,6 +121,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+//		'Barryvdh\Cors\CorsServiceProvider',
 
 	),
 
@@ -168,6 +170,8 @@ return array(
 		'Hash'              => 'Illuminate\Support\Facades\Hash',
 		'HTML'              => 'Illuminate\Support\Facades\HTML',
 		'Input'             => 'Illuminate\Support\Facades\Input',
+		'JWTAuth'						=> 'Tymon\JWTAuth\Facades\JWTAuth',
+		'JWTFactory'				=> 'Tymon\JWTAuth\Facades\JWTFactory',
 		'Lang'              => 'Illuminate\Support\Facades\Lang',
 		'Log'               => 'Illuminate\Support\Facades\Log',
 		'Mail'              => 'Illuminate\Support\Facades\Mail',

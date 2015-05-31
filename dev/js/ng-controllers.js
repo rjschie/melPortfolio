@@ -2,13 +2,57 @@
 
 angular.module('app.controllers', [])
 
-	.controller('BaseController', ['$scope', '$state', '$stateParams', '$rootScope', 'Photography', 'DesignGallery',
-		function ($scope, $state, $stateParams, $rootScope, Photography, DesignGallery) {
+	.controller('BaseController', ['$rootScope', '$scope', '$state', '$stateParams', '$location', 'AuthServ',
+		'Photography', 'DesignGallery',
+		function ($rootScope, $scope, $state, $stateParams, $location, AuthServ, Photography, DesignGallery) {
 			$scope.$state = $state;
 			$scope.$stateParams = $stateParams;
 
-			$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+			$scope.Auth = {
+				login : function(email, password) {
+					AuthServ.login(email, password).then(function(res) {
+						$location.url('/');
+					}, function(res) {
+						$scope.error = res.data.error;
+					});
+				},
+				logout : function() {
+					AuthServ.logout();
+				},
+				changePass : function(formData) {
+
+					if(formData.new_password !== formData.new_password_confirm) {
+						$scope.error = "New Passwords do not match.";
+						return false;
+					}
+
+					AuthServ.changePass(formData.old_password, formData.new_password)
+						.then(function() {
+							$location.url('/');
+						}, function(res) {
+							$scope.error = res.data.error;
+						});
+				},
+				authenticate : function() {
+					return AuthServ.authenticate();
+				},
+				isAuth : false
+			};
+
+			$rootScope.$on('$stateChangeStart', function(e, toState, toParams) {
+
+				$scope.Auth.isAuth = ($scope.Auth.authenticate()) ? true : false;
+
+				if( ! toParams.requireAuth) return;
+				if( ! $scope.Auth.isAuth) {
+					e.preventDefault();
+				}
+
+			});
+
+			$rootScope.$on('$stateChangeSuccess', function(e, toState, toParams) {
 				$scope.noScroll = (toParams.noScroll) ? true : false;
+				$scope.error = null;
 			});
 
 			$scope.galleries = {
@@ -56,6 +100,10 @@ angular.module('app.controllers', [])
 
 	.controller('DesignGalleryAdminController', ['$scope', 'DesignGallery', 'DesignEntry',
 		function($scope, DesignGallery, DesignEntry) {
+
+			if( ! $scope.Auth.isAuth) {
+				return false;
+			}
 
 			switch($scope.$state.current.name) {
 				case 'design.edit-gallery':
@@ -129,7 +177,7 @@ angular.module('app.controllers', [])
 		}])
 
 	.controller('AboutController', ['$scope', 'InstagramFeed',
-		function ($scope, InstagramFeed) {
+		function($scope, InstagramFeed) {
 			InstagramFeed.get(function(data) {
 				$scope.instagrams = data;
 			});

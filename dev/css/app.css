@@ -38,6 +38,11 @@ html, body {
     .content {
       margin-left: auto; } }
 
+.content-center {
+  width: 100%;
+  margin: auto auto;
+  max-width: 25rem; }
+
 .no-scroll {
   overflow: hidden; }
 
@@ -265,6 +270,17 @@ aside {
     aside {
       display: none; } }
 
+.menu-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-left: -2.2rem; }
+  .menu-footer li {
+    cursor: pointer;
+    padding: .3rem 1rem; }
+    .menu-footer li:hover {
+      background-color: rgba(240, 240, 240, 0.5); }
+
 /**
  * Design Grid
  */
@@ -276,6 +292,8 @@ aside {
   width: 32%;
   z-index: 10;
   padding: 0 0.857rem 0.857rem; }
+  .grid-container > .grid-link {
+    width: 100%; }
   @media screen {
     @media (max-width: 1000px) {
       .grid-container {

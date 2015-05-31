@@ -11,9 +11,27 @@ var app = angular.module('app', [
 	'wu.masonry'
 ]);
 
-app.config(['$stateProvider', '$urlRouterProvider',
-	function($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+	function($stateProvider, $urlRouterProvider, $httpProvider) {
 		$urlRouterProvider.otherwise('/design');
+
+		$httpProvider.interceptors.push(['$q', '$window',
+			function($q, $window) {
+				return {
+					'request' : function(config) {
+						config.headers = config.headers || {};
+
+						if($window.localStorage.sessionInfo) {
+							var sessionInfo = JSON.parse($window.localStorage.sessionInfo);
+							if(sessionInfo.hasOwnProperty('token')) {
+								config.headers.Authorization = 'Bearer ' + sessionInfo.token;
+							}
+						}
+
+						return config;
+					}
+				}
+			}]);
 
 		$stateProvider
 		/**
@@ -28,18 +46,19 @@ app.config(['$stateProvider', '$urlRouterProvider',
 				url: '/add-gallery',
 				templateUrl : 'partials/design-galleries-add-form.html',
 				controller : 'DesignGalleryAdminController',
-				params: {noScroll:true}
+				params: {noScroll:true, requireAuth: true}
 			})
 			.state('design.edit-gallery', {
 				url: '/edit-gallery/:gallerySlug',
 				templateUrl: 'partials/design-galleries-edit-form.html',
 				controller: 'DesignGalleryAdminController',
-				params: {noScroll:true}
+				params: {noScroll:true, requireAuth: true}
 			})
 			.state('design.add-entry', {
 				url: '/add-entry',
 				templateUrl: 'partials/design-entries-add-form.html',
-				controller: 'DesignGalleryAdminController'
+				controller: 'DesignGalleryAdminController',
+				params: {requireAuth: true}
 			})
 			.state('design-gallery', {
 				url : '/design/:gallerySlug',
@@ -71,6 +90,22 @@ app.config(['$stateProvider', '$urlRouterProvider',
 				url : '/about',
 				templateUrl : 'partials/about.html',
 				controller : 'AboutController'
+			})
+			.state('login', {
+				url: '/login',
+				templateUrl: 'partials/login.html'
+			})
+			.state('change-pass', {
+				url: '/change-pass',
+				templateUrl: 'partials/change-pass.html',
+				params: {requireAuth: true}
+			})
+			.state('logout', {
+				url: '/logout',
+				controller: function($scope, $location) {
+					$scope.Auth.logout();
+					$location.url('/');
+				}
 			})
 		;
 	}
