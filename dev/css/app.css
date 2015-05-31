@@ -270,6 +270,16 @@ aside {
     aside {
       display: none; } }
 
+.menu-footer {
+  position: absolute;
+  bottom: 0;
+  padding: 1rem 3.6rem;
+  width: 100%;
+  margin-left: -2.2rem; }
+
+.menu-footer:hover {
+  background-color: rgba(240, 240, 240, 0.5); }
+
 /**
  * Design Grid
  */
@@ -281,6 +291,8 @@ aside {
   width: 32%;
   z-index: 10;
   padding: 0 0.857rem 0.857rem; }
+  .grid-container > .grid-link {
+    width: 100%; }
   @media screen {
     @media (max-width: 1000px) {
       .grid-container {
