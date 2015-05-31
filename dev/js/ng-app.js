@@ -91,13 +91,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 			})
 			.state('login', {
 				url: '/login',
-				templateUrl: 'partials/login.html',
-				controller: 'AuthController'
+				templateUrl: 'partials/login.html'
 			})
 			.state('logout', {
 				url: '/logout',
-				templateUrl: 'partials/logout.html',
-				controller: 'AuthController'
 			})
 		;
 	}
