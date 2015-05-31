@@ -95,6 +95,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 			})
 			.state('logout', {
 				url: '/logout',
+				controller: function($scope, $location) {
+					$scope.Auth.logout();
+					$location.url('/');
+				}
 			})
 		;
 	}
