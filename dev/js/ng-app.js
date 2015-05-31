@@ -23,7 +23,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 
 						if($window.localStorage.sessionInfo) {
 							var sessionInfo = JSON.parse($window.localStorage.sessionInfo);
-							config.headers.Authorization = 'Bearer ' + sessionInfo.token;
+							if(sessionInfo.hasOwnProperty('token')) {
+								config.headers.Authorization = 'Bearer ' + sessionInfo.token;
+							}
 						}
 
 						return config;

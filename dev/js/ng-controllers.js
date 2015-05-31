@@ -38,6 +38,7 @@ angular.module('app.controllers', [])
 
 			$rootScope.$on('$stateChangeSuccess', function(e, toState, toParams) {
 				$scope.noScroll = (toParams.noScroll) ? true : false;
+				$scope.error = null;
 			});
 
 			$scope.galleries = {
