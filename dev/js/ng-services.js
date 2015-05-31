@@ -16,6 +16,15 @@ angular.module('app.services', [])
 				$window.localStorage['sessionInfo'] = JSON.stringify(sessionInfo);
 				deferred.resolve(sessionInfo);
 			}, function(res) {
+
+				switch(res.data.error) {
+					case 'invalid_credentials':
+						res.data.error = "Wrong username or password.";
+						break;
+					default:
+						res.data.error = "Couldn't Log In.";
+						break;
+				}
 				deferred.reject(res);
 			});
 

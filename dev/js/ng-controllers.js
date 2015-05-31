@@ -2,15 +2,19 @@
 
 angular.module('app.controllers', [])
 
-	.controller('BaseController', ['$scope', '$state', '$stateParams', '$rootScope', 'AuthServ',
+	.controller('BaseController', ['$rootScope', '$scope', '$state', '$stateParams', '$location', 'AuthServ',
 		'Photography', 'DesignGallery',
-		function ($scope, $state, $stateParams, $rootScope, AuthServ, Photography, DesignGallery) {
+		function ($rootScope, $scope, $state, $stateParams, $location, AuthServ, Photography, DesignGallery) {
 			$scope.$state = $state;
 			$scope.$stateParams = $stateParams;
 
 			$scope.Auth = {
 				login : function(email, password) {
-					AuthServ.login(email, password);
+					AuthServ.login(email, password).then(function(res) {
+						$location.url('/');
+					}, function(res) {
+						$scope.error = res.data.error;
+					});
 				},
 				logout : function() {
 					AuthServ.logout();
@@ -36,6 +40,11 @@ angular.module('app.controllers', [])
 				design : DesignGallery.query()
 			};
 		}])
+
+	//.controller('AuthController', ['$scope',
+	//	function ($scope) {
+	//		$scope.login = function() {};
+	//	}])
 
 	.controller('PhotographyController', ['$scope', 'Photography', 'PhotographyRandom', '$stateParams',
 		function ($scope, Photography, PhotographyRandom, $stateParams) {
