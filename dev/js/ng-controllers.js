@@ -92,6 +92,12 @@ angular.module('app.controllers', [])
 				});
 			};
 
+			$scope.updateSort = function($part) {
+				$part.forEach(function(item, index) {
+					item.sort_pos = index+1;
+				});
+			};
+
 			if($stateParams.gallerySlug) {
 				//$scope.slug = $stateParams.gallerySlug;
 				$scope.entries = DesignGallery.query({id: $stateParams.gallerySlug});
