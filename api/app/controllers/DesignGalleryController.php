@@ -151,4 +151,29 @@ class DesignGalleryController extends \BaseController {
 	}
 
 
+	/**
+	 * Update the `sort_pos` for the galleries
+	 *
+	 * @return Response
+	 */
+	public function reorder()
+	{
+
+		DB::transaction(function() {
+
+			$data = Input::all();
+
+			foreach($data as $val) {
+
+				$gallery = DesignGallery::findOrFail($val['id']);
+				$gallery->sort_pos = $val['sort_pos'];
+
+				if( ! $gallery->save() ) {
+					throw new \Exception('Gallery not able to be sorted.');
+				}
+			}
+		});
+	}
+
+
 }

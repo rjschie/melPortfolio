@@ -36,6 +36,7 @@ Route::group(['before' => 'jwt-auth'], function() {
 
 	Route::post('/refreshToken', 'AuthController@refreshToken');
 	Route::post('/changePass', 'AuthController@changePass');
+	Route::put('/design_galleries/reorder', 'DesignGalleryController@reorder');
 	Route::resource('design_galleries', 'DesignGalleryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('design_entries', 'DesignEntryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('photo_galleries', 'PhotoGalleryController', ['only' => ['store', 'update', 'destroy']]);
