@@ -93,9 +93,14 @@ angular.module('app.controllers', [])
 			};
 
 			$scope.updateSort = function($part) {
+				var data = [];
 				$part.forEach(function(item, index) {
 					item.sort_pos = index+1;
+					data.push({id : item.id, sort_pos: item.sort_pos});
 				});
+
+				DesignGallery.reorder(data);
+
 			};
 
 			if($stateParams.gallerySlug) {
