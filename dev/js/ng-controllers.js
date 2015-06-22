@@ -94,12 +94,27 @@ angular.module('app.controllers', [])
 
 			$scope.updateSort = function($part) {
 				var data = [];
-				$part.forEach(function(item, index) {
-					item.sort_pos = index+1;
-					data.push({id : item.id, sort_pos: item.sort_pos});
-				});
+				var orig = [];
 
-				DesignGallery.reorder(data);
+				for(var i = 0, len = $part.length; i < len; i++) {
+					var item = $part[i];
+					orig[item.id] = item.sort_pos;
+					item.sort_pos = i+1;
+					data.push( { id : item.id, sort_pos: item.sort_pos } );
+				}
+
+				DesignGallery.reorder(data).$promise.then(function() {
+					//console.log('success');
+				}, function() {
+					//console.log( 'error' );
+
+					for(var i=0; i < $part.length; i++) {
+						$part[i].sort_pos = orig[$part[i].id];
+					}
+					$part.sort(function(a,b) {
+						return a.sort_pos - b.sort_pos;
+					});
+				});
 
 			};
 
