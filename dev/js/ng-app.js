@@ -38,30 +38,30 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 		/**
 		 * Design States
 		 */
-			.state('design', {
+			.state('design-galleries', {
 				url : '/design',
 				templateUrl : 'partials/design-galleries.html',
 				controller : 'DesignGalleryController'
 			})
-			.state('design.add-gallery', {
+			.state('design-galleries.add-gallery', {
 				url: '/add-gallery',
 				templateUrl : 'partials/design-galleries-add-form.html',
 				controller : 'AdminFormController',
 				params: {noScroll:true, requireAuth: true}
 			})
-			.state('design.edit-gallery', {
+			.state('design-galleries.edit-gallery', {
 				url: '/edit-gallery/:gallerySlug',
 				templateUrl: 'partials/design-galleries-edit-form.html',
 				controller: 'AdminFormController',
 				params: {noScroll:true, requireAuth: true}
 			})
-			.state('design.add-entry', {
+			.state('design-galleries.add-entry', {
 				url: '/add-entry',
 				templateUrl: 'partials/design-entries-add-form.html',
 				controller: 'AdminFormController',
 				params: {requireAuth: true}
 			})
-			.state('design-gallery', {
+			.state('design-entries', {
 				url : '/design/:gallerySlug',
 				templateUrl : 'partials/design-entries.html',
 				controller : 'DesignGalleryController'
