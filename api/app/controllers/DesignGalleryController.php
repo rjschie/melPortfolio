@@ -138,7 +138,7 @@ class DesignGalleryController extends \BaseController {
 	{
 
 		if(is_numeric($gallery_slug)) {
-			$gallery = DesignGallery::findOrFail($gallery_slug);;
+			$gallery = DesignGallery::findOrFail($gallery_slug);
 		} else {
 			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->firstOrFail();
 		}
