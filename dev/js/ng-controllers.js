@@ -65,7 +65,6 @@ angular.module('app.controllers', [])
 		function ($scope, Photography, PhotographyRandom, $stateParams) {
 
 			if($stateParams.gallerySlug) {
-				//$scope.slug = $stateParams.gallerySlug;
 				$scope.entries = Photography.query({slug: $stateParams.gallerySlug});
 			} else {
 				$scope.entries = PhotographyRandom.query();
@@ -119,7 +118,6 @@ angular.module('app.controllers', [])
 			};
 
 			if($stateParams.gallerySlug) {
-				//$scope.slug = $stateParams.gallerySlug;
 				$scope.entries = DesignGallery.query({id: $stateParams.gallerySlug});
 			}
 		}])
