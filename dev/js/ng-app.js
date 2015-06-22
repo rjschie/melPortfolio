@@ -59,6 +59,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 				url: '/add-entry',
 				templateUrl: 'partials/design-entries-add-form.html',
 				controller: 'AdminFormController',
+				params: {noScroll:true, requireAuth: true}
+			})
+			.state('design-galleries.edit-entries', {
+				url: '/edit-entries/:gallerySlug',
+				templateUrl: 'partials/design-entries-edit.html',
+				controller: 'AdminFormController',
 				params: {requireAuth: true}
 			})
 			.state('design-entries', {
