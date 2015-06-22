@@ -138,7 +138,7 @@ class DesignGalleryController extends \BaseController {
 	{
 
 		if(is_numeric($gallery_slug)) {
-			$gallery = DesignGallery::findOrFail($gallery_slug);;
+			$gallery = DesignGallery::findOrFail($gallery_slug);
 		} else {
 			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->firstOrFail();
 		}
@@ -148,6 +148,31 @@ class DesignGalleryController extends \BaseController {
 
 
 		$gallery->delete();
+	}
+
+
+	/**
+	 * Update the `sort_pos` for the galleries
+	 *
+	 * @return Response
+	 */
+	public function reorder()
+	{
+
+		DB::transaction(function() {
+
+			$data = Input::all();
+
+			foreach($data as $val) {
+
+				$gallery = DesignGallery::findOrFail($val['id']);
+				$gallery->sort_pos = $val['sort_pos'];
+
+				if( ! $gallery->save() ) {
+					throw new \Exception('Gallery not able to be sorted.');
+				}
+			}
+		});
 	}
 
 

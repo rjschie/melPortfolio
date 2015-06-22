@@ -139,6 +139,7 @@ angular.module('app.directives', [])
 		return {
 			templateUrl: 'partials/templates/edit-bar-menu.html',
 			restrict: 'A',
+			require: '?^svElement',
 			controller: function($scope) {
 				if( ! $scope.Auth.isAuth) return;
 
@@ -163,6 +164,11 @@ angular.module('app.directives', [])
 				$scope.editGallery = function(gallery, index) {
 					$scope.$state.go('design.edit-gallery', {gallerySlug: gallery.slug});
 				};
+			},
+			link: function(scope, elem, attrs, ctrl) {
+				if(ctrl) {
+					ctrl.handle = jQuery(elem).children('.edit-bar-button-drag').add(ctrl.handle);
+				}
 			}
 		}
 	})

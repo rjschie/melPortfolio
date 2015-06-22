@@ -8,7 +8,8 @@ var app = angular.module('app', [
 	'app.directives',
 	'app.filters',
 	'app.controllers',
-	'wu.masonry'
+	'wu.masonry',
+	'angular-sortable-view'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',

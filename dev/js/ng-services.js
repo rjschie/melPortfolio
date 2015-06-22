@@ -109,7 +109,15 @@ angular.module('app.services', [])
 .factory('DesignGallery', ['$resource',
 	function($resource) {
 		return $resource('../api/design_galleries/:id', { id : '@id' },
-			{ update : {method:'PUT'} });
+			{
+				update : { method:'PUT' },
+				reorder : {
+					method: 'PUT',
+					url: '../api/design_galleries/reorder',
+					isArray: true
+				}
+			}
+		);
 	}])
 
 .factory('DesignEntry', ['$resource',
