@@ -1,5 +1,5 @@
 <div class="content designGrid">
-	<div sv-root sv-on-sort="updateSort(galleries.design)" sv-part="galleries.design">
+	<span sv-root sv-on-sort="updateSort(galleries.design)" sv-part="galleries.design">
 		<div ng-repeat="gallery in galleries.design | orderBy : 'sort_pos' track by $index"
 				 class="grid-container" sv-element>
 			<div ng-if="Auth.isAuth" class="edit-bar" edit-bar-gallery ></div>
@@ -9,7 +9,7 @@
 				<p>{{ gallery.title }}</p>
 			</a>
 		</div>
-	</div>
+	</span>
 	<a ng-if="Auth.isAuth" ui-sref="design.add-gallery" class="grid-container grid-link">
 		<div class="gallery-add-ratio">
 			<div class="gallery-add-shape"></div>
