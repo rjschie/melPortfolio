@@ -124,7 +124,7 @@ angular.module('app.controllers', [])
 			}
 		}])
 
-	.controller('DesignGalleryAdminController', ['$scope', 'DesignGallery', 'DesignEntry',
+	.controller('AdminFormController', ['$scope', 'DesignGallery', 'DesignEntry',
 		function($scope, DesignGallery, DesignEntry) {
 
 			if( ! $scope.Auth.isAuth) {

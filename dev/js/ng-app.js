@@ -46,19 +46,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 			.state('design.add-gallery', {
 				url: '/add-gallery',
 				templateUrl : 'partials/design-galleries-add-form.html',
-				controller : 'DesignGalleryAdminController',
+				controller : 'AdminFormController',
 				params: {noScroll:true, requireAuth: true}
 			})
 			.state('design.edit-gallery', {
 				url: '/edit-gallery/:gallerySlug',
 				templateUrl: 'partials/design-galleries-edit-form.html',
-				controller: 'DesignGalleryAdminController',
+				controller: 'AdminFormController',
 				params: {noScroll:true, requireAuth: true}
 			})
 			.state('design.add-entry', {
 				url: '/add-entry',
 				templateUrl: 'partials/design-entries-add-form.html',
-				controller: 'DesignGalleryAdminController',
+				controller: 'AdminFormController',
 				params: {requireAuth: true}
 			})
 			.state('design-gallery', {
