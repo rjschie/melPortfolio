@@ -12,6 +12,7 @@ class DesignEntry extends Eloquent {
 		'type'
 	];
 
+	protected $hidden = ['pivot'];
 	public $table = 'design_entries';
 	public $timestamps = false;
 
