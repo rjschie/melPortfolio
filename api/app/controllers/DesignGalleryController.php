@@ -24,9 +24,9 @@ class DesignGalleryController extends \BaseController {
 	public function show($gallery_slug)
 	{
 		if(is_numeric($gallery_slug)) {
-			$gallery = DesignGallery::findOrFail($gallery_slug);
+			$gallery = DesignGallery::findOrFail($gallery_slug)->with('entries');
 		} else {
-			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->firstOrFail();
+			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->with('entries')->firstOrFail();
 		}
 
 		return Response::json($gallery->entries, 200, [], JSON_NUMERIC_CHECK);
