@@ -173,4 +173,42 @@ angular.module('app.directives', [])
 		}
 	})
 
+	.directive('designEntryEditBar', function() {
+		return {
+			templateUrl: 'partials/templates/design-entry.edit-bar.html',
+			restrict: 'A',
+			require: '?^svElement',
+			controller: function($scope) {
+				if( ! $scope.Auth.isAuth) return;
+
+				$scope.editBarMenu = { show: false, confirm: false };
+
+				$scope.editBarMenu.toggleEdit = function() {
+					$scope.editBarMenu.show = !$scope.editBarMenu.show;
+					$scope.editBarMenu.confirm = false;
+				};
+
+				$scope.deleteEntry = function(entry, index) {
+					if($scope.editBarMenu.confirm) {
+						entry.$delete().then(function() {
+							$scope.entries.splice(index, 1);
+							$scope.editBarMenu.confirm = false;
+							$scope.editBarMenu.show = false;
+						}, function() {
+							console.log("Didn't Delete!");
+						});
+					}
+				};
+				$scope.stateChange = function(location, data) {
+					$scope.$state.go(location, data);
+				};
+			},
+			link: function(scope, elem, attrs, ctrl) {
+				if(ctrl) {
+					ctrl.handle = jQuery(elem).children('.edit-bar-button-drag').add(ctrl.handle);
+				}
+			}
+		}
+	})
+
 ;

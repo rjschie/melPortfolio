@@ -1,0 +1,22 @@
+<div class="edit-bar-button edit-bar-button-menu" ng-click="editBarMenu.toggleEdit()">
+	<i class="fa fa-ellipsis-v"></i>
+</div>
+<div class="edit-bar-button edit-bar-button-drag">
+	<i class="fa fa-bars"></i>
+</div>
+<ul class="edit-bar-menu popover popover-left popover-edit-bar" ng-show="editBarMenu.show">
+	<li ng-click="stateChange('design-entries.edit.edit-entry', {gallerySlug:$stateParams.gallerySlug, id:entry.id})">
+		<i class="fa fa-sliders fa-fw"></i>
+		Edit Entry
+	</li>
+	<li ng-click="editBarMenu.confirm = true">
+		<i class="fa fa-ban fa-fw"
+			 ng-class="{'edit-bar-menu-confirm': editBarMenu.confirm}"></i>
+		Delete
+	</li>
+</ul>
+<div ng-if="editBarMenu.confirm" class="popover popover-top popover-edit-bar-confirm">
+	<p>Are you sure?</p>
+	<span class="button button-tiny" ng-click="editBarMenu.confirm = false">No</span>
+	<span class="button button-tiny button-negative" ng-click="deleteEntry(entry, $index)">Yes</span>
+</div>
