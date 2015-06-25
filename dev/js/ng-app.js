@@ -70,12 +70,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 				templateUrl : 'partials/design-entries.html',
 				controller : 'DesignGalleryController'
 			})
-			//.state('design-entries.edit', {
-			//	url: '/edit',
-			//	templateUrl: 'partials/design-entries.edit.html',
-			//	controller: 'AdminFormController',
-			//	params: {requireAuth: true}
-			//})
+			.state('design-entries.edit', {
+				url: '/edit',
+				templateUrl: 'partials/design-entries.edit.html',
+				controller: 'AdminFormController',
+				params: {requireAuth: true}
+			})
 			//.state('design-entries.list.add', {
 			//	url: '/add-entry',
 			//	templateUrl: 'partials/design-entries.add-form.html',
