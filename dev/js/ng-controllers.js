@@ -127,12 +127,14 @@ angular.module('app.controllers', [])
 			}
 		}])
 
-	.controller('AdminFormController', ['$scope', 'DesignGallery', 'DesignEntry',
-		function($scope, DesignGallery, DesignEntry) {
+	.controller('AdminFormController', ['$scope', '$controller', 'DesignGallery', 'DesignEntry',
+		function($scope, $controller, DesignGallery, DesignEntry) {
 
 			if( ! $scope.Auth.isAuth) {
 				return false;
 			}
+
+			$controller('DesignGalleryController', {$scope: $scope});
 
 			switch($scope.$state.current.name) {
 				case 'design-galleries.edit-gallery':
