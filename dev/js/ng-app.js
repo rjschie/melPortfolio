@@ -39,39 +39,55 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 		 * Design States
 		 */
 			.state('design-galleries', {
+				abstract: true,
 				url : '/design',
+				template: '<ui-view/>'
+			})
+			.state('design-galleries.list', {
+				url: '',
 				templateUrl : 'partials/design-galleries.html',
 				controller : 'DesignGalleryController'
 			})
-			.state('design-galleries.add-gallery', {
+			.state('design-galleries.list.add', {
 				url: '/add-gallery',
-				templateUrl : 'partials/design-galleries-add-form.html',
+				templateUrl : 'partials/design-galleries.add-form.html',
 				controller : 'AdminFormController',
 				params: {noScroll:true, requireAuth: true}
 			})
-			.state('design-galleries.edit-gallery', {
-				url: '/edit-gallery/:gallerySlug',
-				templateUrl: 'partials/design-galleries-edit-form.html',
+			.state('design-galleries.list.edit', {
+				url: '/:gallerySlug/edit-gallery',
+				templateUrl: 'partials/design-galleries.edit-form.html',
 				controller: 'AdminFormController',
 				params: {noScroll:true, requireAuth: true}
-			})
-			.state('design-galleries.add-entry', {
-				url: '/add-entry',
-				templateUrl: 'partials/design-entries-add-form.html',
-				controller: 'AdminFormController',
-				params: {noScroll:true, requireAuth: true}
-			})
-			.state('design-galleries.edit-entries', {
-				url: '/edit-entries/:gallerySlug',
-				templateUrl: 'partials/design-entries-edit.html',
-				controller: 'AdminFormController',
-				params: {requireAuth: true}
 			})
 			.state('design-entries', {
+				abstract: true,
 				url : '/design/:gallerySlug',
+				template: '<ui-view/>'
+			})
+			.state('design-entries.list', {
+				url : '',
 				templateUrl : 'partials/design-entries.html',
 				controller : 'DesignGalleryController'
 			})
+			//.state('design-entries.edit', {
+			//	url: '/edit',
+			//	templateUrl: 'partials/design-entries.edit.html',
+			//	controller: 'AdminFormController',
+			//	params: {requireAuth: true}
+			//})
+			//.state('design-entries.list.add', {
+			//	url: '/add-entry',
+			//	templateUrl: 'partials/design-entries.add-form.html',
+			//	controller: 'AdminFormController',
+			//	params: {noScroll:true, requireAuth: true}
+			//})
+			//.state('design-entries.list.edit-entry', {
+			//	url: '/edit-entry/:id',
+			//	templateUrl: 'partials/design-entries.edit-form.html',
+			//	controller: 'AdminFormController',
+			//	params: {noScroll:true, requireAuth: true}
+			//})
 		/**
 		 * Photography States
 		 */
