@@ -92,6 +92,11 @@ angular.module('app.controllers', [])
 			};
 
 			$scope.updateSort = function($part) {
+
+				if( ! $scope.Auth.isAuth) {
+					return false;
+				}
+
 				var data = [];
 				var orig = [];
 
