@@ -5,9 +5,13 @@
 	<i class="fa fa-bars"></i>
 </div>
 <ul class="edit-bar-menu popover popover-left popover-edit-bar" ng-show="editBarMenu.show">
-	<li ng-click="editGallery(gallery, $index)">
+	<li ng-click="stateChange('design-galleries.list.edit', gallery.slug)">
 		<i class="fa fa-sliders fa-fw"></i>
-		Edit
+		Edit Gallery
+	</li>
+	<li ng-click="stateChange('design-entries.edit', gallery.slug)">
+		<i class="fa fa-sliders fa-fw"></i>
+		Edit Entries
 	</li>
 	<li ng-click="editBarMenu.confirm = true">
 		<i class="fa fa-ban fa-fw"

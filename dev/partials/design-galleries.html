@@ -2,7 +2,7 @@
 	<span sv-root sv-on-sort="updateSort(galleries.design)" sv-part="galleries.design">
 		<div ng-repeat="gallery in galleries.design | orderBy : 'sort_pos' track by $index"
 				 class="grid-container" sv-element>
-			<div ng-if="Auth.isAuth" class="edit-bar" edit-bar-gallery ></div>
+			<div ng-if="Auth.isAuth" class="edit-bar" design-gallery-edit-bar></div>
 			<a ui-sref="design-entries.list({ gallerySlug: gallery.slug })"
 				 class="grid-link">
 				<img draggable="false" ng-src="uploads/design-home/{{ gallery.image }}">

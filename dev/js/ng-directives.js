@@ -135,9 +135,9 @@ angular.module('app.directives', [])
 		}
 	}])
 
-	.directive('editBarGallery', function() {
+	.directive('designGalleryEditBar', function() {
 		return {
-			templateUrl: 'partials/templates/edit-bar-menu.html',
+			templateUrl: 'partials/templates/design-gallery.edit-bar.html',
 			restrict: 'A',
 			require: '?^svElement',
 			controller: function($scope) {
