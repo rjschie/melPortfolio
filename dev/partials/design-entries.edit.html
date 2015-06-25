@@ -1,32 +1,33 @@
 <div class="content designGrid">
-	<span sv-root sv-part="entries">
+	<span sv-stuff>
 		<div ng-repeat="entry in entries | orderBy : 'sort_pos' track by $index"
-				 class="grid-container" ng-switch="entry.type" sv-element>
-			<!--<div ng-if="Auth.isAuth" class="edit-bar" edit-bar-gallery ></div>-->
+				 class="grid-container" ng-switch="entry.type">
+			<div ng-if="Auth.isAuth" class="edit-bar" design-entry-edit-bar></div>
+
+			<div class="grid-container-ratio">
+
+				<article class="grid-container-ratio-inner" ng-switch-when="2" ng-style="{'background-color': '#{{entry.bgColor}}'}">
+					<section class="head--edit">{{ entry.title }}</section>
+					<section class="subtitle--edit">{{ entry.subtitle }}</section>
+					<section class="foot--edit">{{ entry.footer }}</section>
+				</article>
 
 
-			<article ng-switch-when="2" ng-style="{'background-color': '#{{entry.bgColor}}'}">
-				<section class="head">{{ entry.title }}</section>
-				<section class="subtitle">{{ entry.subtitle }}</section>
-				<section class="body">{{ entry.body }}</section>
-				<section class="foot">{{ entry.footer }}</section>
-			</article>
+				<!--<div class="video-frame" ng-switch-when="1">-->
+					<!--<img class="poster-image" ng-src="{{entry.location}}-poster.jpg">-->
+					<!--<div class="play-button"-->
+							 <!--ng-click="playVideo($index)">-->
+					<!--</div>-->
+					<!--<video controls>-->
+						<!--<source ng-src="{{entry.location}}" type="video/mp4">-->
+					<!--</video>-->
+				<!--</div>-->
 
-
-			<div class="video-frame" ng-switch-when="1">
-				<img class="poster-image" ng-src="{{entry.location}}-poster.jpg">
-				<div class="play-button"
-						 ng-click="playVideo($index)">
-				</div>
-				<video controls>
-					<source ng-src="{{entry.location}}" type="video/mp4">
-				</video>
+				<span class="grid-container-ratio-inner" ng-switch-default>
+					<img class="grid-image" draggable="false" ng-src="{{ entry.location }}">
+				</span>
 			</div>
-
-			<span ng-switch-default>
-				<img class="grid-image" draggable="false" ng-src="{{ entry.location }}">
-				<p>{{ entry.title }}</p>
-			</span>
+			<p class="grid-container-ratio-text">{{ entry.title }}</p>
 		</div>
 	</span>
 	<a ng-if="Auth.isAuth" ui-sref="design-entries.add-entry" class="grid-container grid-link">
@@ -37,24 +38,3 @@
 	</a>
 	<div ui-view class="modal-view-container"></div>
 </div>
-
-<!--<div class="content-full">-->
-	<!--<div id="{{entry.id}}" class="container" ng-repeat="entry in entries" ng-switch="entry.type">-->
-		<!--<article ng-switch-when="2" ng-style="{'background-color': '#{{entry.bgColor}}'}">-->
-			<!--<section class="head">{{ entry.title }}</section>-->
-			<!--<section class="subtitle">{{ entry.subtitle }}</section>-->
-			<!--<section class="body">{{ entry.body }}</section>-->
-			<!--<section class="foot">{{ entry.footer }}</section>-->
-		<!--</article>-->
-		<!--<div class="video-frame" ng-switch-when="1">-->
-			<!--<img class="poster-image" ng-src="{{entry.location}}-poster.jpg">-->
-			<!--<div class="play-button"-->
-					 <!--ng-click="playVideo($index)">-->
-			<!--</div>-->
-			<!--<video controls>-->
-				<!--<source ng-src="{{entry.location}}" type="video/mp4">-->
-			<!--</video>-->
-		<!--</div>-->
-		<!--<img ng-switch-default ng-src="{{ entry.location }}">-->
-	<!--</div>-->
-<!--</div>-->
