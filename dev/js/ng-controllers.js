@@ -137,7 +137,7 @@ angular.module('app.controllers', [])
 			$controller('DesignGalleryController', {$scope: $scope});
 
 			switch($scope.$state.current.name) {
-				case 'design-galleries.edit-gallery':
+				case 'design-galleries.list.edit':
 					$scope.galleries.design.$promise.then(function(galleryList) {
 						galleryList.forEach(function(gallery, key) {
 							if(gallery.slug == $scope.$stateParams.gallerySlug) {
@@ -166,7 +166,7 @@ angular.module('app.controllers', [])
 				var formModel;
 
 				switch($scope.$state.current.name) {
-					case 'design-galleries.add-gallery':
+					case 'design-galleries.list.add':
 						formModel = new DesignGallery(formData);
 						break;
 					case 'design-galleries.add-entry':
