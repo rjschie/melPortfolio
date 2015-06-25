@@ -161,8 +161,8 @@ angular.module('app.directives', [])
 						});
 					}
 				};
-				$scope.editGallery = function(gallery, index) {
-					$scope.$state.go('design-galleries.list.edit', {gallerySlug: gallery.slug});
+				$scope.stateChange = function(location, slug) {
+					$scope.$state.go(location, {gallerySlug: slug});
 				};
 			},
 			link: function(scope, elem, attrs, ctrl) {
