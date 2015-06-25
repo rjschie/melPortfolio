@@ -76,18 +76,18 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 				controller: 'AdminFormController',
 				params: {requireAuth: true}
 			})
-			//.state('design-entries.list.add', {
+			//.state('design-entries.edit.add', {
 			//	url: '/add-entry',
 			//	templateUrl: 'partials/design-entries.add-form.html',
 			//	controller: 'AdminFormController',
 			//	params: {noScroll:true, requireAuth: true}
 			//})
-			//.state('design-entries.list.edit-entry', {
-			//	url: '/edit-entry/:id',
-			//	templateUrl: 'partials/design-entries.edit-form.html',
-			//	controller: 'AdminFormController',
-			//	params: {noScroll:true, requireAuth: true}
-			//})
+			.state('design-entries.edit.edit-entry', {
+				url: '/edit-entry/:id',
+				templateUrl: 'partials/design-entries.edit-form.html',
+				controller: 'AdminFormController',
+				params: {noScroll:true, requireAuth: true}
+			})
 		/**
 		 * Photography States
 		 */
