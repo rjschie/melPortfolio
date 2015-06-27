@@ -76,8 +76,10 @@ angular.module('app.services', [])
 					var payload = parsePayload(jwt);
 					var now = (Date.now() / 1000);
 
+					// If it's been more than `payload.exp` seconds since login, force re-auth
 					if( now >= parseInt(payload.exp) ) return false;
 
+					// Refresh token if logging in each day
 					if( now > (parseInt(payload.iat) + 8600)) {
 						refreshToken().then(function() {
 							return true;
