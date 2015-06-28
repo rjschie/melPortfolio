@@ -142,7 +142,19 @@ angular.module('app.controllers', [])
 						galleryList.forEach(function(gallery, key) {
 							if(gallery.slug == $scope.$stateParams.gallerySlug) {
 								$scope.formData = angular.copy(gallery);
-								$scope.galleryIndex = key;
+								$scope.model = $scope.$parent.galleries.design;
+								$scope.index = key;
+							}
+						});
+					});
+					break;
+				case 'design-entries.edit.edit-entry':
+					$scope.entries.$promise.then(function(entryList) {
+						entryList.forEach(function(entry, key) {
+							if(entry.id == $scope.$stateParams.id) {
+								$scope.formData = angular.copy(entry);
+								$scope.model = $scope.$parent.entries;
+								$scope.index = key;
 							}
 						});
 					});
@@ -154,7 +166,7 @@ angular.module('app.controllers', [])
 
 			$scope.update = function(formData) {
 				formData.$update().then(function(result) {
-					$scope.$parent.galleries.design[$scope.galleryIndex] = result;
+					$scope.model[$scope.index] = result;
 					$scope.$state.go('^');
 				}, function(result) {
 					$scope.error = 'Failed to save: ' + result.data.error;
@@ -169,13 +181,15 @@ angular.module('app.controllers', [])
 					case 'design-galleries.list.add':
 						formModel = new DesignGallery(formData);
 						break;
-					case 'design-galleries.add-entry':
+					case 'design-galleries.edit.add-entry':
 						formModel = new DesignEntry(formData);
+						break;
+					default:
 						break;
 				}
 
 				formModel.$save().then(function(result) {
-					$scope.$parent.galleries.design.push(result);
+					$scope.model.push(result);
 					$scope.$state.go('^');
 				},function(result) {
 					$scope.error = 'Failed to save: ' + result.data.error;

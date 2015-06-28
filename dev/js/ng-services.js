@@ -124,7 +124,16 @@ angular.module('app.services', [])
 
 .factory('DesignEntry', ['$resource',
 	function($resource) {
-		return $resource('../api/design_entries/:id', { id : '@id' });
+		return $resource('../api/design_entries/:id', { id : '@id' },
+			{
+				update : { method:'PUT' }
+				//reorder : {
+				//	method: 'PUT',
+				//	url: '../api/design_galleries/reorder',
+				//	isArray: true
+				//}
+			}
+		);
 	}])
 
 .factory('InstagramFeed', ['$http',
