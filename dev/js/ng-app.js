@@ -9,7 +9,8 @@ var app = angular.module('app', [
 	'app.filters',
 	'app.controllers',
 	'wu.masonry',
-	'angular-sortable-view'
+	'angular-sortable-view',
+	'color.picker'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
