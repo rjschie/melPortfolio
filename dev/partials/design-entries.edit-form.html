@@ -1,5 +1,5 @@
 <div modal>
-	<form class="form-content modal">
+	<form class="form-content modal" ng-switch="formData.type">
 		<div class="form-block form-error" ng-show="error">
 			<p>{{ error }}</p>
 		</div>
@@ -28,40 +28,47 @@
 							 class="form-radio"
 							 type="radio">Text</label>
 		</div>
-		<!--<div class="form-block" ng-show="formData.type == 0">-->
-			<!--<label class="form-label no-pointer">Image</label>-->
+
+		<div class="form-block">
+			<label for="title" class="form-label">Title</label>
+			<input ng-model="formData.title" id="title" class="form-input border" type="text">
+		</div>
+
+		<div class="form-block" ng-switch-when="0">
+			<label class="form-label no-pointer">Image</label>
+			<div class="form-uploader-ratio">
+				<div class="form-uploader"
+						 ng-class="{'add-sign': !formData.image}"
+						 image-uploader form-data="formData" image-uploader-image="{{formData.image}}">
+				</div>
+			</div>
+		</div>
+		<!--<div class="form-block" ng-switch-when="1">-->
+			<!--<label class="form-label no-pointer">Video</label>-->
 			<!--<div class="form-uploader"-->
 					 <!--ng-class="{'add-sign': !formData.image}"-->
 					 <!--image-uploader form-data="formData">-->
 			<!--</div>-->
 		<!--</div>-->
-		<div class="form-block" ng-show="formData.type == 1">
-			<label class="form-label no-pointer">Video</label>
-			<div class="form-uploader"
-					 ng-class="{'add-sign': !formData.image}"
-					 image-uploader form-data="formData">
+		<div ng-switch-when="2">
+			<div class="form-block">
+				<label for="subtitle" class="form-label">Subtitle</label>
+				<input ng-model="formData.subtitle" id="subtitle" class="form-input border" type="text">
+			</div>
+			<div class="form-block">
+				<label for="body" class="form-label">Body</label>
+				<textarea ng-model="formData.body" id="body" class="form-input border"></textarea>
+			</div>
+			<div class="form-block">
+				<label for="footer" class="form-label">Footer</label>
+				<input ng-model="formData.footer" id="footer" class="form-input border" type="text">
+			</div>
+			<div class="form-block">
+				<label class="form-label">Background Color</label>
+				<color-picker ng-if="entries.length" ng-model="formData.bgColor"></color-picker>
 			</div>
 		</div>
-		<div class="form-block" ng-show="formData.type == 2">
-			<label for="title" class="form-label">Title</label>
-			<input ng-model="formData.title" id="title" class="form-input border" type="text">
-		</div>
-		<div class="form-block" ng-show="formData.type == 2">
-			<label for="subtitle" class="form-label">Subtitle</label>
-			<input ng-model="formData.subtitle" id="subtitle" class="form-input border" type="text">
-		</div>
-		<div class="form-block" ng-show="formData.type == 2">
-			<label for="body" class="form-label">Body</label>
-			<textarea ng-model="formData.body" id="body" class="form-input border"></textarea>
-		</div>
-		<div class="form-block" ng-show="formData.type == 2">
-			<label for="footer" class="form-label">Footer</label>
-			<input ng-model="formData.footer" id="footer" class="form-input border" type="text">
-		</div>
-		<div class="form-block" ng-show="formData.type == 2">
-			<label class="form-label">Background Color</label>
-			<color-picker ng-if="entries.length" ng-model="formData.bgColor"></color-picker>
-		</div>
+
 		<div class="form-block last">
 			<input class="form-button" type="button" ng-click="clear()" value="Clear">
 			<input class="form-button" type="submit" ng-click="update(formData)" value="Update">
