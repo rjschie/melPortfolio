@@ -8,11 +8,17 @@ angular.module('app.directives', [])
 	 * that was passed into it.
 	 *
 	 * Attributes:
-	 * 	"form-data":required		=> form data scope value
-	 * 	"drag-class":optional		=> name of class to use while dragging file over
+	 * 	"form-data"  (required)		=> form data scope value
+	 * 	"drag-class" (optional)		=> name of class to use while dragging file over
+	 * 	"image-uploader-image" (optional)	=> location of prepoulated image
 	 *
 	 * Use:
-	 * 	<div imageUploader form-data="form" [drag-class="dragging-class"]></div>
+	 * 	<div
+	 * 		imageUploader
+	 * 		form-data="form"
+	 * 			[drag-class="dragging-class"]
+	 * 			[image-uploader-image="{{image.url}}"] >
+	 * 	</div>
 	 *
 	 */
 	.directive('imageUploader',	function() {
@@ -41,8 +47,6 @@ angular.module('app.directives', [])
 
 				/**
 				 * Add file to Form Data via FileReader API
-				 *
-				 * @param file
 				 */
 				function addFile(file) {
 					if(file.type.match('image.*')) {
