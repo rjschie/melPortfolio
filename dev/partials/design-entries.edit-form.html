@@ -12,57 +12,57 @@
 		<div class="form-block">
 			<span class="form-label no-pointer">Entry Type</span>
 			<label class="form-label form-input inline">
-				<input ng-model="formData.new_type"
-						 name="type"
-						 value="0"
-						 class="form-radio"
-						 type="radio">Image</label>
+				<input ng-model="formData.type"
+							 name="type"
+							 value="0"
+							 class="form-radio"
+							 type="radio">Image</label>
 			<label class="form-label form-input inline">
-				<input ng-model="formData.new_type"
-						 name="type"
-						 value="1"
-						 class="form-radio"
-						 type="radio">Video</label>
+				<input ng-model="formData.type"
+							 name="type"
+							 value="1"
+							 class="form-radio"
+							 type="radio">Video</label>
 			<label class="form-label form-input inline">
-				<input ng-model="formData.new_type"
-						 name="type"
-						 value="2"
-						 class="form-radio"
-						 type="radio">Text</label>
+				<input ng-model="formData.type"
+							 name="type"
+							 value="2"
+							 class="form-radio"
+							 type="radio">Text</label>
 		</div>
-		<div class="form-block" ng-show="formData.new_type == 0">
-			<label class="form-label no-pointer">Image</label>
-			<div class="form-uploader"
-					 ng-class="{'add-sign': !formData.new_image}"
-					 image-uploader form-data="formData">
-			</div>
-		</div>
-		<div class="form-block" ng-show="formData.new_type == 1">
+		<!--<div class="form-block" ng-show="formData.type == 0">-->
+			<!--<label class="form-label no-pointer">Image</label>-->
+			<!--<div class="form-uploader"-->
+					 <!--ng-class="{'add-sign': !formData.image}"-->
+					 <!--image-uploader form-data="formData">-->
+			<!--</div>-->
+		<!--</div>-->
+		<div class="form-block" ng-show="formData.type == 1">
 			<label class="form-label no-pointer">Video</label>
 			<div class="form-uploader"
-					 ng-class="{'add-sign': !formData.new_image}"
+					 ng-class="{'add-sign': !formData.image}"
 					 image-uploader form-data="formData">
 			</div>
 		</div>
-		<div class="form-block" ng-show="formData.new_type == 2">
+		<div class="form-block" ng-show="formData.type == 2">
 			<label for="title" class="form-label">Title</label>
-			<input ng-model="formData.new_title" id="title" class="form-input border" type="text">
+			<input ng-model="formData.title" id="title" class="form-input border" type="text">
 		</div>
-		<div class="form-block" ng-show="formData.new_type == 2">
+		<div class="form-block" ng-show="formData.type == 2">
 			<label for="subtitle" class="form-label">Subtitle</label>
-			<input ng-model="formData.new_subtitle" id="subtitle" class="form-input border" type="text">
+			<input ng-model="formData.subtitle" id="subtitle" class="form-input border" type="text">
 		</div>
-		<div class="form-block" ng-show="formData.new_type == 2">
+		<div class="form-block" ng-show="formData.type == 2">
 			<label for="body" class="form-label">Body</label>
-			<textarea ng-model="formData.new_body" id="body" class="form-input border"></textarea>
+			<textarea ng-model="formData.body" id="body" class="form-input border"></textarea>
 		</div>
-		<div class="form-block" ng-show="formData.new_type == 2">
+		<div class="form-block" ng-show="formData.type == 2">
 			<label for="footer" class="form-label">Footer</label>
-			<input ng-model="formData.new_footer" id="footer" class="form-input border" type="text">
+			<input ng-model="formData.footer" id="footer" class="form-input border" type="text">
 		</div>
-		<div class="form-block" ng-show="formData.new_type == 2">
-			<label for="bgColor" class="form-label">Background Color</label>
-			<input ng-model="formData.new_bgColor" id="bgColor" class="form-input form-color" type="color">
+		<div class="form-block" ng-show="formData.type == 2">
+			<label class="form-label">Background Color</label>
+			<color-picker ng-if="entries.length" ng-model="formData.bgColor"></color-picker>
 		</div>
 		<div class="form-block last">
 			<input class="form-button" type="button" ng-click="clear()" value="Clear">
