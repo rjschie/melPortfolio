@@ -109,17 +109,21 @@ class DesignEntryController extends \BaseController {
 				$entry->bgColor = $bgColor;
 			}
 
-//			if(!empty($new_image)) {
-//				// TODO: uncomment
-////				if(file_exists(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image)) {
-////					unlink(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image);
-////				}
-//				file_put_contents(
-//					dirname(base_path()) . '/dev/uploads/design-home/' . $new_image['name'],
-//					base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
-//				);
-//				$entry->image = $new_image['name'];
-//			}
+			if(!empty($new_image)) {
+				$gallery = DesignGallery::where('id', '=', $galleryEntry->gallery_id)->get(['slug'])[0];
+
+				// TODO: uncomment
+//				if(file_exists(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image)) {
+//					unlink(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image);
+//				}
+
+				$imageLoc = 'uploads/' . $gallery->slug . '/' . $new_image['name'];
+				file_put_contents(
+					dirname(base_path()) . '/dev/' . $imageLoc,
+					base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
+				);
+				$entry->image = $imageLoc;
+			}
 
 			$entry->save();
 			$galleryEntry->save();
