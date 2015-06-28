@@ -22,7 +22,7 @@ class DesignEntryTableSeeder extends Seeder {
 						'subtitle' => 'A travel app for the full-time wanderer.',
 						'body' => 'Valise connects the wanderlust with local employers as they travel around the world. Travelers exchange labor for their basic travel needs such as lodging, food, or transportation so travel doesn\'t have to stop when your pockets are empty. The custom symbol set allows power users to quickly browse for the form of compensation they are looking for.',
 						'footer' => 'MOBILE DESIGN + SYMBOL SET',
-						'bgColor' => 'ba8a38',
+						'bgColor' => '#ba8a38',
 						'type' => 2
 					]);
 					DesignGalleryEntry::create([
@@ -37,7 +37,7 @@ class DesignEntryTableSeeder extends Seeder {
 						'subtitle' => 'An online and mobile tool that helps students manage their active schedules.',
 						'body' => 'A foundational feature of SORTED is the ability to rearrange tasks from global to daily task lists; this encourages students to schedule. SORTED allows students to organize their assignments and class times and as well as monitor projected degree requirements. Navigating the university campus is made seamless with SORTED as well. Whether quickly mapping classroom locations, finding food near campus, or locating rental equipment for an upcoming project, the map features makes it easy.',
 						'footer' => 'WEB + MOBILE DESIGN',
-						'bgColor' => 'e46942',
+						'bgColor' => '#e46942',
 						'type' => 2
 					]);
 					DesignGalleryEntry::create([
@@ -68,7 +68,7 @@ class DesignEntryTableSeeder extends Seeder {
 
 					$entry = DesignEntry::create([
 						'title' => ucwords(explode('.',$file)[0]),
-						'location' => 'uploads/' . $gall['slug'] . '/' . $file
+						'image' => 'uploads/' . $gall['slug'] . '/' . $file
 					]);
 					DesignGalleryEntry::create([
 						'gallery_id' => $gall['id'],

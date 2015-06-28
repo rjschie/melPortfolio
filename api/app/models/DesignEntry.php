@@ -8,16 +8,17 @@ class DesignEntry extends Eloquent {
 		'body',
 		'footer',
 		'bgColor',
-		'location',
+		'image',
 		'type'
 	];
 
+	protected $hidden = ['pivot'];
 	public $table = 'design_entries';
 	public $timestamps = false;
 
 	public function galleries()
 	{
-		return $this->belongsToMany('DesignGallery', 'design_galleries_entries', 'gallery_id', 'entry_id');
+		return $this->belongsToMany('DesignGallery', 'design_galleries_entries', 'entry_id', 'gallery_id');
 	}
 
 }

@@ -82,19 +82,61 @@ class DesignEntryController extends \BaseController {
 	public function update($id)
 	{
 		try {
-
+			$galleryEntry = DesignGalleryEntry::where('entry_id','=',$id)->get()[0];
 			$entry = DesignEntry::findOrFail($id);
 
-			//TODO: update stuff
+			extract(Input::all());
 
-//			$entry->save();
+			if(!empty($gallery_id)) {
+				$galleryEntry->gallery_id = $gallery_id;
+			}
+			if(!empty($type)) {
+				$entry->type = $type;
+			}
+			if (!empty($title)) {
+				$entry->title = $title;
+			}
+			if(!empty($subtitle)) {
+				$entry->subtitle = $subtitle;
+			}
+			if(!empty($body)) {
+				$entry->body = $body;
+			}
+			if(!empty($footer)) {
+				$entry->footer = $footer;
+			}
+			if(!empty($bgColor)) {
+				$entry->bgColor = $bgColor;
+			}
+
+			if(!empty($new_image)) {
+				$gallery = DesignGallery::where('id', '=', $galleryEntry->gallery_id)->get(['slug'])[0];
+
+				// TODO: uncomment
+//				if(file_exists(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image)) {
+//					unlink(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image);
+//				}
+
+				$imageLoc = 'uploads/' . $gallery->slug . '/' . $new_image['name'];
+				file_put_contents(
+					dirname(base_path()) . '/dev/' . $imageLoc,
+					base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
+				);
+				$entry->image = $imageLoc;
+			}
+
+			$entry->save();
+			$galleryEntry->save();
+
+			$entry->gallery_id = $galleryEntry->gallery_id;
+			$entry->sort_pos = $galleryEntry->sort_pos;
 
 		} catch(Exception $e) {
 
 			return Response::make("{\"error\":\"".$e->getMessage()."\"}", 500);
 		}
 
-		return Response::make("", 200);
+		return Response::json($entry, 200, [], JSON_NUMERIC_CHECK);
 	}
 
 

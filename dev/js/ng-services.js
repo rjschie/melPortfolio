@@ -76,8 +76,10 @@ angular.module('app.services', [])
 					var payload = parsePayload(jwt);
 					var now = (Date.now() / 1000);
 
+					// If it's been more than `payload.exp` seconds since login, force re-auth
 					if( now >= parseInt(payload.exp) ) return false;
 
+					// Refresh token if logging in each day
 					if( now > (parseInt(payload.iat) + 8600)) {
 						refreshToken().then(function() {
 							return true;
@@ -122,7 +124,16 @@ angular.module('app.services', [])
 
 .factory('DesignEntry', ['$resource',
 	function($resource) {
-		return $resource('../api/design_entries/:id', { id : '@id' });
+		return $resource('../api/design_entries/:id', { id : '@id' },
+			{
+				update : { method:'PUT' }
+				//reorder : {
+				//	method: 'PUT',
+				//	url: '../api/design_galleries/reorder',
+				//	isArray: true
+				//}
+			}
+		);
 	}])
 
 .factory('InstagramFeed', ['$http',
