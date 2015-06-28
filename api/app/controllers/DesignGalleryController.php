@@ -24,7 +24,7 @@ class DesignGalleryController extends \BaseController {
 	public function show($gallery_slug)
 	{
 		if(is_numeric($gallery_slug)) {
-			$gallery = DesignGallery::findOrFail($gallery_slug)->with('entries')->get()[0];
+			$gallery = DesignGallery::with('entries')->findOrFail($gallery_slug);
 		} else {
 			$gallery = DesignGallery::where('slug', '=', $gallery_slug)->with('entries')->firstOrFail();
 		}
