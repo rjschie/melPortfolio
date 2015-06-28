@@ -8,7 +8,7 @@ class DesignEntry extends Eloquent {
 		'body',
 		'footer',
 		'bgColor',
-		'location',
+		'image',
 		'type'
 	];
 

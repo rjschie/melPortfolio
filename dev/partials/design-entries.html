@@ -7,14 +7,14 @@
 			<section class="foot">{{ entry.footer }}</section>
 		</article>
 		<div class="video-frame" ng-switch-when="1">
-			<img class="poster-image" ng-src="{{entry.location}}-poster.jpg">
+			<img class="poster-image" ng-src="{{entry.image}}-poster.jpg">
 			<div class="play-button"
 					 ng-click="playVideo($index)">
 			</div>
 			<video controls>
-				<source ng-src="{{entry.location}}" type="video/mp4">
+				<source ng-src="{{entry.image}}" type="video/mp4">
 			</video>
 		</div>
-		<img ng-switch-default ng-src="{{ entry.location }}">
+		<img ng-switch-default ng-src="{{ entry.image }}">
 	</div>
 </div>

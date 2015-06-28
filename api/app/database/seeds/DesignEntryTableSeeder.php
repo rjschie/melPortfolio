@@ -68,7 +68,7 @@ class DesignEntryTableSeeder extends Seeder {
 
 					$entry = DesignEntry::create([
 						'title' => ucwords(explode('.',$file)[0]),
-						'location' => 'uploads/' . $gall['slug'] . '/' . $file
+						'image' => 'uploads/' . $gall['slug'] . '/' . $file
 					]);
 					DesignGalleryEntry::create([
 						'gallery_id' => $gall['id'],
