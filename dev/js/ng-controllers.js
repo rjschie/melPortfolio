@@ -71,8 +71,8 @@ angular.module('app.controllers', [])
 			}
 		}])
 
-	.controller('DesignGalleryController', ['$scope', 'DesignGallery', '$stateParams',
-		function ($scope, DesignGallery, $stateParams) {
+	.controller('DesignGalleryController', ['$scope', 'DesignGallery', 'DesignEntry', '$stateParams',
+		function ($scope, DesignGallery, DesignEntry, $stateParams) {
 
 			$scope.playVideo = function(index) {
 				var element = jQuery('.container').eq(index);
@@ -123,7 +123,7 @@ angular.module('app.controllers', [])
 			};
 
 			if($stateParams.gallerySlug) {
-				$scope.entries = DesignGallery.query({id: $stateParams.gallerySlug});
+				$scope.entries = DesignEntry.query({id: $stateParams.gallerySlug});
 			}
 		}])
 
