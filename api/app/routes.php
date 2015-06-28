@@ -26,6 +26,7 @@ if(App::environment('local')) {
 Route::post('/login', 'AuthController@authenticate');
 Route::resource('design_galleries', 'DesignGalleryController', ['only' => ['index', 'show']]);
 Route::resource('photo_galleries', 'PhotoGalleryController', ['only' => ['index', 'show']]);
+Route::get('/design_entries/{gallery_slug}', 'DesignGalleryController@show');
 Route::get('/photo_random', 'PhotoGalleryController@random');
 
 
