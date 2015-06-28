@@ -5,9 +5,7 @@
 		</div>
 		<div class="form-block first">
 			<label for="gallery_id" class="form-label">Gallery</label>
-			<select ng-model="formData.gallery_id" id="gallery_id" class="form-select">
-				<option ng-repeat="gallery in $parent.galleries" ng-value="{{gallery.id}}">{{ gallery.title }}</option>
-			</select>
+			<select id="gallery_id" ng-model="formData.gallery_id" ng-options="gallery.id as gallery.title for gallery in galleries.design"></select>
 		</div>
 		<div class="form-block">
 			<span class="form-label no-pointer">Entry Type</span>
