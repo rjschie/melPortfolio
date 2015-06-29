@@ -181,7 +181,7 @@ angular.module('app.controllers', [])
 					case 'design-galleries.list.add':
 						formModel = new DesignGallery(formData);
 						break;
-					case 'design-galleries.edit.add-entry':
+					case 'design-entries.edit.add-entry':
 						formModel = new DesignEntry(formData);
 						break;
 					default:
