@@ -15,45 +15,49 @@ class DesignEntryController extends \BaseController {
 
 			extract(Input::all());
 
-			if(!isset($new_type)) {
+			if(empty($gallery_id)) {
+				throw new Exception("Must select a gallery.");
+			}
+			if(!isset($type)) {
 				throw new Exception("Must define entry type.");
 			}
-			if(!isset($gallery_id)) {
-				throw new Exception("Must define gallery id.");
+			if(empty($title)) {
+				throw new Exception("Must enter title.");
 			}
 
-			switch($new_type) {
+			switch($type) {
 				case 0: // Image Item
-					if(empty($new_title) || empty($new_location)) {
-						throw new Exception("Image: Must define all of the following: title, location.");
+					if(empty($image)) {
+						throw new Exception("Must select an image.");
 					}
+					//TODO: upload image
 					$entry = DesignEntry::create([
-						'title'				=> $new_title,
-						'location'		=> $new_location,
-						'type'	=> 0
+						'title'				=> $title,
+						'image'		=> $image,
+						'type'	=> $type
 					]);
 					break;
 				case 1: // Video Item
-					if(empty($new_title) || empty($new_location)) {
-						throw new Exception("Vid: Must define all of the following: title, location.");
+					if(empty($video)) {
+						throw new Exception("Must select a video.");
 					}
-					$entry = DesignEntry::create([
-						'title'				=> $new_title,
-						'location'		=> $new_location,
-						'type'	=> 1
-					]);
+//					$entry = DesignEntry::create([
+//						'title'				=> $title,
+//						'image'		=> $image,
+//						'type'	=> $type
+//					]);
 					break;
 				case 2: // Text Item
-					if(empty($new_title) || empty($new_subtitle) || empty($new_body) || empty($new_footer) || empty($new_bgColor)) {
-						throw new Exception("Text: Must define all of the following: title, subtitle, body, footer, bgColor.");
+					if(empty($subtitle) || empty($body) || empty($footer) || empty($bgColor)) {
+						throw new Exception("Must fill in all fields.");
 					}
 					$entry = DesignEntry::create([
-						'title' 			=> $new_title,
-						'subtitle'		=> $new_subtitle,
-						'body'				=> $new_body,
-						'footer'			=> $new_footer,
-						'bgColor'			=> $new_bgColor,
-						'type'	=> 2
+						'title' 			=> $title,
+						'subtitle'		=> $subtitle,
+						'body'				=> $body,
+						'footer'			=> $footer,
+						'bgColor'			=> $bgColor,
+						'type'	=> $type
 					]);
 					break;
 			}
