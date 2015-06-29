@@ -168,6 +168,9 @@ class DesignEntryController extends \BaseController {
 	public function destroy($id)
 	{
 		$entry = DesignEntry::findOrFail($id);
+
+		//TODO: delete image
+
 		$entry->delete();
 	}
 
