@@ -91,7 +91,7 @@ angular.module('app.controllers', [])
 				});
 			};
 
-			if($stateParams.gallerySlug) {
+			if($scope.entries == undefined && $scope.$state.includes('design-entries')) {
 				$scope.entries = DesignEntry.query({id: $stateParams.gallerySlug});
 			}
 		}])
