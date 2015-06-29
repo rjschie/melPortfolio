@@ -144,6 +144,7 @@ class DesignGalleryController extends \BaseController {
 		}
 
 		// TODO: find image and delete it
+		// TODO: find entries and delete them
 
 
 

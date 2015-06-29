@@ -167,6 +167,7 @@ angular.module('app.controllers', [])
 			$scope.update = function(formData) {
 				formData.$update().then(function(result) {
 					$scope.model[$scope.index] = result;
+					$scope.formData = {};
 					$scope.$state.go('^');
 				}, function(result) {
 					$scope.error = 'Failed to save: ' + result.data.error;
@@ -180,9 +181,11 @@ angular.module('app.controllers', [])
 				switch($scope.$state.current.name) {
 					case 'design-galleries.list.add':
 						formModel = new DesignGallery(formData);
+						$scope.model = $scope.$parent.galleries.design;
 						break;
-					case 'design-galleries.edit.add-entry':
+					case 'design-entries.edit.add-entry':
 						formModel = new DesignEntry(formData);
+						$scope.model = $scope.$parent.entries;
 						break;
 					default:
 						break;
@@ -190,6 +193,7 @@ angular.module('app.controllers', [])
 
 				formModel.$save().then(function(result) {
 					$scope.model.push(result);
+					$scope.formData = {};
 					$scope.$state.go('^');
 				},function(result) {
 					$scope.error = 'Failed to save: ' + result.data.error;
