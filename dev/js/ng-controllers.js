@@ -167,6 +167,7 @@ angular.module('app.controllers', [])
 			$scope.update = function(formData) {
 				formData.$update().then(function(result) {
 					$scope.model[$scope.index] = result;
+					$scope.formData = {};
 					$scope.$state.go('^');
 				}, function(result) {
 					$scope.error = 'Failed to save: ' + result.data.error;
@@ -190,6 +191,7 @@ angular.module('app.controllers', [])
 
 				formModel.$save().then(function(result) {
 					$scope.model.push(result);
+					$scope.formData = {};
 					$scope.$state.go('^');
 				},function(result) {
 					$scope.error = 'Failed to save: ' + result.data.error;
