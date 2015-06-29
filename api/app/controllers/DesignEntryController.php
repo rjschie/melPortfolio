@@ -74,18 +74,21 @@ class DesignEntryController extends \BaseController {
 					break;
 			}
 
-			DesignGalleryEntry::create([
+			$galleryEntry = DesignGalleryEntry::create([
 				'gallery_id'	=> $gallery_id,
 				'entry_id'		=> $entry['id'],
 				'sort_pos'		=> DesignGalleryEntry::where('gallery_id', $gallery_id)->max('sort_pos')+1
 			]);
+
+			$entry->gallery_id = $galleryEntry->gallery_id;
+			$entry->sort_pos = $galleryEntry->sort_pos;
 
 		} catch(Exception $e) {
 
 			return Response::make("{\"error\":\"".$e->getMessage()."\"}", 500);
 		}
 
-		return Response::make("", 201);
+		return Response::json($entry, 201, [], JSON_NUMERIC_CHECK);
 	}
 
 
