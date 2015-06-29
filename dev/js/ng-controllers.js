@@ -98,10 +98,7 @@ angular.module('app.controllers', [])
 
 	.controller('AdminFormController', ['$scope', '$controller', 'DesignGallery', 'DesignEntry',
 		function($scope, $controller, DesignGallery, DesignEntry) {
-
-			if( ! $scope.Auth.isAuth) {
-				return false;
-			}
+			if( ! $scope.Auth.isAuth) {return false;}
 
 			$controller('DesignGalleryController', {$scope: $scope});
 
@@ -171,8 +168,6 @@ angular.module('app.controllers', [])
 			};
 
 			$scope.updateSort = function($part) {
-				if( ! $scope.Auth.isAuth) {return false;}
-
 				var data = [];
 				var orig = [];
 				for(var i = 0, len = $part.length; i < len; i++) {
