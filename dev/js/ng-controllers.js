@@ -181,9 +181,11 @@ angular.module('app.controllers', [])
 				switch($scope.$state.current.name) {
 					case 'design-galleries.list.add':
 						formModel = new DesignGallery(formData);
+						$scope.model = $scope.$parent.galleries.design;
 						break;
 					case 'design-entries.edit.add-entry':
 						formModel = new DesignEntry(formData);
+						$scope.model = $scope.$parent.entries;
 						break;
 					default:
 						break;
