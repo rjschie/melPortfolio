@@ -27,13 +27,25 @@ class DesignEntryController extends \BaseController {
 
 			switch($type) {
 				case 0: // Image Item
-					if(empty($image)) {
+					if(empty($new_image)) {
 						throw new Exception("Must select an image.");
 					}
-					//TODO: upload image
+
+					$gallery = DesignGallery::where('id', '=', $gallery_id)->get(['slug'])[0];
+
+					$imageLoc = 'uploads/' . $gallery->slug . '/' . $new_image['name'];
+					try {
+						file_put_contents(
+							dirname( base_path() ) . '/dev/' . $imageLoc,
+							base64_decode( substr( $new_image[ 'data' ],
+								strpos( $new_image[ 'data' ], "," ) + 1 ) )
+						);
+					} catch(Exception $e) {
+						return Response::make("{\"error\":\"Couldn't upload image: ".$e->getMessage()."\"}", 500);
+					}
 					$entry = DesignEntry::create([
 						'title'				=> $title,
-						'image'		=> $image,
+						'image'		=> $imageLoc,
 						'type'	=> $type
 					]);
 					break;
