@@ -49,16 +49,22 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 				templateUrl : 'partials/design-galleries.html',
 				controller : 'DesignGalleryController'
 			})
-			.state('design-galleries.list.add', {
+			.state('design-galleries.edit', {
+				url: '/edit',
+				templateUrl : 'partials/design-galleries.edit.html',
+				controller : 'AdminFormController',
+				params: {requireAuth: true}
+			})
+			.state('design-galleries.edit.add-gallery', {
 				url: '/add-gallery',
 				templateUrl : 'partials/design-galleries.add-form.html',
 				controller : 'AdminFormController',
 				params: {noScroll:true, requireAuth: true}
 			})
-			.state('design-galleries.list.edit', {
+			.state('design-galleries.edit.edit-gallery', {
 				url: '/:gallerySlug/edit-gallery',
 				templateUrl: 'partials/design-galleries.edit-form.html',
-				controller: 'AdminFormController',
+				controller: 'DesignGalleryEdit',
 				params: {noScroll:true, requireAuth: true}
 			})
 			.state('design-entries', {
@@ -86,7 +92,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 			.state('design-entries.edit.edit-entry', {
 				url: '/edit-entry/:id',
 				templateUrl: 'partials/design-entries.edit-form.html',
-				controller: 'AdminFormController',
+				controller: 'DesignEntryEdit',
 				params: {noScroll:true, requireAuth: true}
 			})
 		/**
