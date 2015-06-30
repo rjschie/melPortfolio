@@ -102,34 +102,6 @@ angular.module('app.controllers', [])
 
 			$controller('DesignGalleryController', {$scope: $scope});
 
-			switch($scope.$state.current.name) {
-				case 'design-galleries.edit.edit-gallery':
-					$scope.galleries.design.$promise.then(function(galleryList) {
-						galleryList.forEach(function(gallery, key) {
-							if(gallery.slug == $scope.$stateParams.gallerySlug) {
-								$scope.formData = angular.copy(gallery);
-								$scope.model = $scope.$parent.galleries.design;
-								$scope.index = key;
-							}
-						});
-					});
-					break;
-				case 'design-entries.edit.edit-entry':
-					$scope.entries.$promise.then(function(entryList) {
-						entryList.forEach(function(entry, key) {
-							if(entry.id == $scope.$stateParams.id) {
-								$scope.formData = angular.copy(entry);
-								$scope.model = $scope.$parent.entries;
-								$scope.index = key;
-							}
-						});
-					});
-					break;
-				default:
-					$scope.formData = {};
-					break;
-			}
-
 			$scope.update = function(formData) {
 				formData.$update().then(function(result) {
 					$scope.model[$scope.index] = result;
@@ -193,6 +165,38 @@ angular.module('app.controllers', [])
 				$scope.formData = {};
 			};
 
+		}])
+
+	.controller('DesignGalleryEdit', ['$scope', '$controller',
+		function($scope, $controller) {
+
+			$controller('AdminFormController', {$scope: $scope});
+
+			$scope.galleries.design.$promise.then(function(galleryList) {
+				galleryList.forEach(function(gallery, key) {
+					if(gallery.slug == $scope.$stateParams.gallerySlug) {
+						$scope.formData = angular.copy(gallery);
+						$scope.model = $scope.$parent.galleries.design;
+						$scope.index = key;
+					}
+				});
+			});
+		}])
+
+	.controller('DesignEntryEdit', ['$scope', '$controller',
+		function($scope, $controller) {
+
+			$controller('AdminFormController', {$scope: $scope});
+
+			$scope.entries.$promise.then(function(entryList) {
+				entryList.forEach(function(entry, key) {
+					if(entry.id == $scope.$stateParams.id) {
+						$scope.formData = angular.copy(entry);
+						$scope.model = $scope.$parent.entries;
+						$scope.index = key;
+					}
+				});
+			});
 		}])
 
 	.controller('VideoController', ['$scope',
