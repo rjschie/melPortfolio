@@ -1,7 +1,7 @@
 <div class="content designGrid">
 	<span sv-root sv-on-sort="updateSort(galleries.design)" sv-part="galleries.design">
 		<div ng-repeat="gallery in galleries.design | orderBy : 'sort_pos' track by $index"
-				 class="grid-container" sv-element>
+				 class="grid-container grid-container__edit" sv-element>
 			<div ng-if="Auth.isAuth" class="edit-bar" design-gallery-edit-bar></div>
 			<a ui-sref="design-entries.list({ gallerySlug: gallery.slug })"
 				 class="grid-link">

@@ -358,6 +358,11 @@ article {
       .grid-container {
         width: 100%; } } }
 
+.grid-container__edit {
+  position: relative;
+  top: -1.5rem;
+  margin-bottom: -.07143rem; }
+
 .grid-image {
   max-width: 100%;
   height: 100%;
