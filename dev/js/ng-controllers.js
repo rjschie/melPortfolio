@@ -139,6 +139,27 @@ angular.module('app.controllers', [])
 				});
 			};
 
+			$scope.clear = function() {
+				$scope.formData = {};
+			};
+
+		}])
+
+	.controller('DesignGalleryEdit', ['$scope', '$controller', 'DesignGallery',
+		function($scope, $controller, DesignGallery) {
+
+			$controller('AdminFormController', {$scope: $scope});
+
+			$scope.galleries.design.$promise.then(function(galleryList) {
+				galleryList.forEach(function(gallery, key) {
+					if(gallery.slug == $scope.$stateParams.gallerySlug) {
+						$scope.formData = angular.copy(gallery);
+						$scope.model = $scope.$parent.galleries.design;
+						$scope.index = key;
+					}
+				});
+			});
+
 			$scope.updateSort = function($part) {
 				var data = [];
 				var orig = [];
@@ -161,26 +182,6 @@ angular.module('app.controllers', [])
 				});
 			};
 
-			$scope.clear = function() {
-				$scope.formData = {};
-			};
-
-		}])
-
-	.controller('DesignGalleryEdit', ['$scope', '$controller',
-		function($scope, $controller) {
-
-			$controller('AdminFormController', {$scope: $scope});
-
-			$scope.galleries.design.$promise.then(function(galleryList) {
-				galleryList.forEach(function(gallery, key) {
-					if(gallery.slug == $scope.$stateParams.gallerySlug) {
-						$scope.formData = angular.copy(gallery);
-						$scope.model = $scope.$parent.galleries.design;
-						$scope.index = key;
-					}
-				});
-			});
 		}])
 
 	.controller('DesignEntryEdit', ['$scope', '$controller',
