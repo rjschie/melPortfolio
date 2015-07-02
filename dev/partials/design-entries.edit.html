@@ -4,7 +4,7 @@
 	<span sv-root sv-on-sort="updateSort(entries)" sv-part="entries">
 		<div ng-repeat="entry in entries | orderBy : 'sort_pos' track by $index"
 				 class="grid-container grid-container__edit" sv-element ng-switch="entry.type">
-			<div ng-if="Auth.isAuth" class="edit-bar" design-entry-edit-bar></div>
+			<div class="edit-bar" design-entry-edit-bar></div>
 
 			<div class="grid-container-ratio">
 
@@ -32,7 +32,7 @@
 			<p class="grid-container-ratio-text">{{ entry.title }}</p>
 		</div>
 	</span>
-	<a ng-if="Auth.isAuth" ui-sref="design-entries.edit.add-entry" class="grid-container grid-container__edit grid-link">
+	<a ui-sref="design-entries.edit.add-entry" class="grid-container grid-container__edit grid-link">
 		<div class="gallery-add-ratio">
 			<div class="gallery-add-shape"></div>
 		</div>
