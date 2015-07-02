@@ -1,4 +1,7 @@
 <div class="content designGrid">
+	<a ng-if="Auth.isAuth"
+		class="list-view_edit-button"
+		ui-sref="design-galleries.edit">Edit Galleries</a>
 	<div ng-repeat="gallery in galleries.design | orderBy : 'sort_pos' track by $index"
 			 class="grid-container">
 		<a ui-sref="design-entries.list({ gallerySlug: gallery.slug })"

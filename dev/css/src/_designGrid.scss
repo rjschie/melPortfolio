@@ -205,3 +205,19 @@ article {
 	}
 
 }
+
+.list-view_edit-button {
+	display: block;
+	min-width: 7rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	line-height: 2rem;
+	border-radius: 3px;
+	text-align: center;
+	text-decoration: none;
+	position: absolute;
+	margin-top: -3rem;
+	margin-left: 1rem;
+	background-color: #f7f7f7;
+	border: 1px solid #aaa;
+}

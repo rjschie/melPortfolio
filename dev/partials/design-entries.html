@@ -1,4 +1,7 @@
 <div class="content-full">
+	<a ng-if="Auth.isAuth"
+		 class="list-view_edit-button"
+		 ui-sref="design-entries.edit">Edit Entries</a>
 	<div id="{{entry.id}}" class="container" ng-repeat="entry in entries" ng-switch="entry.type">
 		<article ng-switch-when="2" ng-style="{'background-color': '{{entry.bgColor}}'}">
 			<section class="head">{{ entry.title }}</section>
