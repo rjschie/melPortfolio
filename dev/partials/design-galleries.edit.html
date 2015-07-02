@@ -1,4 +1,6 @@
-<div class="content designGrid">
+<div ng-if="Auth.isAuth" class="content designGrid">
+	<a class="list-view_edit-button"
+		 ui-sref="design-galleries.list">X</a>
 	<span sv-root sv-on-sort="updateSort(galleries.design)" sv-part="galleries.design">
 		<div ng-repeat="gallery in galleries.design | orderBy : 'sort_pos' track by $index"
 				 class="grid-container grid-container__edit" sv-element>
