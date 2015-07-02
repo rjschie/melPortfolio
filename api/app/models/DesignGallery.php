@@ -11,7 +11,8 @@ class DesignGallery extends Eloquent {
 	public function entries()
 	{
 		return $this->belongsToMany('DesignEntry', 'design_galleries_entries', 'gallery_id', 'entry_id')
-								->withPivot('sort_pos as sort_pos', 'gallery_id as gallery_id');
+								->withPivot('sort_pos as sort_pos', 'gallery_id as gallery_id')
+								->orderBy('sort_pos');
 	}
 
 }
