@@ -1,7 +1,7 @@
 <div class="content designGrid">
-	<span sv-stuff>
+	<span sv-root sv-on-sort="updateSort(entries)" sv-part="entries">
 		<div ng-repeat="entry in entries | orderBy : 'sort_pos' track by $index"
-				 class="grid-container grid-container__edit" ng-switch="entry.type">
+				 class="grid-container grid-container__edit" sv-element ng-switch="entry.type">
 			<div ng-if="Auth.isAuth" class="edit-bar" design-entry-edit-bar></div>
 
 			<div class="grid-container-ratio">
