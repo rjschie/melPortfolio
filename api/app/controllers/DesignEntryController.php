@@ -175,4 +175,28 @@ class DesignEntryController extends \BaseController {
 	}
 
 
+	/**
+	 * Update the `sort_pos` for the entries
+	 *
+	 * @return Response
+	 */
+	public function reorder()
+	{
+
+		DB::transaction(function() {
+
+			$data = Input::all();
+			$designEntries = DesignGalleryEntry::where('gallery_id', '=', $data['gallery_id'])->get();
+
+			foreach($designEntries as $entry) {
+				$entry->sort_pos = $data['entries'][$entry['entry_id']]['sort_pos'];
+				if( ! $entry->save() ) {
+					throw new \Exception('Entry not able to be sorted.');
+				}
+			}
+
+		});
+	}
+
+
 }
