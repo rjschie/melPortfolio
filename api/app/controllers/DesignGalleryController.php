@@ -163,11 +163,10 @@ class DesignGalleryController extends \BaseController {
 		DB::transaction(function() {
 
 			$data = Input::all();
+			$galleries = DesignGallery::all(['id','sort_pos']);
 
-			foreach($data as $val) {
-
-				$gallery = DesignGallery::findOrFail($val['id']);
-				$gallery->sort_pos = $val['sort_pos'];
+			foreach($galleries as $gallery) {
+				$gallery->sort_pos = $data[$gallery->id]['sort_pos'];
 
 				if( ! $gallery->save() ) {
 					throw new \Exception('Gallery not able to be sorted.');
