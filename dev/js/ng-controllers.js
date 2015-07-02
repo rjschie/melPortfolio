@@ -184,8 +184,8 @@ angular.module('app.controllers', [])
 
 		}])
 
-	.controller('DesignEntryEdit', ['$scope', '$controller',
-		function($scope, $controller) {
+	.controller('DesignEntryEdit', ['$scope', '$controller', 'DesignEntry',
+		function($scope, $controller, DesignEntry) {
 
 			$controller('AdminFormController', {$scope: $scope});
 
@@ -198,6 +198,36 @@ angular.module('app.controllers', [])
 					}
 				});
 			});
+
+			$scope.updateSort = function($part) {
+				var data = {};
+				var entries = {};
+				var orig = [];
+
+				for(var i = 0, len = $part.length; i < len; i++) {
+					var item = $part[i];
+					orig[item.id] = item.sort_pos;
+					item.sort_pos = i+1;
+					entries[item.id] = { id : item.id, sort_pos: item.sort_pos };
+				}
+
+				data.gallery_id = $part[0].gallery_id;
+				data.entries = entries;
+
+				DesignEntry.reorder(data).$promise.then(function() {
+					//console.log('success');
+				}, function() {
+					console.log( 'error' );
+					for(var i=0; i < $part.length; i++) {
+						$part[i].sort_pos = orig[$part[i].id];
+					}
+					$part.sort(function(a,b) {
+						return a.sort_pos - b.sort_pos;
+					});
+				});
+
+			};
+
 		}])
 
 	.controller('VideoController', ['$scope',

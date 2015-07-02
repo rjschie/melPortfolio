@@ -126,12 +126,12 @@ angular.module('app.services', [])
 	function($resource) {
 		return $resource('../api/design_entries/:id', { id : '@id' },
 			{
-				update : { method:'PUT' }
-				//reorder : {
-				//	method: 'PUT',
-				//	url: '../api/design_galleries/reorder',
-				//	isArray: true
-				//}
+				update : { method:'PUT' },
+				reorder : {
+					method: 'PUT',
+					url: '../api/design_entries/reorder',
+					isArray: true
+				}
 			}
 		);
 	}])
