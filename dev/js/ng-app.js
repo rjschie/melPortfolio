@@ -10,7 +10,8 @@ var app = angular.module('app', [
 	'app.controllers',
 	'wu.masonry',
 	'angular-sortable-view',
-	'color.picker'
+	'color.picker',
+	'ngFileUpload'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',

@@ -1,6 +1,14 @@
 
 angular.module('app.filters', [])
 
-.filter('filter01', function() {
-		return null
+.filter('parseMB', function() {
+		return function(input) {
+			input = input || '';
+			output = '';
+
+			output = parseFloat(input).toFixed(2);
+			output += ' MB';
+
+			return output;
+		};
 	});

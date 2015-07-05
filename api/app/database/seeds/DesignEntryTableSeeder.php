@@ -65,11 +65,27 @@ class DesignEntryTableSeeder extends Seeder {
 						$sortedNotDone = true;
 						continue;
 					}
+					if($file == "docs_04.jpg") {
+						$entry = DesignEntry::create( [
+							'title' => ucwords( explode( '.', $file )[ 0 ] ),
+							'image' => 'uploads/' . $gall[ 'slug' ] . '/' . $file,
+							'video' => 'uploads/vids/docs.mp4',
+							'type'	=> 1
+						] );
+					} elseif($file == "unpack_01.jpg") {
+						$entry = DesignEntry::create([
+							'title' => ucwords(explode('.',$file)[0]),
+							'image' => 'uploads/' . $gall['slug'] . '/' . $file,
+							'video' => 'uploads/vids/unpack.mp4',
+							'type'	=> 1
+						]);
+					} else {
+						$entry = DesignEntry::create([
+							'title' => ucwords(explode('.',$file)[0]),
+							'image' => 'uploads/' . $gall['slug'] . '/' . $file
+						]);
+					}
 
-					$entry = DesignEntry::create([
-						'title' => ucwords(explode('.',$file)[0]),
-						'image' => 'uploads/' . $gall['slug'] . '/' . $file
-					]);
 					DesignGalleryEntry::create([
 						'gallery_id' => $gall['id'],
 						'entry_id' => $entry['id'],

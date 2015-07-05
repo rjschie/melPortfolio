@@ -97,7 +97,8 @@ angular.module('app.controllers', [])
 		}])
 
 	.controller('AdminFormController', ['$scope', '$controller', 'DesignGallery', 'DesignEntry',
-		function($scope, $controller, DesignGallery, DesignEntry) {
+		'Upload',
+		function($scope, $controller, DesignGallery, DesignEntry, Upload) {
 			if( ! $scope.Auth.isAuth) {return false;}
 
 			$controller('DesignGalleryController', {$scope: $scope});
@@ -129,14 +130,36 @@ angular.module('app.controllers', [])
 						break;
 				}
 
-				formModel.$save().then(function(result) {
-					$scope.model.push(result);
-					$scope.formData = {};
-					$scope.$state.go('^');
-				},function(result) {
-					$scope.error = 'Failed to save: ' + result.data.error;
-					console.log("Error: " + JSON.stringify(result.data));
-				});
+				if(formModel.type == 1) { // If Video Item
+					$scope.uploadProgress = '0';
+
+					Upload.upload({
+						url: '../api/design_entries',
+						fields: formData,
+						fileFormDataName: 'video',
+						file: formData.video
+					}).progress(function (evt) {
+						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+						$scope.uploadProgress = progressPercentage + '%';
+					}).then(function(result) {
+						$scope.model.push(result);
+						$scope.formData = {};
+						$scope.$state.go('^');
+					},function(result) {
+						$scope.error = 'Failed to save: ' + result.data.error;
+						console.log("Error: " + JSON.stringify(result.data));
+					});
+				} else {
+					formModel.$save().then(function(result) {
+						$scope.model.push(result);
+						$scope.formData = {};
+						$scope.$state.go('^');
+					},function(result) {
+						$scope.error = 'Failed to save: ' + result.data.error;
+						console.log("Error: " + JSON.stringify(result.data));
+					});
+				}
+
 			};
 
 			$scope.clear = function() {
