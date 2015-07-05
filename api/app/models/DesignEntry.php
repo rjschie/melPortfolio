@@ -9,6 +9,7 @@ class DesignEntry extends Eloquent {
 		'footer',
 		'bgColor',
 		'image',
+		'video',
 		'type'
 	];
 

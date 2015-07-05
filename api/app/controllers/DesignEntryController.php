@@ -44,8 +44,8 @@ class DesignEntryController extends \BaseController {
 						return Response::make("{\"error\":\"Couldn't upload image: ".$e->getMessage()."\"}", 500);
 					}
 					$entry = DesignEntry::create([
-						'title'				=> $title,
-						'image'		=> $imageLoc,
+						'title'	=> $title,
+						'image'	=> $imageLoc,
 						'type'	=> $type
 					]);
 					break;
@@ -69,7 +69,7 @@ class DesignEntryController extends \BaseController {
 						'body'				=> $body,
 						'footer'			=> $footer,
 						'bgColor'			=> $bgColor,
-						'type'	=> $type
+						'type'				=> $type
 					]);
 					break;
 			}
@@ -84,7 +84,6 @@ class DesignEntryController extends \BaseController {
 			$entry->sort_pos = $galleryEntry->sort_pos;
 
 		} catch(Exception $e) {
-
 			return Response::make("{\"error\":\"".$e->getMessage()."\"}", 500);
 		}
 
