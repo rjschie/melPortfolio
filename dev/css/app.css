@@ -466,7 +466,8 @@ article {
   margin-top: -3rem;
   margin-left: 1rem;
   background-color: #f7f7f7;
-  border: 1px solid #aaa; }
+  border: 1px solid #aaa;
+  z-index: 200; }
 
 /**
  * Gallery View
@@ -723,7 +724,10 @@ article {
   background-color: #eee;
   border: 1px solid #999;
   font-size: 1rem;
-  padding: 0.3em 0.8em; }
+  padding: 0.3em 0.8em;
+  min-width: 6rem;
+  text-align: center;
+  display: inline-block; }
   .form-button:hover {
     background-color: #ddd; }
 
@@ -758,6 +762,27 @@ article {
   .form-uploader > img {
     width: 100%;
     display: block; }
+
+.form-info {
+  padding: .4rem 1rem;
+  background-color: #EAF2FA;
+  border-radius: 3px;
+  border: 1px solid #aaa; }
+
+.form-info__small-text {
+  font-size: .8em;
+  font-style: italic;
+  color: #777;
+  margin-left: .6rem; }
+
+.form-progress-bar {
+  height: .3rem; }
+
+.form-progress-bar--progress {
+  background-color: #5c7aff;
+  display: block;
+  height: 100%;
+  width: 0; }
 
 /*!
  * angular-color-picker v0.6.2

@@ -43,12 +43,25 @@
 				</div>
 			</div>
 		</div>
-		<!--<div class="form-block" ng-switch-when="1">-->
-			<!--<label class="form-label no-pointer">Video</label>-->
-			<!--<div class="form-uploader"-->
-					 <!--ng-class="{'add-sign': !formData.image}"-->
-					 <!--image-uploader form-data="formData"></div>-->
-		<!--</div>-->
+		<div class="form-block" ng-switch-when="1">
+			<label class="form-label no-pointer">Video Poster</label>
+			<div class="form-uploader-ratio">
+				<div class="form-uploader"
+						 ng-class="{'add-sign': !formData.image}"
+						 image-uploader form-data="formData"></div>
+			</div>
+		</div>
+		<div class="form-block" ng-switch-when="1">
+			<label class="form-label no-pointer">Video File</label>
+			<div ng-hide="formData.video" ngf-select ng-model="formData.video" class="form-button">Add File</div>
+			<div ng-show="formData.video" class="form-info">
+				<span>{{ formData.video[0].name }}</span>
+				<small class="form-info__small-text">{{ formData.video[0].size/1048576 | parseMB }}</small>
+			</div>
+			<div ng-show="formData.video" class="form-progress-bar">
+				<span class="form-progress-bar--progress" ng-style="{'width':uploadProgress}"></span>
+			</div>
+		</div>
 		<div ng-switch-when="2">
 			<div class="form-block">
 				<label for="subtitle" class="form-label">Subtitle</label>
