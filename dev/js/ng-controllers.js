@@ -142,7 +142,7 @@ angular.module('app.controllers', [])
 						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 						$scope.uploadProgress = progressPercentage + '%';
 					}).then(function(result) {
-						$scope.model.push(result);
+						$scope.model.push( angular.extend(formModel,result.data) );
 						$scope.formData = {};
 						$scope.$state.go('^');
 					},function(result) {
