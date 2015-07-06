@@ -155,6 +155,9 @@ class DesignEntryController extends \BaseController {
 			if(!empty($bgColor)) {
 				$entry->bgColor = $bgColor;
 			}
+			if(!empty($video)) {
+				$entry->video = $video;
+			}
 
 			if(!empty($new_image)) {
 				$gallery = DesignGallery::where('id', '=', $galleryEntry->gallery_id)->get(['slug'])[0];
