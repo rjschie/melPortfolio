@@ -103,6 +103,10 @@ angular.module('app.controllers', [])
 
 			$controller('DesignGalleryController', {$scope: $scope});
 
+			$scope.$on('$destroy', function() {
+				$scope.formData = {};
+			});
+
 			$scope.update = function(formData) {
 				formData.$update().then(function(result) {
 					$scope.model[$scope.index] = result;
@@ -143,7 +147,6 @@ angular.module('app.controllers', [])
 						$scope.uploadProgress = progressPercentage + '%';
 					}).then(function(result) {
 						$scope.model.push( angular.extend(formModel,result.data) );
-						$scope.formData = {};
 						$scope.$state.go('^');
 					},function(result) {
 						$scope.error = 'Failed to save: ' + result.data.error;
@@ -152,7 +155,6 @@ angular.module('app.controllers', [])
 				} else {
 					formModel.$save().then(function(result) {
 						$scope.model.push(result);
-						$scope.formData = {};
 						$scope.$state.go('^');
 					},function(result) {
 						$scope.error = 'Failed to save: ' + result.data.error;
