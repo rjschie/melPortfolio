@@ -155,6 +155,9 @@ class DesignEntryController extends \BaseController {
 			if(!empty($bgColor)) {
 				$entry->bgColor = $bgColor;
 			}
+			if(!empty($video)) {
+				$entry->video = $video;
+			}
 
 			if(!empty($new_image)) {
 				$gallery = DesignGallery::where('id', '=', $galleryEntry->gallery_id)->get(['slug'])[0];
@@ -224,6 +227,27 @@ class DesignEntryController extends \BaseController {
 			}
 
 		});
+	}
+
+
+	/**
+	 * Store video file
+	 *
+	 * @return Response
+	 */
+	public function storeVideo()
+	{
+		$video = Input::file( 'video' );
+		$destinationPath = dirname(base_path()) . '/dev/uploads/vids';
+
+		if( ! $video->move( $destinationPath, $video->getClientOriginalName() ) ) {
+			return Response::json(["error" => "Couldn't upload video."], 400);
+		}
+
+		return Response::json([
+			"video" => 'uploads/vids/' . $video->getClientOriginalName()
+		], 201);
+
 	}
 
 

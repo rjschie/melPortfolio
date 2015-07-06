@@ -103,15 +103,47 @@ angular.module('app.controllers', [])
 
 			$controller('DesignGalleryController', {$scope: $scope});
 
+			$scope.$on('$destroy', function() {
+				$scope.formData = {};
+			});
+
 			$scope.update = function(formData) {
-				formData.$update().then(function(result) {
-					$scope.model[$scope.index] = result;
-					$scope.formData = {};
-					$scope.$state.go('^');
-				}, function(result) {
-					$scope.error = 'Failed to save: ' + result.data.error;
-					console.log("Error: " + JSON.stringify(result.data));
-				});
+
+				if(formData.type == 1 && Array.isArray(formData.video)) { // If Video Item
+
+						$scope.uploadProgress = '0';
+
+					Upload.upload({
+						url: '../api/design_entries/storeVideo',
+						fileFormDataName: 'video',
+						file: formData.video
+					}).progress(function (evt) {
+						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+						$scope.uploadProgress = progressPercentage + '%';
+					}).then(function(result) {
+						formData.video = result.data.video;
+						formData.$update().then(function(result) {
+							$scope.model[$scope.index] = result;
+							$scope.$state.go('^');
+						}, function(result) {
+							$scope.error = 'Failed to save: ' + result.data.error;
+							console.log("Error: " + JSON.stringify(result.data));
+						});
+					},function(result) {
+						$scope.error = 'Failed to save: ' + result.data.error;
+						console.log("Error: " + JSON.stringify(result.data));
+					});
+
+				} else {
+					formData.$update().then(function(result) {
+						$scope.model[$scope.index] = result;
+						$scope.$state.go('^');
+					}, function(result) {
+						$scope.error = 'Failed to save: ' + result.data.error;
+						console.log("Error: " + JSON.stringify(result.data));
+					});
+				}
+
 			};
 
 			$scope.save = function(formData) {
@@ -142,8 +174,7 @@ angular.module('app.controllers', [])
 						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 						$scope.uploadProgress = progressPercentage + '%';
 					}).then(function(result) {
-						$scope.model.push(result);
-						$scope.formData = {};
+						$scope.model.push( angular.extend(formModel,result.data) );
 						$scope.$state.go('^');
 					},function(result) {
 						$scope.error = 'Failed to save: ' + result.data.error;
@@ -152,7 +183,6 @@ angular.module('app.controllers', [])
 				} else {
 					formModel.$save().then(function(result) {
 						$scope.model.push(result);
-						$scope.formData = {};
 						$scope.$state.go('^');
 					},function(result) {
 						$scope.error = 'Failed to save: ' + result.data.error;
