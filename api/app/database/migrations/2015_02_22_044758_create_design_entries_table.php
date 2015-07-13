@@ -20,8 +20,8 @@ class CreateDesignEntriesTable extends Migration {
 			$table->text('body')->nullable();
 			$table->string('footer')->nullable()->default('NULL');
 			$table->string('bgColor')->nullable()->default('aaaaaa');
-			$table->string('image')->nullable()->default('NULL');
-			$table->string('video')->nullable()->default('NULL');
+			$table->string('image_url')->nullable()->default('NULL');
+			$table->string('video_url')->nullable()->default('NULL');
 		});
 		DB::statement("ALTER TABLE `design_entries` ADD
 									 type TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0 = img; 1 = vid; 2 = text'");

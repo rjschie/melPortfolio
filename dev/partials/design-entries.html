@@ -9,15 +9,9 @@
 			<section class="body">{{ entry.body }}</section>
 			<section class="foot">{{ entry.footer }}</section>
 		</article>
-		<div class="video-frame" ng-switch-when="1">
-			<img class="poster-image" ng-src="{{entry.image}}">
-			<div class="play-button"
-					 ng-click="playVideo($index)">
-			</div>
-			<video controls>
-				<source ng-src="{{entry.video}}" type="video/mp4">
-			</video>
-		</div>
-		<img ng-switch-when="0" ng-src="{{ entry.image }}">
+
+		<video-player video="entry" ng-switch-when="1"></video-player>
+
+		<img ng-switch-when="0" ng-src="{{ entry.image_url }}">
 	</div>
 </div>

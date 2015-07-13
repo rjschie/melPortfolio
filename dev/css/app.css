@@ -221,7 +221,7 @@ html, body {
  */
 aside {
   position: fixed;
-  z-index: 100;
+  z-index: 300;
   top: 0;
   left: 25px;
   padding: 3.95rem 2.2rem 2.2rem;
@@ -280,6 +280,18 @@ aside {
     padding: .3rem 1rem; }
     .menu-footer li:hover {
       background-color: rgba(240, 240, 240, 0.5); }
+
+/**
+ * Animations
+ */
+aside.ng-animate {
+  -webkit-transition: .1s ease-out -webkit-transform;
+          transition: .1s ease-out transform; }
+
+aside.ng-animate.ng-hide {
+  -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+          transform: translateX(-100%); }
 
 /**
  * Design Grid
@@ -531,9 +543,6 @@ article {
         right: 0;
         font-size: 1.1rem;
         letter-spacing: 0.2em; }
-    .content-full .container .video-frame, .content-full .container .poster-image > img, .content-full .container video {
-      height: 100%;
-      position: relative; }
     .content-full .container .video-frame .play-button {
       width: 140px;
       height: 90px;
@@ -543,7 +552,7 @@ article {
       left: 50%;
       margin: -45px auto auto -70px;
       border-radius: 5px;
-      z-index: 100; }
+      z-index: 150; }
       .content-full .container .video-frame .play-button::after {
         content: "";
         background: url('../img/play.png') no-repeat;
@@ -557,8 +566,6 @@ article {
         width: 50px; }
       .content-full .container .video-frame .play-button:hover {
         cursor: pointer; }
-    .content-full .container .video-frame video {
-      display: none; }
     .content-full .container img {
       display: inline;
       height: 100%;
@@ -567,6 +574,39 @@ article {
   @media screen and (max-width: 760px) {
     .content-full {
       margin-left: 2rem; } }
+
+.video-frame .play-button-js, .video-frame .pause-button-js {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  z-index: 200;
+  cursor: pointer; }
+
+.video-frame .poster-image {
+  position: relative;
+  z-index: 120; }
+
+.video-frame {
+  position: relative;
+  height: 85vh;
+  width: 151.11111vh;
+  max-height: 600px;
+  max-width: 1066.66667px; }
+
+.video-frame video, .video-frame embed {
+  height: 100%;
+  width: 100%; }
+
+.me-plugin {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; }
 
 /**
  * Photography Grid

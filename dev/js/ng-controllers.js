@@ -55,6 +55,8 @@ angular.module('app.controllers', [])
 				$scope.error = null;
 			});
 
+			$rootScope.hideMenu = false;
+
 			$scope.galleries = {
 				photo : Photography.query(),
 				design : DesignGallery.query()
@@ -73,23 +75,6 @@ angular.module('app.controllers', [])
 
 	.controller('DesignGalleryController', ['$scope', 'DesignGallery', 'DesignEntry', '$stateParams',
 		function ($scope, DesignGallery, DesignEntry, $stateParams) {
-
-			$scope.playVideo = function(index) {
-				var element = jQuery('.container').eq(index);
-				var video = element.find('video');
-				var webmsrc = element.find('source').attr('src').replace('.mp4', '.webm');
-				video.append('<source src="'+webmsrc+'" type="video/webm">');
-				element.find('.poster-image, .play-button').hide();
-				video.show();
-				video[0].play();
-				video.on('click', function() {
-					if(video[0].paused) {
-						video[0].play();
-					} else {
-						video[0].pause();
-					}
-				});
-			};
 
 			if($scope.entries == undefined && $scope.$state.includes('design-entries')) {
 				$scope.entries = DesignEntry.query({id: $stateParams.gallerySlug});
