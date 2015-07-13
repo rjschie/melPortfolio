@@ -221,7 +221,7 @@ html, body {
  */
 aside {
   position: fixed;
-  z-index: 100;
+  z-index: 300;
   top: 0;
   left: 25px;
   padding: 3.95rem 2.2rem 2.2rem;
@@ -280,6 +280,18 @@ aside {
     padding: .3rem 1rem; }
     .menu-footer li:hover {
       background-color: rgba(240, 240, 240, 0.5); }
+
+/**
+ * Animations
+ */
+aside.ng-animate {
+  -webkit-transition: .1s ease-out -webkit-transform;
+          transition: .1s ease-out transform; }
+
+aside.ng-animate.ng-hide {
+  -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+          transform: translateX(-100%); }
 
 /**
  * Design Grid

@@ -227,7 +227,7 @@ angular.module('app.directives', [])
 		}
 	})
 
-	.directive( 'videoPlayer', function ($rootScope) {
+	.directive( 'videoPlayer', ['$rootScope',	function ($rootScope) {
 
 		return {
 			templateUrl: 'partials/templates/video-player.html',
@@ -250,14 +250,17 @@ angular.module('app.directives', [])
 				var videoElement = new MediaElement( video[0], {
 					success: function(mediaElement) {
 						mediaElement.addEventListener('ended', function(e) {
-							scope.$apply(function() { scope.video.playing = false; });
+							scope.$apply(function() { scope.video.playing = false; $rootScope.hideMenu = false; });
 						}, false);
 						mediaElement.addEventListener('pause', function(e) {
-							scope.$apply(function() { scope.video.playing = false; });
+							scope.$apply(function() { scope.video.playing = false; $rootScope.hideMenu = false; });
 						}, false);
 						mediaElement.addEventListener('play', function(e) {
-							scope.$apply(function() { scope.video.playing = true; });
 							$rootScope.$broadcast('PAUSE-OTHER-VIDEOS', {video: scope.video});
+							scope.$apply(function() {
+								scope.video.playing = true;
+								$rootScope.hideMenu = true;
+							});
 						}, false);
 					},
 					error: function(error) {
@@ -291,6 +294,6 @@ angular.module('app.directives', [])
 			}
 		}
 
-	})
+	}])
 
 ;

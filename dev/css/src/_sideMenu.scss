@@ -3,7 +3,7 @@
  */
 aside {
 	position: fixed;
-	z-index: 100;
+	z-index: 300;
 	top: 0;
 	left: 25px;
 	padding: 3.95rem 2.2rem 2.2rem;
@@ -88,4 +88,17 @@ aside {
 			background-color: rgba(240,240,240,0.5);
 		}
 	}
+}
+
+
+/**
+ * Animations
+ */
+
+aside.ng-animate {
+	transition: .1s ease-out transform;
+}
+
+aside.ng-animate.ng-hide {
+	transform: translateX(-100%);
 }

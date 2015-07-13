@@ -55,6 +55,8 @@ angular.module('app.controllers', [])
 				$scope.error = null;
 			});
 
+			$rootScope.hideMenu = false;
+
 			$scope.galleries = {
 				photo : Photography.query(),
 				design : DesignGallery.query()
