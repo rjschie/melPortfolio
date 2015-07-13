@@ -178,6 +178,8 @@ angular.module('app.controllers', [])
 			};
 
 			$scope.clear = function() {
+				$scope.$parent.formData = {};
+				$scope.$$childHead.formData = {};
 				$scope.formData = {};
 			};
 
