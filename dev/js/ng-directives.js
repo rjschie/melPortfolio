@@ -249,7 +249,6 @@ angular.module('app.directives', [])
 				video[0].src = eval(src);
 				var videoElement = new MediaElement( video[0], {
 					success: function(mediaElement) {
-						//console.log( 'success: video element created' );
 						mediaElement.addEventListener('ended', function(e) {
 							scope.$apply(function() { scope.video.playing = false; });
 						}, false);
@@ -265,7 +264,6 @@ angular.module('app.directives', [])
 						console.log( 'error: no video element', error );
 					}
 				});
-				console.log( videoElement );
 
 				/**
 				 * Broadcasted Event Listening: pause video

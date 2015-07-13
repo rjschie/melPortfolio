@@ -540,7 +540,7 @@ article {
       left: 50%;
       margin: -45px auto auto -70px;
       border-radius: 5px;
-      z-index: 100; }
+      z-index: 150; }
       .content-full .container .video-frame .play-button::after {
         content: "";
         background: url('../img/play.png') no-repeat;
@@ -573,6 +573,10 @@ article {
   z-index: 200;
   cursor: pointer; }
 
+.video-frame .poster-image {
+  position: relative;
+  z-index: 120; }
+
 .video-frame {
   position: relative;
   height: 85vh;
@@ -580,12 +584,17 @@ article {
   max-height: 600px;
   max-width: 1066.66667px; }
 
-.video-frame video, .video-frame embed, .video-frame .me-plugin {
+.video-frame video, .video-frame embed {
   height: 100%;
-  width: 100%;
-  position: relative;
-  padding: 0;
-  margin: 0; }
+  width: 100%; }
+
+.me-plugin {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; }
 
 /**
  * Photography Grid
