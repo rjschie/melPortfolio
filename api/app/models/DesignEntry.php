@@ -8,8 +8,8 @@ class DesignEntry extends Eloquent {
 		'body',
 		'footer',
 		'bgColor',
-		'image',
-		'video',
+		'image_url',
+		'video_url',
 		'type'
 	];
 

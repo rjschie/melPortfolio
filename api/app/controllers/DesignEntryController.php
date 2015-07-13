@@ -45,7 +45,7 @@ class DesignEntryController extends \BaseController {
 					}
 					$entry = DesignEntry::create([
 						'title'	=> $title,
-						'image'	=> $imageLoc,
+						'image_url'	=> $imageLoc,
 						'type'	=> $type
 					]);
 					break;
@@ -83,7 +83,7 @@ class DesignEntryController extends \BaseController {
 
 					$entry = DesignEntry::create([
 						'title'	=> $title,
-						'image'	=> $imageLoc,
+						'image_url'	=> $imageLoc,
 						'video'	=> 'uploads/vids/' . $video->getClientOriginalName(),
 						'type'	=> $type
 					]);
@@ -163,8 +163,8 @@ class DesignEntryController extends \BaseController {
 				$gallery = DesignGallery::where('id', '=', $galleryEntry->gallery_id)->get(['slug'])[0];
 
 				// TODO: uncomment
-//				if(file_exists(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image)) {
-//					unlink(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image);
+//				if(file_exists(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image_url)) {
+//					unlink(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image_url);
 //				}
 
 				$imageLoc = 'uploads/' . $gallery->slug . '/' . $new_image['name'];
@@ -172,7 +172,7 @@ class DesignEntryController extends \BaseController {
 					dirname(base_path()) . '/dev/' . $imageLoc,
 					base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
 				);
-				$entry->image = $imageLoc;
+				$entry->image_url = $imageLoc;
 			}
 
 			$entry->save();

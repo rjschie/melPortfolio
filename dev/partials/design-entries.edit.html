@@ -16,17 +16,17 @@
 
 
 				<!--<div class="video-frame" ng-switch-when="1">-->
-					<!--<img class="poster-image" ng-src="{{entry.image}}-poster.jpg">-->
+					<!--<img class="poster-image" ng-src="{{entry.image_url}}-poster.jpg">-->
 					<!--<div class="play-button"-->
 							 <!--ng-click="playVideo($index)">-->
 					<!--</div>-->
 					<!--<video controls>-->
-						<!--<source ng-src="{{entry.image}}" type="video/mp4">-->
+						<!--<source ng-src="{{entry.image_url}}" type="video/mp4">-->
 					<!--</video>-->
 				<!--</div>-->
 
 				<span class="grid-container-ratio-inner" ng-switch-default>
-					<img class="grid-image" draggable="false" ng-src="{{ entry.image }}">
+					<img class="grid-image" draggable="false" ng-src="{{ entry.image_url }}">
 				</span>
 			</div>
 			<p class="grid-container-ratio-text">{{ entry.title }}</p>
