@@ -74,13 +74,7 @@
 			}
 		}
 
-		.video-frame, .poster-image > img, video {
-			height: 100%;
-			position: relative;
-		}
-
 		.video-frame {
-
 			.play-button {
 				width: 140px;
 				height: 90px;
@@ -109,10 +103,6 @@
 					cursor: pointer;
 				}
 			}
-
-			video {
-				display: none;
-			}
 		}
 
 		img {
@@ -127,4 +117,31 @@
 	@media screen and (max-width: $break-md) {
 		margin-left: 2rem;
 	}
+}
+
+
+
+.video-frame .play-button-js, .video-frame .pause-button-js {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 40px;
+	z-index: 200;
+	cursor: pointer;
+}
+.video-frame {
+	position: relative;
+	height: 85vh;
+	width: 151.111111111vh;
+	max-height: 600px;
+	max-width: 1066.66666668px
+}
+.video-frame video, .video-frame embed, .video-frame .me-plugin {
+	height: 100%;
+	width: 100%;
+	position: relative;
+	padding: 0;
+	margin: 0;
 }
