@@ -261,6 +261,15 @@ angular.module('app.directives', [])
 								scope.video.playing = true;
 								$rootScope.hideMenu = true;
 							});
+
+							// Scroll if on left edge of screen, to account for Menu hiding
+							var contentView = angular.element(document.querySelector('.content-full'));
+							var contentViewMargin = parseInt(window.getComputedStyle(contentView[0]).marginLeft);
+							if(window.scrollX < contentViewMargin-8 ) {
+								setTimeout(function() {
+									window.scrollTo(contentViewMargin-8, 0);
+								}, 50);
+							}
 						}, false);
 					},
 					error: function(error) {
