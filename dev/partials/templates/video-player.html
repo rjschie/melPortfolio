@@ -1,0 +1,7 @@
+<div class="video-frame">
+	<img ng-hide="video.played" class="poster-image" ng-src="{{ video.image_url }}">
+	<div ng-hide="video.playing" class="play-button"></div>
+	<div ng-hide="video.playing" class="play-button-js"></div>
+	<div ng-show="video.playing" class="pause-button-js"></div>
+	<video ng-show="video.played" data-url-model="video.video_url" controls></video>
+</div>

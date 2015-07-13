@@ -215,7 +215,7 @@ angular.module('app.directives', [])
 		}
 	})
 
-.directive('editVideoPreview', function() {
+	.directive('editVideoPreview', function() {
 		return {
 			templateUrl: 'partials/templates/design-entry.edit-video-preview.html',
 			restrict: 'AE',
@@ -225,6 +225,74 @@ angular.module('app.directives', [])
 				}
 			}
 		}
+	})
+
+	.directive( 'videoPlayer', function ($rootScope) {
+
+		return {
+			templateUrl: 'partials/templates/video-player.html',
+			restrict: 'AE',
+			scope: {
+				video: '=video'
+			},
+			controller: function($scope) {
+				$scope.video.playing = false;
+				$scope.video.played = false;
+			},
+			link: function(scope, elem, attrs) {
+
+				/**
+				 * Setup Video
+				 */
+				var video = elem.find('video');
+				var src = 'scope.' + video[0].getAttribute('data-url-model');
+				video[0].src = eval(src);
+				var videoElement = new MediaElement( video[0], {
+					success: function(mediaElement) {
+						//console.log( 'success: video element created' );
+						mediaElement.addEventListener('ended', function(e) {
+							scope.$apply(function() { scope.video.playing = false; });
+						}, false);
+						mediaElement.addEventListener('pause', function(e) {
+							scope.$apply(function() { scope.video.playing = false; });
+						}, false);
+						mediaElement.addEventListener('play', function(e) {
+							scope.$apply(function() { scope.video.playing = true; });
+							$rootScope.$broadcast('PAUSE-OTHER-VIDEOS', {video: scope.video});
+						}, false);
+					},
+					error: function(error) {
+						console.log( 'error: no video element', error );
+					}
+				});
+				console.log( videoElement );
+
+				/**
+				 * Broadcasted Event Listening: pause video
+				 * if other videos playing
+				 */
+				scope.$on('PAUSE-OTHER-VIDEOS', function(event, args) {
+					if( args.video != scope.video ) {
+						videoElement.pause();
+					}
+				});
+
+				/**
+				 * Play/Pause Events
+				 */
+				var playButton = angular.element(elem[0].querySelector('.play-button-js'));
+				var pauseButton = angular.element(elem[0].querySelector('.pause-button-js'));
+				playButton.bind('click', function() {
+					videoElement.play();
+					scope.video.played = true; // signifies first play
+				});
+				pauseButton.bind('click', function() {
+					videoElement.pause();
+				});
+
+			}
+		}
+
 	})
 
 ;
