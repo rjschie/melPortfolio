@@ -96,8 +96,7 @@ angular.module('app.controllers', [])
 
 				if(formData.type == 1 && Array.isArray(formData.video)) { // If Video Item
 
-						$scope.uploadProgress = '0';
-
+					$scope.uploadProgress = '0';
 					Upload.upload({
 						url: '../api/design_entries/storeVideo',
 						fileFormDataName: 'video',
@@ -232,15 +231,25 @@ angular.module('app.controllers', [])
 
 			$controller('AdminFormController', {$scope: $scope});
 
-			$scope.entries.$promise.then(function(entryList) {
-				entryList.forEach(function(entry, key) {
-					if(entry.id == $scope.$stateParams.id) {
-						$scope.formData = angular.copy(entry);
-						$scope.model = $scope.$parent.entries;
-						$scope.index = key;
-					}
+			if($scope.$state.is('design-entries.edit.edit-entry')) {
+				$scope.entries.$promise.then(function(entryList) {
+					entryList.forEach(function(entry, key) {
+						if(entry.id == $scope.$stateParams.id) {
+							$scope.formData = angular.copy(entry);
+							$scope.model = $scope.$parent.entries;
+							$scope.index = key;
+						}
+					});
 				});
-			});
+			} else {
+				$scope.galleries.design.$promise.then(function(galleryList) {
+					galleryList.forEach(function(gallery, key) {
+						if( gallery.slug == $scope.$stateParams.gallerySlug ) {
+							$scope.formData = { gallery_id: gallery.id };
+						}
+					});
+				});
+			}
 
 			$scope.updateSort = function($part) {
 				var data = {};
