@@ -139,7 +139,7 @@ angular.module('app.directives', [])
 		}
 	}])
 
-	.directive('designGalleryEditBar', function() {
+	.directive('designGalleryEditBar', ['$rootScope', function($rootScope) {
 		return {
 			templateUrl: 'partials/templates/design-gallery.edit-bar.html',
 			restrict: 'A',
@@ -147,9 +147,17 @@ angular.module('app.directives', [])
 			controller: function($scope) {
 				if( ! $scope.Auth.isAuth) return;
 
+				$scope.$on('HIDE-OTHER-POPOVERS', function(event, args) {
+					if( args.popover != $scope.editBarMenu ) {
+						$scope.editBarMenu.show = false;
+						$scope.editBarMenu.confirm = false;
+					}
+				});
+
 				$scope.editBarMenu = { show: false, confirm: false };
 
 				$scope.editBarMenu.toggleEdit = function() {
+					$rootScope.$broadcast('HIDE-OTHER-POPOVERS', {popover: $scope.editBarMenu});
 					$scope.editBarMenu.show = !$scope.editBarMenu.show;
 					$scope.editBarMenu.confirm = false;
 				};
@@ -158,6 +166,7 @@ angular.module('app.directives', [])
 					if($scope.editBarMenu.confirm) {
 						gallery.$delete().then(function() {
 							$scope.galleries.design.splice(index, 1);
+							$scope.editBarMenu.toggleEdit();
 							$scope.editBarMenu.confirm = false;
 							$scope.editBarMenu.show = false;
 						}, function() {
@@ -166,6 +175,7 @@ angular.module('app.directives', [])
 					}
 				};
 				$scope.stateChange = function(location, slug) {
+					$scope.editBarMenu.toggleEdit();
 					$scope.$state.go(location, {gallerySlug: slug});
 				};
 			},
@@ -175,9 +185,9 @@ angular.module('app.directives', [])
 				}
 			}
 		}
-	})
+	}])
 
-	.directive('designEntryEditBar', function() {
+	.directive('designEntryEditBar', ['$rootScope', function($rootScope) {
 		return {
 			templateUrl: 'partials/templates/design-entry.edit-bar.html',
 			restrict: 'A',
@@ -185,9 +195,16 @@ angular.module('app.directives', [])
 			controller: function($scope) {
 				if( ! $scope.Auth.isAuth) return;
 
+				$scope.$on('HIDE-OTHER-POPOVERS', function(event, args) {
+					if( args.popover != $scope.editBarMenu ) {
+						$scope.editBarMenu.show = false;
+						$scope.editBarMenu.confirm = false;
+					}
+				});
 				$scope.editBarMenu = { show: false, confirm: false };
 
 				$scope.editBarMenu.toggleEdit = function() {
+					$rootScope.$broadcast('HIDE-OTHER-POPOVERS', {popover: $scope.editBarMenu});
 					$scope.editBarMenu.show = !$scope.editBarMenu.show;
 					$scope.editBarMenu.confirm = false;
 				};
@@ -196,6 +213,7 @@ angular.module('app.directives', [])
 					if($scope.editBarMenu.confirm) {
 						entry.$delete().then(function() {
 							$scope.entries.splice(index, 1);
+							$scope.editBarMenu.toggleEdit();
 							$scope.editBarMenu.confirm = false;
 							$scope.editBarMenu.show = false;
 						}, function() {
@@ -204,6 +222,7 @@ angular.module('app.directives', [])
 					}
 				};
 				$scope.stateChange = function(location, data) {
+					$scope.editBarMenu.toggleEdit();
 					$scope.$state.go(location, data);
 				};
 			},
@@ -213,7 +232,7 @@ angular.module('app.directives', [])
 				}
 			}
 		}
-	})
+	}])
 
 	.directive('editVideoPreview', function() {
 		return {
