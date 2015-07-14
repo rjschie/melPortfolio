@@ -27,7 +27,7 @@ angular.module('app.directives', [])
 			scope: {
 				formData: '='
 			},
-			template: '<img ng-src="{{formData.image}}" ng-show=formData.image>',
+			template: '<span class="grid-container-ratio-inner"><img class="grid-image" ng-src="{{formData.image}}" ng-show=formData.image></span>',
 			link: function(scope, elem, attrs) {
 
 				var file;
