@@ -1,5 +1,5 @@
 <div modal>
-	<form class="form-content modal" ng-switch="formData.type">
+	<form class="form-content modal">
 		<div class="form-block form-error" ng-show="error">
 			<p>{{ error }}</p>
 		</div>
@@ -34,7 +34,7 @@
 			<input ng-model="formData.title" id="title" class="form-input border" type="text">
 		</div>
 
-		<div class="form-block" ng-switch-when="0">
+		<div class="form-block" ng-if="formData.type == 0 || formData.type == 1">
 			<label class="form-label no-pointer">Image</label>
 			<div class="form-uploader-ratio">
 				<div class="form-uploader"
@@ -44,12 +44,12 @@
 			</div>
 		</div>
 
-		<div class="form-block" ng-switch-when="1">
+		<div class="form-block" ng-if="formData.type == 1">
 			<label class="form-label no-pointer">Video File</label>
 			<edit-video-preview></edit-video-preview>
 		</div>
 
-		<div ng-switch-when="2">
+		<div ng-if="formData.type == 2">
 			<div class="form-block">
 				<label for="subtitle" class="form-label">Subtitle</label>
 				<input ng-model="formData.subtitle" id="subtitle" class="form-input border" type="text">
