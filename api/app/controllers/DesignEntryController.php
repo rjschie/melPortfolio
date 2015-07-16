@@ -136,6 +136,7 @@ class DesignEntryController extends \BaseController {
 
 			if(!empty($gallery_id)) {
 				$galleryEntry->gallery_id = $gallery_id;
+				$galleryEntry->sort_pos = DesignGalleryEntry::where('gallery_id', $gallery_id)->max('sort_pos')+1;
 			}
 			if(!empty($type)) {
 				$entry->type = $type;
