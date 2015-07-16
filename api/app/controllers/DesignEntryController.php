@@ -72,7 +72,7 @@ class DesignEntryController extends \BaseController {
 
 					// Upload Video
 					try {
-						$destinationPath = dirname(base_path()) . '/dev/uploads/vids';
+						$destinationPath = dirname(base_path()) . '/dev/uploads/videos';
 
 						if( ! $video->move( $destinationPath, $video->getClientOriginalName() ) ) {
 							return Response::json(["error" => "Couldn't move video."], 400);
@@ -84,7 +84,7 @@ class DesignEntryController extends \BaseController {
 					$entry = DesignEntry::create([
 						'title'	=> $title,
 						'image_url'	=> $imageLoc,
-						'video'	=> 'uploads/vids/' . $video->getClientOriginalName(),
+						'video'	=> 'uploads/videos/' . $video->getClientOriginalName(),
 						'type'	=> $type
 					]);
 					break;
@@ -239,14 +239,14 @@ class DesignEntryController extends \BaseController {
 	public function storeVideo()
 	{
 		$video = Input::file( 'video' );
-		$destinationPath = dirname(base_path()) . '/dev/uploads/vids';
+		$destinationPath = dirname(base_path()) . '/dev/uploads/videos';
 
 		if( ! $video->move( $destinationPath, $video->getClientOriginalName() ) ) {
 			return Response::json(["error" => "Couldn't upload video."], 400);
 		}
 
 		return Response::json([
-			"video" => 'uploads/vids/' . $video->getClientOriginalName()
+			"video" => 'uploads/videos/' . $video->getClientOriginalName()
 		], 201);
 
 	}
