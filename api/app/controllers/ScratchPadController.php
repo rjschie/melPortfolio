@@ -14,7 +14,23 @@ class ScratchPadController extends \BaseController {
 
 	public function returnMyStuff()
 	{
-		return DesignGallery::max('sort_pos')+1;
+		$dir = dirname(dirname(dirname(__DIR__))).'/dev/uploads/videos/';
+
+
+		if (is_dir($dir)) {
+			foreach( glob($dir . '*.mp4') as $key => pathinfo($file) ) {
+
+				$video = Video::create([
+					'title' => ucwords(explode('.',$file)[0]),
+					'image_url' => 'videos/' . $file['filename'] . '.jpg',
+					'video_url' => 'videos/' . $file['basename'],
+					'sort_pos' => $key+1
+				]);
+
+//				var_dump($key);
+//				var_dump( pathinfo($file) );
+			}
+		}
 	}
 
 	public function photoReturn()
