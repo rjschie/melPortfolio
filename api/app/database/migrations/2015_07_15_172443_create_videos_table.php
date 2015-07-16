@@ -18,6 +18,7 @@ class CreateVideosTable extends Migration {
 			$table->string('title')->nullable()->default('NULL');
 			$table->string('image_url');
 			$table->string('video_url');
+			$table->integer('sort_pos');
 		});
 	}
 
