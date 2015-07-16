@@ -9,7 +9,7 @@ class VideoController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return Response::json(Video::orderBy('sort_pos')->get(), 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
