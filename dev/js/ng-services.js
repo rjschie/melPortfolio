@@ -136,6 +136,15 @@ angular.module('app.services', [])
 		);
 	}])
 
+	.factory('Video', ['$resource',
+		function($resource) {
+			return $resource('../api/videos/:id', { id : '@id' },
+				{
+					update : { method:'PUT' }
+				}
+			);
+		}])
+
 .factory('InstagramFeed', ['$http',
 	function($http) {
 		return {

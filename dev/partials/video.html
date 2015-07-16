@@ -1,50 +1,5 @@
 <div class="content-full">
-	<div class="container video">
-		<div class="video-frame">
-			<img class="poster-image" ng-src="uploads/videos/docs.mp4-poster.jpg">
-			<div class="play-button"
-					 ng-click="playVideo(0)">
-			</div>
-			<video controls>
-				<source ng-src="uploads/videos/docs.mp4" type="video/mp4">
-				<source ng-src="uploads/videos/docs.webm" type="video/webm">
-			</video>
-		</div>
-	</div>
-	<div class="container video">
-		<div class="video-frame">
-			<img class="poster-image" ng-src="uploads/videos/unpack.mp4-poster.jpg">
-			<div class="play-button"
-					 ng-click="playVideo(1)">
-			</div>
-			<video controls>
-				<source ng-src="uploads/videos/unpack.mp4" type="video/mp4">
-				<source ng-src="uploads/videos/unpack.webm" type="video/webm">
-			</video>
-		</div>
-	</div>
-	<div class="container video">
-		<div class="video-frame">
-			<img class="poster-image" ng-src="uploads/videos/lighthouse.mp4-poster.jpg">
-			<div class="play-button"
-					 ng-click="playVideo(2)">
-			</div>
-			<video controls>
-				<source ng-src="uploads/videos/lighthouse.mp4" type="video/mp4">
-				<source ng-src="uploads/videos/lighthouse.webm" type="video/webm">
-			</video>
-		</div>
-	</div>
-	<div class="container video">
-		<div class="video-frame">
-			<img class="poster-image" ng-src="uploads/videos/switch.mp4-poster.jpg">
-			<div class="play-button"
-					 ng-click="playVideo(3)">
-			</div>
-			<video controls>
-				<source ng-src="uploads/videos/switch.mp4" type="video/mp4">
-				<source ng-src="uploads/videos/switch.webm" type="video/webm">
-			</video>
-		</div>
+	<div id="{{video.id}}" class="container" ng-repeat="video in videos">
+		<video-player video="video" ></video-player>
 	</div>
 </div>

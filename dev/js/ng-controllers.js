@@ -292,22 +292,9 @@ angular.module('app.controllers', [])
 
 		}])
 
-	.controller('VideoController', ['$scope',
-		function($scope) {
-			$scope.playVideo = function(index) {
-				var element = jQuery('.container').eq(index);
-				var video = element.find('video');
-				element.find('.poster-image, .play-button').hide();
-				video.show();
-				video[0].play();
-				video.on('click', function() {
-					if(video[0].paused) {
-						video[0].play();
-					} else {
-						video[0].pause();
-					}
-				});
-			};
+	.controller('VideoController', ['$scope', 'Video',
+		function($scope, Video) {
+			$scope.videos = Video.query();
 		}])
 
 	.controller('AboutController', ['$scope', 'InstagramFeed',
