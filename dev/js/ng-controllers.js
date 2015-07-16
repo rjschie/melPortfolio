@@ -107,8 +107,13 @@ angular.module('app.controllers', [])
 					}).then(function(result) {
 						formData.video = result.data.video;
 						formData.$update().then(function(result) {
-							$scope.model[$scope.index] = result;
-							$scope.$state.go('^');
+							if( $scope.model[$scope.index ].gallery_id != result.gallery_id ) {
+								$scope.model.splice($scope.index, 1);
+								$scope.$state.go('^');
+							} else {
+								$scope.model[$scope.index] = result;
+								$scope.$state.go('^');
+							}
 						}, function(result) {
 							$scope.error = 'Failed to save: ' + result.data.error;
 							console.log("Error: " + JSON.stringify(result.data));
@@ -120,8 +125,13 @@ angular.module('app.controllers', [])
 
 				} else {
 					formData.$update().then(function(result) {
-						$scope.model[$scope.index] = result;
-						$scope.$state.go('^');
+						if( $scope.model[$scope.index ].gallery_id != result.gallery_id ) {
+							$scope.model.splice($scope.index, 1);
+							$scope.$state.go('^');
+						} else {
+							$scope.model[$scope.index] = result;
+							$scope.$state.go('^');
+						}
 					}, function(result) {
 						$scope.error = 'Failed to save: ' + result.data.error;
 						console.log("Error: " + JSON.stringify(result.data));
