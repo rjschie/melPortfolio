@@ -234,6 +234,53 @@ angular.module('app.directives', [])
 		}
 	}])
 
+	.directive('videoEditBar', ['$rootScope', function($rootScope) {
+		return {
+			templateUrl: 'partials/templates/video.edit-bar.html',
+			restrict: 'A',
+			require: '?^svElement',
+			controller: function($scope) {
+				if( ! $scope.Auth.isAuth) return;
+
+				$scope.$on('HIDE-OTHER-POPOVERS', function(event, args) {
+					if( args.popover != $scope.editBarMenu ) {
+						$scope.editBarMenu.show = false;
+						$scope.editBarMenu.confirm = false;
+					}
+				});
+				$scope.editBarMenu = { show: false, confirm: false };
+
+				$scope.editBarMenu.toggleEdit = function() {
+					$rootScope.$broadcast('HIDE-OTHER-POPOVERS', {popover: $scope.editBarMenu});
+					$scope.editBarMenu.show = !$scope.editBarMenu.show;
+					$scope.editBarMenu.confirm = false;
+				};
+
+				$scope.deleteEntry = function(video, index) {
+					if($scope.editBarMenu.confirm) {
+						video.$delete().then(function() {
+							$scope.videos.splice(index, 1);
+							$scope.editBarMenu.toggleEdit();
+							$scope.editBarMenu.confirm = false;
+							$scope.editBarMenu.show = false;
+						}, function() {
+							console.log("Didn't Delete!");
+						});
+					}
+				};
+				$scope.stateChange = function(location, data) {
+					$scope.editBarMenu.toggleEdit();
+					$scope.$state.go(location, data);
+				};
+			},
+			link: function(scope, elem, attrs, ctrl) {
+				if(ctrl) {
+					ctrl.handle = jQuery(elem).children('.edit-bar-button-drag').add(ctrl.handle);
+				}
+			}
+		}
+	}])
+
 	.directive('editVideoPreview', function() {
 		return {
 			templateUrl: 'partials/templates/design-entry.edit-video-preview.html',
