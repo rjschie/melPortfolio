@@ -1,4 +1,7 @@
 <div class="content-full">
+	<a ng-if="Auth.isAuth"
+		 class="list-view_edit-button"
+		 ui-sref="video.edit">Edit Videos</a>
 	<div id="{{video.id}}" class="container" ng-repeat="video in videos">
 		<video-player video="video" ></video-player>
 	</div>

@@ -10,7 +10,7 @@
 						$state.includes('photography')"> <!-- Here for testing; TODO: remove -->
 			<li ng-repeat="gallery in galleries.photo"><a ui-sref="photo-gallery({gallerySlug: gallery.slug})" ng-class="{bold : $state.params.gallerySlug == gallery.slug}">{{ gallery.short_title }}</a></li>
 		</ul>
-		<li><a ui-sref="video" ng-class="{bold : $state.includes('video')}">VIDEO</a></li>
+		<li><a ui-sref="video.list" ng-class="{bold : $state.includes('video')}">VIDEO</a></li>
 		<li><a ui-sref="about" ng-class="{bold : $state.includes('about')}">ABOUT</a></li>
 	</ul>
 	<ul ng-if="Auth.isAuth" class="menu-footer">

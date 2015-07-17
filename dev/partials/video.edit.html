@@ -1,0 +1,25 @@
+<div ng-if="Auth.isAuth" class="content designGrid">
+	<a class="list-view_edit-button"
+		 ui-sref="video.list">X</a>
+	<span sv-root sv-on-sort="updateSort(videos)" sv-part="videos">
+		<div ng-repeat="video in videos | orderBy : 'sort_pos' track by $index"
+				 class="grid-container grid-container__edit" sv-element ng-switch="video.type">
+			<div class="edit-bar" video-edit-bar></div>
+
+			<div class="grid-container-ratio">
+				<span class="grid-container-ratio-inner">
+					<img class="grid-image" draggable="false" ng-src="{{ video.image_url }}">
+					<!--<video-player video="video"></video-player>-->
+				</span>
+			</div>
+			<p class="grid-container-ratio-text">{{ video.title }}</p>
+		</div>
+	</span>
+	<a ui-sref="video.edit.add-video" class="grid-container grid-container__edit grid-link">
+		<div class="gallery-add-ratio">
+			<div class="gallery-add-shape"></div>
+		</div>
+		<p>Add Video</p>
+	</a>
+	<div ui-view class="modal-view-container"></div>
+</div>
