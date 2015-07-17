@@ -297,6 +297,113 @@ angular.module('app.controllers', [])
 			$scope.videos = Video.query();
 		}])
 
+	.controller('VideoEdit', ['$scope', '$controller', 'Video', 'Upload',
+		function($scope, $controller, Video, Upload) {
+
+			$controller('VideoController', {$scope: $scope});
+
+			$scope.$on('$destroy', function() {
+				$scope.formData = {};
+			});
+
+			$scope.videos.$promise.then(function(videoList) {
+				videoList.forEach(function(video, key) {
+					if(video.id == $scope.$stateParams.id) {
+						$scope.formData = angular.copy(video);
+						$scope.model = $scope.$parent.videos;
+						$scope.index = key;
+					}
+				});
+			});
+
+			$scope.update = function(formData) {
+
+				if(Array.isArray(formData.video_url)) { // If Video Item
+					$scope.uploadProgress = '0';
+					Upload.upload({
+						url: '../api/design_entries/storeVideo',
+						fileFormDataName: 'video_url',
+						file: formData.video_url
+					}).progress(function (evt) {
+						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+						$scope.uploadProgress = progressPercentage + '%';
+					}).then(function(result) {
+						formData.video_url = result.data.video_url;
+						formData.$update().then(function(result) {
+							$scope.model[$scope.index] = result;
+							$scope.$state.go('^');
+						}, function(result) {
+							$scope.error = 'Failed to save: ' + result.data.error;
+							console.log("Error: " + JSON.stringify(result.data));
+						});
+					},function(result) {
+						$scope.error = 'Failed to save: ' + result.data.error;
+						console.log("Error: " + JSON.stringify(result.data));
+					});
+				} else {
+					formData.$update().then(function(result) {
+						$scope.model[$scope.index] = result;
+						$scope.$state.go('^');
+					}, function(result) {
+						$scope.error = 'Failed to save: ' + result.data.error;
+						console.log("Error: " + JSON.stringify(result.data));
+					});
+				}
+			};
+
+			$scope.save = function(formData) {
+				var formModel = new Video(formData);
+				$scope.model = $scope.$parent.videos;
+				$scope.uploadProgress = '0';
+
+				Upload.upload({
+					url: '../api/videos',
+					fields: formData,
+					fileFormDataName: 'video_url',
+					file: formData.video_url
+				}).progress(function (evt) {
+					var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+					$scope.uploadProgress = progressPercentage + '%';
+				}).then(function(result) {
+					$scope.model.push( angular.extend(formModel,result.data) );
+					$scope.$state.go('^');
+				},function(result) {
+					$scope.error = 'Failed to save: ' + result.data.error;
+					console.log("Error: " + JSON.stringify(result.data));
+				});
+
+			};
+
+			$scope.clear = function() {
+				$scope.$parent.formData = {};
+				$scope.$$childHead.formData = {};
+				$scope.formData = {};
+			};
+
+			$scope.updateSort = function($part) {
+				var data = [];
+				var orig = [];
+				for(var i = 0, len = $part.length; i < len; i++) {
+					var item = $part[i];
+					orig[item.id] = item.sort_pos;
+					item.sort_pos = i+1;
+					data[item.id] = { id : item.id, sort_pos: item.sort_pos };
+				}
+				Video.reorder(data).$promise.then(function() {
+					//console.log('success');
+				}, function() {
+					//console.log( 'error' );
+					for(var i=0; i < $part.length; i++) {
+						$part[i].sort_pos = orig[$part[i].id];
+					}
+					$part.sort(function(a,b) {
+						return a.sort_pos - b.sort_pos;
+					});
+				});
+			};
+
+		}])
+
 	.controller('AboutController', ['$scope', 'InstagramFeed',
 		function($scope, InstagramFeed) {
 			InstagramFeed.get(function(data) {
