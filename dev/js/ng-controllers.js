@@ -219,7 +219,7 @@ angular.module('app.controllers', [])
 					var item = $part[i];
 					orig[item.id] = item.sort_pos;
 					item.sort_pos = i+1;
-					data.push( { id : item.id, sort_pos: item.sort_pos } );
+					data[item.id] = { id : item.id, sort_pos: item.sort_pos };
 				}
 				DesignGallery.reorder(data).$promise.then(function() {
 					//console.log('success');
