@@ -94,18 +94,18 @@ angular.module('app.controllers', [])
 
 			$scope.update = function(formData) {
 
-				if(formData.type == 1 && Array.isArray(formData.video)) { // If Video Item
+				if(formData.type == 1 && Array.isArray(formData.video_url)) { // If Video Item
 
 					$scope.uploadProgress = '0';
 					Upload.upload({
 						url: '../api/design_entries/storeVideo',
-						fileFormDataName: 'video',
-						file: formData.video
+						fileFormDataName: 'video_url',
+						file: formData.video_url
 					}).progress(function (evt) {
 						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 						$scope.uploadProgress = progressPercentage + '%';
 					}).then(function(result) {
-						formData.video = result.data.video;
+						formData.video_url = result.data.video_url;
 						formData.$update().then(function(result) {
 							if( $scope.model[$scope.index ].gallery_id != result.gallery_id ) {
 								$scope.model.splice($scope.index, 1);
@@ -162,8 +162,8 @@ angular.module('app.controllers', [])
 					Upload.upload({
 						url: '../api/design_entries',
 						fields: formData,
-						fileFormDataName: 'video',
-						file: formData.video
+						fileFormDataName: 'video_url',
+						file: formData.video_url
 					}).progress(function (evt) {
 						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 						$scope.uploadProgress = progressPercentage + '%';
