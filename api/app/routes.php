@@ -40,6 +40,7 @@ Route::group(['before' => 'jwt-auth'], function() {
 	Route::post('/changePass', 'AuthController@changePass');
 	Route::put('/design_galleries/reorder', 'DesignGalleryController@reorder');
 	Route::put('/design_entries/reorder', 'DesignEntryController@reorder');
+	Route::put('/videos/reorder', 'VideoController@reorder');
 	Route::post('/design_entries/storeVideo', 'DesignEntryController@storeVideo');
 	Route::resource('design_galleries', 'DesignGalleryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('design_entries', 'DesignEntryController', ['only' => ['store', 'update', 'destroy']]);

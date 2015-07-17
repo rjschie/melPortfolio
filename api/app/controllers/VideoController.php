@@ -145,6 +145,30 @@ class VideoController extends \BaseController {
 
 		$video->delete();
 	}
+
+
+	/**
+	 * Update the `sort_pos` for the entries
+	 *
+	 * @return Response
+	 */
+	public function reorder()
+	{
+
+		DB::transaction(function() {
+
+			$data = Input::all();
+			$videos = Video::all(['id','sort_pos']);
+
+			foreach($videos as $video) {
+				$video->sort_pos = $data[$video->id]['sort_pos'];
+
+				if( ! $video->save() ) {
+					throw new \Exception('Gallery not able to be sorted.');
+				}
+			}
+
+		});
 	}
 
 

@@ -140,7 +140,12 @@ angular.module('app.services', [])
 		function($resource) {
 			return $resource('../api/videos/:id', { id : '@id' },
 				{
-					update : { method:'PUT' }
+					update : { method:'PUT' },
+					reorder : {
+						method: 'PUT',
+						url: '../api/videos/reorder',
+						isArray: true
+					}
 				}
 			);
 		}])
