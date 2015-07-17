@@ -27,7 +27,7 @@ angular.module('app.directives', [])
 			scope: {
 				formData: '='
 			},
-			template: '<span class="grid-container-ratio-inner"><img class="grid-image" ng-src="{{formData.image}}" ng-show=formData.image></span>',
+			template: '<span class="grid-container-ratio-inner"><img class="grid-image" ng-src="{{formData.image_url}}" ng-show=formData.image_url></span>',
 			link: function(scope, elem, attrs) {
 
 				var file;
@@ -55,7 +55,7 @@ angular.module('app.directives', [])
 							scope.$apply(function(scope) {
 								scope.formData.new_image.data = e.target.result;
 								scope.formData.new_image.name = file.name;
-								scope.formData.image = e.target.result;
+								scope.formData.image_url = e.target.result;
 							});
 						};
 
