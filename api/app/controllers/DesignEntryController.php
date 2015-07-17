@@ -53,7 +53,7 @@ class DesignEntryController extends \BaseController {
 					if(empty($new_image)) {
 						throw new Exception( "Must select a poster image." );
 					}
-					if(empty($video)) {
+					if(empty($video_url)) {
 						throw new Exception( "Must select a video." );
 					}
 
@@ -72,9 +72,9 @@ class DesignEntryController extends \BaseController {
 
 					// Upload Video
 					try {
-						$destinationPath = dirname(base_path()) . '/dev/uploads/vids';
+						$destinationPath = dirname(base_path()) . '/dev/uploads/videos';
 
-						if( ! $video->move( $destinationPath, $video->getClientOriginalName() ) ) {
+						if( ! $video_url->move( $destinationPath, $video_url->getClientOriginalName() ) ) {
 							return Response::json(["error" => "Couldn't move video."], 400);
 						}
 					} catch(Exception $e) {
@@ -84,7 +84,7 @@ class DesignEntryController extends \BaseController {
 					$entry = DesignEntry::create([
 						'title'	=> $title,
 						'image_url'	=> $imageLoc,
-						'video'	=> 'uploads/vids/' . $video->getClientOriginalName(),
+						'video_url'	=> 'uploads/videos/' . $video_url->getClientOriginalName(),
 						'type'	=> $type
 					]);
 					break;
@@ -156,8 +156,8 @@ class DesignEntryController extends \BaseController {
 			if(!empty($bgColor)) {
 				$entry->bgColor = $bgColor;
 			}
-			if(!empty($video)) {
-				$entry->video = $video;
+			if(!empty($video_url)) {
+				$entry->video_url = $video_url;
 			}
 
 			if(!empty($new_image)) {
@@ -238,15 +238,15 @@ class DesignEntryController extends \BaseController {
 	 */
 	public function storeVideo()
 	{
-		$video = Input::file( 'video' );
-		$destinationPath = dirname(base_path()) . '/dev/uploads/vids';
+		$video_url = Input::file( 'video_url' );
+		$destinationPath = dirname(base_path()) . '/dev/uploads/videos';
 
-		if( ! $video->move( $destinationPath, $video->getClientOriginalName() ) ) {
+		if( ! $video_url->move( $destinationPath, $video_url->getClientOriginalName() ) ) {
 			return Response::json(["error" => "Couldn't upload video."], 400);
 		}
 
 		return Response::json([
-			"video" => 'uploads/vids/' . $video->getClientOriginalName()
+			"video_url" => 'uploads/videos/' . $video_url->getClientOriginalName()
 		], 201);
 
 	}

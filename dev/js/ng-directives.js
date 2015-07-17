@@ -27,7 +27,7 @@ angular.module('app.directives', [])
 			scope: {
 				formData: '='
 			},
-			template: '<span class="grid-container-ratio-inner"><img class="grid-image" ng-src="{{formData.image}}" ng-show=formData.image></span>',
+			template: '<span class="grid-container-ratio-inner"><img class="grid-image" ng-src="{{formData.image_url}}" ng-show=formData.image_url></span>',
 			link: function(scope, elem, attrs) {
 
 				var file;
@@ -55,7 +55,7 @@ angular.module('app.directives', [])
 							scope.$apply(function(scope) {
 								scope.formData.new_image.data = e.target.result;
 								scope.formData.new_image.name = file.name;
-								scope.formData.image = e.target.result;
+								scope.formData.image_url = e.target.result;
 							});
 						};
 
@@ -213,6 +213,53 @@ angular.module('app.directives', [])
 					if($scope.editBarMenu.confirm) {
 						entry.$delete().then(function() {
 							$scope.entries.splice(index, 1);
+							$scope.editBarMenu.toggleEdit();
+							$scope.editBarMenu.confirm = false;
+							$scope.editBarMenu.show = false;
+						}, function() {
+							console.log("Didn't Delete!");
+						});
+					}
+				};
+				$scope.stateChange = function(location, data) {
+					$scope.editBarMenu.toggleEdit();
+					$scope.$state.go(location, data);
+				};
+			},
+			link: function(scope, elem, attrs, ctrl) {
+				if(ctrl) {
+					ctrl.handle = jQuery(elem).children('.edit-bar-button-drag').add(ctrl.handle);
+				}
+			}
+		}
+	}])
+
+	.directive('videoEditBar', ['$rootScope', function($rootScope) {
+		return {
+			templateUrl: 'partials/templates/video.edit-bar.html',
+			restrict: 'A',
+			require: '?^svElement',
+			controller: function($scope) {
+				if( ! $scope.Auth.isAuth) return;
+
+				$scope.$on('HIDE-OTHER-POPOVERS', function(event, args) {
+					if( args.popover != $scope.editBarMenu ) {
+						$scope.editBarMenu.show = false;
+						$scope.editBarMenu.confirm = false;
+					}
+				});
+				$scope.editBarMenu = { show: false, confirm: false };
+
+				$scope.editBarMenu.toggleEdit = function() {
+					$rootScope.$broadcast('HIDE-OTHER-POPOVERS', {popover: $scope.editBarMenu});
+					$scope.editBarMenu.show = !$scope.editBarMenu.show;
+					$scope.editBarMenu.confirm = false;
+				};
+
+				$scope.deleteEntry = function(video, index) {
+					if($scope.editBarMenu.confirm) {
+						video.$delete().then(function() {
+							$scope.videos.splice(index, 1);
 							$scope.editBarMenu.toggleEdit();
 							$scope.editBarMenu.confirm = false;
 							$scope.editBarMenu.show = false;

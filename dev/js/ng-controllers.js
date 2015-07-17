@@ -94,18 +94,18 @@ angular.module('app.controllers', [])
 
 			$scope.update = function(formData) {
 
-				if(formData.type == 1 && Array.isArray(formData.video)) { // If Video Item
+				if(formData.type == 1 && Array.isArray(formData.video_url)) { // If Video Item
 
 					$scope.uploadProgress = '0';
 					Upload.upload({
 						url: '../api/design_entries/storeVideo',
-						fileFormDataName: 'video',
-						file: formData.video
+						fileFormDataName: 'video_url',
+						file: formData.video_url
 					}).progress(function (evt) {
 						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 						$scope.uploadProgress = progressPercentage + '%';
 					}).then(function(result) {
-						formData.video = result.data.video;
+						formData.video_url = result.data.video_url;
 						formData.$update().then(function(result) {
 							if( $scope.model[$scope.index ].gallery_id != result.gallery_id ) {
 								$scope.model.splice($scope.index, 1);
@@ -162,8 +162,8 @@ angular.module('app.controllers', [])
 					Upload.upload({
 						url: '../api/design_entries',
 						fields: formData,
-						fileFormDataName: 'video',
-						file: formData.video
+						fileFormDataName: 'video_url',
+						file: formData.video_url
 					}).progress(function (evt) {
 						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 						$scope.uploadProgress = progressPercentage + '%';
@@ -219,7 +219,7 @@ angular.module('app.controllers', [])
 					var item = $part[i];
 					orig[item.id] = item.sort_pos;
 					item.sort_pos = i+1;
-					data.push( { id : item.id, sort_pos: item.sort_pos } );
+					data[item.id] = { id : item.id, sort_pos: item.sort_pos };
 				}
 				DesignGallery.reorder(data).$promise.then(function() {
 					//console.log('success');
@@ -292,22 +292,116 @@ angular.module('app.controllers', [])
 
 		}])
 
-	.controller('VideoController', ['$scope',
-		function($scope) {
-			$scope.playVideo = function(index) {
-				var element = jQuery('.container').eq(index);
-				var video = element.find('video');
-				element.find('.poster-image, .play-button').hide();
-				video.show();
-				video[0].play();
-				video.on('click', function() {
-					if(video[0].paused) {
-						video[0].play();
-					} else {
-						video[0].pause();
+	.controller('VideoController', ['$scope', 'Video',
+		function($scope, Video) {
+			$scope.videos = Video.query();
+		}])
+
+	.controller('VideoEdit', ['$scope', '$controller', 'Video', 'Upload',
+		function($scope, $controller, Video, Upload) {
+
+			$controller('VideoController', {$scope: $scope});
+
+			$scope.$on('$destroy', function() {
+				$scope.formData = {};
+			});
+
+			$scope.videos.$promise.then(function(videoList) {
+				videoList.forEach(function(video, key) {
+					if(video.id == $scope.$stateParams.id) {
+						$scope.formData = angular.copy(video);
+						$scope.model = $scope.$parent.videos;
+						$scope.index = key;
 					}
 				});
+			});
+
+			$scope.update = function(formData) {
+
+				if(Array.isArray(formData.video_url)) { // If Video Item
+					$scope.uploadProgress = '0';
+					Upload.upload({
+						url: '../api/design_entries/storeVideo',
+						fileFormDataName: 'video_url',
+						file: formData.video_url
+					}).progress(function (evt) {
+						var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+						$scope.uploadProgress = progressPercentage + '%';
+					}).then(function(result) {
+						formData.video_url = result.data.video_url;
+						formData.$update().then(function(result) {
+							$scope.model[$scope.index] = result;
+							$scope.$state.go('^');
+						}, function(result) {
+							$scope.error = 'Failed to save: ' + result.data.error;
+							console.log("Error: " + JSON.stringify(result.data));
+						});
+					},function(result) {
+						$scope.error = 'Failed to save: ' + result.data.error;
+						console.log("Error: " + JSON.stringify(result.data));
+					});
+				} else {
+					formData.$update().then(function(result) {
+						$scope.model[$scope.index] = result;
+						$scope.$state.go('^');
+					}, function(result) {
+						$scope.error = 'Failed to save: ' + result.data.error;
+						console.log("Error: " + JSON.stringify(result.data));
+					});
+				}
 			};
+
+			$scope.save = function(formData) {
+				var formModel = new Video(formData);
+				$scope.model = $scope.$parent.videos;
+				$scope.uploadProgress = '0';
+
+				Upload.upload({
+					url: '../api/videos',
+					fields: formData,
+					fileFormDataName: 'video_url',
+					file: formData.video_url
+				}).progress(function (evt) {
+					var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+					$scope.uploadProgress = progressPercentage + '%';
+				}).then(function(result) {
+					$scope.model.push( angular.extend(formModel,result.data) );
+					$scope.$state.go('^');
+				},function(result) {
+					$scope.error = 'Failed to save: ' + result.data.error;
+					console.log("Error: " + JSON.stringify(result.data));
+				});
+
+			};
+
+			$scope.clear = function() {
+				$scope.$parent.formData = {};
+				$scope.$$childHead.formData = {};
+				$scope.formData = {};
+			};
+
+			$scope.updateSort = function($part) {
+				var data = [];
+				var orig = [];
+				for(var i = 0, len = $part.length; i < len; i++) {
+					var item = $part[i];
+					orig[item.id] = item.sort_pos;
+					item.sort_pos = i+1;
+					data[item.id] = { id : item.id, sort_pos: item.sort_pos };
+				}
+				Video.reorder(data).$promise.then(function() {
+					//console.log('success');
+				}, function() {
+					//console.log( 'error' );
+					for(var i=0; i < $part.length; i++) {
+						$part[i].sort_pos = orig[$part[i].id];
+					}
+					$part.sort(function(a,b) {
+						return a.sort_pos - b.sort_pos;
+					});
+				});
+			};
+
 		}])
 
 	.controller('AboutController', ['$scope', 'InstagramFeed',

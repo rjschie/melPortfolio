@@ -26,6 +26,7 @@ if(App::environment('local')) {
 Route::post('/login', 'AuthController@authenticate');
 Route::resource('design_galleries', 'DesignGalleryController', ['only' => ['index', 'show']]);
 Route::resource('photo_galleries', 'PhotoGalleryController', ['only' => ['index', 'show']]);
+Route::resource('videos', 'VideoController', ['only' => ['index', 'show']]);
 Route::get('/design_entries/{gallery_slug}', 'DesignGalleryController@show');
 Route::get('/photo_random', 'PhotoGalleryController@random');
 
@@ -39,9 +40,11 @@ Route::group(['before' => 'jwt-auth'], function() {
 	Route::post('/changePass', 'AuthController@changePass');
 	Route::put('/design_galleries/reorder', 'DesignGalleryController@reorder');
 	Route::put('/design_entries/reorder', 'DesignEntryController@reorder');
+	Route::put('/videos/reorder', 'VideoController@reorder');
 	Route::post('/design_entries/storeVideo', 'DesignEntryController@storeVideo');
 	Route::resource('design_galleries', 'DesignGalleryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('design_entries', 'DesignEntryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('photo_galleries', 'PhotoGalleryController', ['only' => ['store', 'update', 'destroy']]);
+	Route::resource('videos', 'VideoController', ['only' => ['store', 'update', 'destroy']]);
 
 });

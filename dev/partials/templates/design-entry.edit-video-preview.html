@@ -1,30 +1,30 @@
-<div ngf-select ng-model="formData.video" class="form-button">
-	<span ng-hide="formData.video">Add File</span>
-	<span ng-show="formData.video">Replace File</span>
+<div ngf-select ng-model="formData.video_url" class="form-button">
+	<span ng-hide="formData.video_url">Add File</span>
+	<span ng-show="formData.video_url">Replace File</span>
 </div>
-<div ng-show="formData.video" class="form-video-preview">
-	<div ng-if="isArray(formData.video)" class="form-video-preview__info">
-		{{ formData.video[0].name }}
+<div ng-show="formData.video_url" class="form-video-preview">
+	<div ng-if="isArray(formData.video_url)" class="form-video-preview__info">
+		{{ formData.video_url[0].name }}
 		<small class="form-video-preview__info--small">
-			{{ formData.video[0].size/1048576 | parseMB }}
+			{{ formData.video_url[0].size/1048576 | parseMB }}
 		</small>
 	</div>
-	<div ng-if="!isArray(formData.video)" class="form-video-preview__info">
-		{{ formData.video}}
+	<div ng-if="!isArray(formData.video_url)" class="form-video-preview__info">
+		{{ formData.video_url}}
 	</div>
 
 	<video class="form-video-preview__video"
-				 ng-if="isArray(formData.video)"
-				 ngf-src="formData.video[0]"
+				 ng-if="isArray(formData.video_url)"
+				 ngf-src="formData.video_url[0]"
 				 controls>
 	</video>
 	<video class="form-video-preview__video"
-				 ng-if="!isArray(formData.video)"
-				 ng-src="{{formData.video}}"
+				 ng-if="!isArray(formData.video_url)"
+				 ng-src="{{formData.video_url}}"
 				 controls>
 	</video>
 </div>
-<div ng-show="formData.video"
+<div ng-show="formData.video_url"
 		 class="form-video-preview__progress-bar"
 		 ng-style="{'width':uploadProgress}">
 </div>

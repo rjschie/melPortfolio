@@ -38,7 +38,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 
 		$stateProvider
 		/**
-		 * Design States
+		 * Design Gallery States
 		 */
 			.state('design-galleries', {
 				abstract: true,
@@ -68,6 +68,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 				controller: 'DesignGalleryEdit',
 				params: {noScroll:true, requireAuth: true}
 			})
+		/**
+		 * Design Entry States
+		 */
 			.state('design-entries', {
 				abstract: true,
 				url : '/design/:gallerySlug',
@@ -110,13 +113,41 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 				controller : 'PhotographyController'
 			})
 		/**
-		 * Other States
+		 * Video States
 		 */
 			.state('video', {
+				abstract: true,
 				url : '/video',
+				template: '<ui-view/>'
+			})
+			.state('video.list', {
+				url: '',
 				templateUrl : 'partials/video.html',
 				controller : 'VideoController'
 			})
+			.state('video.edit', {
+				url: '/edit',
+				templateUrl : 'partials/video.edit.html',
+				controller : 'VideoEdit',
+				params: {requireAuth: true}
+			})
+			.state('video.edit.add-video', {
+				url: '/add-video',
+				templateUrl : 'partials/video.add-form.html',
+				controller : 'VideoEdit',
+				params: {noScroll:true, requireAuth: true}
+			})
+			.state('video.edit.edit-video', {
+				url: '/:id/edit-video',
+				templateUrl: 'partials/video.edit-form.html',
+				controller: 'VideoEdit',
+				params: {noScroll:true, requireAuth: true}
+			})
+
+
+		/**
+		 * Other States
+		 */
 			.state('about', {
 				url : '/about',
 				templateUrl : 'partials/about.html',

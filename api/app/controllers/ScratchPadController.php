@@ -14,7 +14,7 @@ class ScratchPadController extends \BaseController {
 
 	public function returnMyStuff()
 	{
-		return DesignGallery::max('sort_pos')+1;
+		return Video::max( 'sort_pos' );
 	}
 
 	public function photoReturn()
