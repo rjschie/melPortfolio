@@ -24,7 +24,7 @@ class DesignGalleryTableSeeder extends Seeder {
 				'title' => $gall['title'],
 				'short_title' => $gall['short_title'],
 				'slug' => $gall['slug'],
-				'image_url' => $gall['slug'].'.jpg',
+				'image_url' => 'uploads/design-home/' . $gall['slug'].'.jpg',
 				'sort_pos' => $gall['sort_pos']
 			]);
 		}

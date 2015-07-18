@@ -203,9 +203,6 @@ angular.module('app.controllers', [])
 				galleryList.forEach(function(gallery, key) {
 					if(gallery.slug == $scope.$stateParams.gallerySlug) {
 						$scope.formData = angular.copy(gallery);
-						if($scope.formData.image) {
-							$scope.formData.image = 'uploads/design-home/' + $scope.formData.image;
-						}
 						$scope.model = $scope.$parent.galleries.design;
 						$scope.index = key;
 					}

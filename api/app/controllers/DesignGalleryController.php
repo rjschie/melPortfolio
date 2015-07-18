@@ -57,15 +57,16 @@ class DesignGalleryController extends \BaseController {
 				throw new Exception("Missing image.");
 			}
 
+			$imageLoc = 'uploads/design-home/' . $new_image['name'];
 			file_put_contents(
-				dirname(base_path()) . '/dev/uploads/design-home/' . $new_image['name'],
+				dirname(base_path()) . '/dev/' . $imageLoc,
 				base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
 			);
 			$newGallery = DesignGallery::create([
 				'title'				=> $new_title,
 				'short_title' => $new_short_title,
 				'slug'				=> $new_slug,
-				'image_url'				=> $new_image['name'],
+				'image_url'		=> $imageLoc,
 				'sort_pos'		=> DesignGallery::max('sort_pos')+1
 			]);
 
@@ -107,14 +108,15 @@ class DesignGalleryController extends \BaseController {
 			}
 			if(!empty($new_image)) {
 				// TODO: uncomment
-//				if(file_exists(dirname(base_path()) . '/dev/uploads/design-home/' . $gallery->image_url)) {
-//					unlink(dirname(base_path()) . '/dev/uploads/design-home/' . $gallery->image_url);
+//				if(file_exists(dirname(base_path()) . '/dev/' . $gallery->image_url)) {
+//					unlink(dirname(base_path()) . '/dev/' . $gallery->image_url);
 //				}
+				$imageLoc = 'uploads/design-home/' . $new_image['name'];
 				file_put_contents(
-					dirname(base_path()) . '/dev/uploads/design-home/' . $new_image['name'],
+					dirname(base_path()) . '/dev/' . $imageLoc,
 					base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
 				);
-				$gallery->image_url = $new_image['name'];
+				$gallery->image_url = $imageLoc;
 			}
 
 			$gallery->save();

@@ -6,7 +6,7 @@
 			 class="grid-container">
 		<a ui-sref="design-entries.list({ gallerySlug: gallery.slug })"
 			 class="grid-link">
-			<img draggable="false" ng-src="uploads/design-home/{{ gallery.image_url }}">
+			<img draggable="false" ng-src="{{ gallery.image_url }}">
 			<p>{{ gallery.title }}</p>
 		</a>
 	</div>
