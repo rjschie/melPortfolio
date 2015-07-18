@@ -3,36 +3,31 @@
 		 ui-sref="design-entries.list">X</a>
 	<span sv-root sv-on-sort="updateSort(entries)" sv-part="entries">
 		<div ng-repeat="entry in entries | orderBy : 'sort_pos' track by $index"
-				 class="grid-container grid-container__edit" sv-element ng-switch="entry.type">
+				 class="grid-container grid-container__edit" sv-element>
 			<div class="edit-bar" design-entry-edit-bar></div>
 
 			<div class="grid-container-ratio">
-
-				<article class="grid-container-ratio-inner" ng-switch-when="2" ng-style="{'background-color': '{{entry.bgColor}}'}">
+				<article class="grid-container-ratio-inner"
+								 ng-if="entry.type == 2"
+								 ng-style="{'background-color': '{{entry.bgColor}}'}">
 					<section class="head--edit">{{ entry.title }}</section>
 					<section class="subtitle--edit">{{ entry.subtitle }}</section>
 					<section class="foot--edit">{{ entry.footer }}</section>
 				</article>
 
-
-				<!--<div class="video-frame" ng-switch-when="1">-->
-					<!--<img class="poster-image" ng-src="{{entry.image_url}}-poster.jpg">-->
-					<!--<div class="play-button"-->
-							 <!--ng-click="playVideo($index)">-->
-					<!--</div>-->
-					<!--<video controls>-->
-						<!--<source ng-src="{{entry.image_url}}" type="video/mp4">-->
-					<!--</video>-->
-				<!--</div>-->
-
-				<span class="grid-container-ratio-inner" ng-switch-default>
+				<span class="grid-container-ratio-inner"
+							ng-if="entry.type == 0 || entry.type == 1">
 					<img class="grid-image" draggable="false" ng-src="{{ entry.image_url }}">
 				</span>
 			</div>
-			<p class="grid-container-ratio-text">{{ entry.title }}</p>
+			<p class="grid-container-ratio-text">
+				{{ entry.title }}
+				<span ng-if="entry.type == 1"> (video)</span>
+			</p>
 		</div>
 	</span>
-	<a ui-sref="design-entries.edit.add-entry" class="grid-container grid-container__edit grid-link">
+	<a ui-sref="design-entries.edit.add-entry"
+		 class="grid-container grid-container__edit grid-link">
 		<div class="gallery-add-ratio">
 			<div class="gallery-add-shape"></div>
 		</div>

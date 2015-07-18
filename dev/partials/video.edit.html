@@ -3,16 +3,18 @@
 		 ui-sref="video.list">X</a>
 	<span sv-root sv-on-sort="updateSort(videos)" sv-part="videos">
 		<div ng-repeat="video in videos | orderBy : 'sort_pos' track by $index"
-				 class="grid-container grid-container__edit" sv-element ng-switch="video.type">
+				 class="grid-container grid-container__edit" sv-element>
 			<div class="edit-bar" video-edit-bar></div>
 
 			<div class="grid-container-ratio">
 				<span class="grid-container-ratio-inner">
 					<img class="grid-image" draggable="false" ng-src="{{ video.image_url }}">
-					<!--<video-player video="video"></video-player>-->
 				</span>
 			</div>
-			<p class="grid-container-ratio-text">{{ video.title }}</p>
+			<p class="grid-container-ratio-text">
+				{{ video.title }}
+				<span> (video)</span>
+			</p>
 		</div>
 	</span>
 	<a ui-sref="video.edit.add-video" class="grid-container grid-container__edit grid-link">
