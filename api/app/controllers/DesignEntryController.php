@@ -231,25 +231,4 @@ class DesignEntryController extends \BaseController {
 	}
 
 
-	/**
-	 * Store video file
-	 *
-	 * @return Response
-	 */
-	public function storeVideo()
-	{
-		$video_url = Input::file( 'video_url' );
-		$destinationPath = dirname(base_path()) . '/dev/uploads/videos';
-
-		if( ! $video_url->move( $destinationPath, $video_url->getClientOriginalName() ) ) {
-			return Response::json(["error" => "Couldn't upload video."], 400);
-		}
-
-		return Response::json([
-			"video_url" => 'uploads/videos/' . $video_url->getClientOriginalName()
-		], 201);
-
-	}
-
-
 }

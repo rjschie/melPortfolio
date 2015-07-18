@@ -81,7 +81,7 @@ angular.module('app.controllers', [])
 				if(formData.type == 1 && Array.isArray(formData.video_url)) { // If Video Item
 					$scope.uploadProgress = '0';
 					Upload.upload({
-						url: '../api/design_entries/storeVideo',
+						url: '../api/video/storeVideo',
 						fileFormDataName: 'video_url',
 						file: formData.video_url
 					}).progress(function (evt) {

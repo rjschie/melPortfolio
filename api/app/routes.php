@@ -41,7 +41,7 @@ Route::group(['before' => 'jwt-auth'], function() {
 	Route::put('/design_galleries/reorder', 'DesignGalleryController@reorder');
 	Route::put('/design_entries/reorder', 'DesignEntryController@reorder');
 	Route::put('/videos/reorder', 'VideoController@reorder');
-	Route::post('/design_entries/storeVideo', 'DesignEntryController@storeVideo');
+	Route::post('/video/storeVideo', 'VideoController@storeVideo');
 	Route::resource('design_galleries', 'DesignGalleryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('design_entries', 'DesignEntryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('photo_galleries', 'PhotoGalleryController', ['only' => ['store', 'update', 'destroy']]);
