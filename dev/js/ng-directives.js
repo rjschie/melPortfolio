@@ -276,6 +276,7 @@ angular.module('app.directives', [])
 			},
 			controller: function($scope) {
 				$scope.video.playing = false;
+				$rootScope.videoPlaying = false;
 				$scope.video.played = false;
 			},
 			link: function(scope, elem, attrs) {
@@ -289,29 +290,39 @@ angular.module('app.directives', [])
 						mediaElement.addEventListener('ended', function(e) {
 							scope.$apply(function() {
 								scope.video.playing = false;
+								$rootScope.videoPlaying = false;
 								$rootScope.hideMenu = false;
 							});
 						}, false);
 						mediaElement.addEventListener('pause', function(e) {
 							scope.$apply(function() {
 								scope.video.playing = false;
-								$rootScope.hideMenu = false;
+								$rootScope.videoPlaying = false;
+								if( $rootScope.videoPlayingSwitcher ) {
+									$rootScope.hideMenu = true;
+									$rootScope.videoPlayingSwitcher = false;
+								} else {
+									$rootScope.hideMenu = false;
+								}
 							});
 						}, false);
 						mediaElement.addEventListener('play', function(e) {
-							$rootScope.$broadcast('PAUSE-OTHER-VIDEOS', {video: scope.video});
+							if( $rootScope.videoPlaying ) {
+								$rootScope.$broadcast('PAUSE-OTHER-VIDEOS', {video: scope.video});
+							}
 							scope.$apply(function() {
 								scope.video.playing = true;
+								$rootScope.videoPlaying = true;
 								$rootScope.hideMenu = true;
 							});
 
-							/** Scroll if on left edge of screen, to account for Menu hiding **/
+							/** Scroll if at left edge of screen to account for Menu hiding **/
 							var contentView = angular.element(document.querySelector('.content-full'));
 							var contentViewMargin =
 										parseInt(window.getComputedStyle(contentView[0]).marginLeft);
-							if(window.scrollX < contentViewMargin-8 ) {
+							if(window.scrollX < contentViewMargin-20 ) {
 								setTimeout(function() {
-									window.scrollTo(contentViewMargin-8, 0);
+									window.scrollTo(contentViewMargin-20, 0);
 								}, 50);
 							}
 						}, false);
@@ -324,6 +335,7 @@ angular.module('app.directives', [])
 				 /** Broadcasted Event Listening: pause video if other videos playing **/
 				scope.$on('PAUSE-OTHER-VIDEOS', function(event, args) {
 					if( args.video != scope.video ) {
+						$rootScope.videoPlayingSwitcher = true;
 						videoElement.pause();
 					}
 				});

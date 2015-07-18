@@ -51,6 +51,8 @@ angular.module('app.controllers', [])
 			});
 
 			$rootScope.hideMenu = false;
+			$rootScope.videoPlaying = false;
+			$rootScope.videoPlayingSwitcher = false;
 
 			$scope.galleries = {
 				photo : Photography.query(),
