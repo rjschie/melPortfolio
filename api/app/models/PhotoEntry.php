@@ -20,7 +20,7 @@ class PhotoEntry extends Eloquent {
 
 		$photo_galleries_length = 0;
 		foreach($galleries as $i => $gallery) {
-			$photo_galleries[$i] = PhotoEntry::orderBy('sort_pos', 'asc')->where('photo_gallery_id', '=', $gallery)->lists('id');
+			$photo_galleries[$i] = PhotoGalleryEntry::orderBy('sort_pos', 'asc')->where('gallery_id', '=', $gallery)->lists('entry_id');
 			$photo_galleries_length += count($photo_galleries[$i]);
 		}
 
