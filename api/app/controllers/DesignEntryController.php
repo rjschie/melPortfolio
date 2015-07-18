@@ -164,8 +164,8 @@ class DesignEntryController extends \BaseController {
 				$gallery = DesignGallery::where('id', '=', $galleryEntry->gallery_id)->get(['slug'])[0];
 
 				// TODO: uncomment
-//				if(file_exists(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image_url)) {
-//					unlink(dirname(base_path()) . '/dev/uploads/design-home/' . $entry->image_url);
+//				if(file_exists(dirname(base_path()) . '/dev/' . $entry->image_url)) {
+//					unlink(dirname(base_path()) . '/dev/' . $entry->image_url);
 //				}
 
 				$imageLoc = 'uploads/' . $gallery->slug . '/' . $new_image['name'];

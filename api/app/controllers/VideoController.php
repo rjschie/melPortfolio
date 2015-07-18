@@ -108,8 +108,8 @@ class VideoController extends \BaseController {
 
 			if(!empty($new_image)) {
 				// TODO: uncomment - fix first
-//				if(file_exists(dirname(base_path()) . '/dev/uploads/design-home/' . $video->image_url)) {
-//					unlink(dirname(base_path()) . '/dev/uploads/design-home/' . $video->image_url);
+//				if(file_exists(dirname(base_path()) . '/dev/' . $video->image_url)) {
+//					unlink(dirname(base_path()) . '/dev/' . $video->image_url);
 //				}
 
 				$imageLoc = 'uploads/videos/' . $new_image['name'];
