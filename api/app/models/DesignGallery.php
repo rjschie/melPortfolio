@@ -2,7 +2,7 @@
 
 class DesignGallery extends Eloquent {
 
-	protected $fillable = [ 'title', 'short_title', 'slug','image', 'sort_pos' ];
+	protected $fillable = [ 'title', 'short_title', 'slug','image_url', 'sort_pos' ];
 
 	protected $hidden = ['pivot'];
 	public $table = 'design_galleries';

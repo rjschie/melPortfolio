@@ -18,7 +18,7 @@ class CreateDesignGalleriesTable extends Migration {
 			$table->string('title');
 			$table->string('short_title');
 			$table->string('slug')->unique();
-			$table->string('image');
+			$table->string('image_url');
 			$table->integer('sort_pos');
 		});
 	}
