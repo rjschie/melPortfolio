@@ -7,26 +7,23 @@ class PhotoEntryTableSeeder extends Seeder {
 		DB::table('photo_entries')->delete();
 		DB::unprepared("ALTER TABLE `photo_entries` AUTO_INCREMENT = 1;");
 
-		$arr = PhotoGallery::orderBy('sort_pos', 'ASC')->lists('slug');
+		$galleries = PhotoGallery::orderBy('id', 'asc')->get(['id','slug']);
 
-		foreach($arr as $key => $gall) {
+		foreach($galleries as $key => $gall) {
 
-			$countArr = [];
-			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/assets/imgs/'.$gall;
+			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/uploads/photography/'.$gall['slug'];
 
 			if (is_dir($dir)) {
 				$theFiles = scandir($dir);
 				$theFiles = array_diff($theFiles, array('..', '.', '.DS_Store'));
+				$theFiles = array_values($theFiles);
 
-				for($i=1; $i <= count($theFiles); $i++)
-					$countArr[] = $i;
-
-				foreach($theFiles as $file) {
+				foreach($theFiles as $fKey => $file) {
 					PhotoEntry::create([
-						'photo_gallery_id' => $key+1,
-						'title' => ucwords(explode('.',$file)[0]),
-						'image_url' => $gall.'/'.$file,
-						'sort_pos' => array_shift($countArr)
+						'photo_gallery_id' => $gall['id'],
+						'title' 		=> ucwords(explode('.',$file)[0]),
+						'image_url' => 'uploads/photography/' . $gall['slug'] . '/' . $file,
+						'sort_pos'	=> $fKey+1
 					]);
 				}
 			}
