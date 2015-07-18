@@ -19,11 +19,15 @@ class PhotoEntryTableSeeder extends Seeder {
 				$theFiles = array_values($theFiles);
 
 				foreach($theFiles as $fKey => $file) {
-					PhotoEntry::create([
-						'photo_gallery_id' => $gall['id'],
+					$entry = PhotoEntry::create([
 						'title' 		=> ucwords(explode('.',$file)[0]),
-						'image_url' => 'uploads/photography/' . $gall['slug'] . '/' . $file,
-						'sort_pos'	=> $fKey+1
+						'image_url' => 'uploads/photography/' . $gall['slug'] . '/' . $file
+					]);
+
+					PhotoGalleryEntry::create([
+						'gallery_id' => $gall['id'],
+						'entry_id' => $entry['id'],
+						'sort_pos' => $fKey+1,
 					]);
 				}
 			}

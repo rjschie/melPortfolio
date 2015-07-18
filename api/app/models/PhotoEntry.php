@@ -2,11 +2,16 @@
 
 class PhotoEntry extends Eloquent {
 
-	protected $fillable = [ 'photo_gallery_id', 'title','image_url', 'sort_pos' ];
+	protected $fillable = [ 'title','image_url' ];
 
+	protected $hidden = ['pivot'];
 	public $table = 'photo_entries';
 	public $timestamps = false;
 
+	public function galleries()
+	{
+		return $this->belongsToMany('PhotoGallery', 'photo_galleries_entries', 'entry_id', 'gallery_id');
+	}
 
 	public static function randomMatrix() {
 		$result = [];
