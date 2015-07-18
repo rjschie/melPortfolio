@@ -81,7 +81,7 @@ angular.module('app.controllers', [])
 			}
 		}])
 
-	.controller('AdminFormController', ['$scope', '$controller', 'DesignGallery', 'DesignEntry',
+	.controller('DesignAdminFormController', ['$scope', '$controller', 'DesignGallery', 'DesignEntry',
 		'Upload',
 		function($scope, $controller, DesignGallery, DesignEntry, Upload) {
 			if( ! $scope.Auth.isAuth) {return false;}
@@ -197,7 +197,7 @@ angular.module('app.controllers', [])
 	.controller('DesignGalleryEdit', ['$scope', '$controller', 'DesignGallery',
 		function($scope, $controller, DesignGallery) {
 
-			$controller('AdminFormController', {$scope: $scope});
+			$controller('DesignAdminFormController', {$scope: $scope});
 
 			$scope.galleries.design.$promise.then(function(galleryList) {
 				galleryList.forEach(function(gallery, key) {
@@ -239,7 +239,7 @@ angular.module('app.controllers', [])
 	.controller('DesignEntryEdit', ['$scope', '$controller', 'DesignEntry',
 		function($scope, $controller, DesignEntry) {
 
-			$controller('AdminFormController', {$scope: $scope});
+			$controller('DesignAdminFormController', {$scope: $scope});
 
 			if($scope.$state.is('design-entries.edit.edit-entry')) {
 				$scope.entries.$promise.then(function(entryList) {
