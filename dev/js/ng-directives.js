@@ -283,7 +283,7 @@ angular.module('app.directives', [])
 
 	.directive('editVideoPreview', function() {
 		return {
-			templateUrl: 'partials/templates/design-entry.edit-video-preview.html',
+			templateUrl: 'partials/templates/edit-video-preview.html',
 			restrict: 'AE',
 			controller: function($scope) {
 				$scope.isArray = function(input) {
