@@ -28,6 +28,7 @@ Route::resource('design_galleries', 'DesignGalleryController', ['only' => ['inde
 Route::resource('photo_galleries', 'PhotoGalleryController', ['only' => ['index', 'show']]);
 Route::resource('videos', 'VideoController', ['only' => ['index', 'show']]);
 Route::get('/design_entries/{gallery_slug}', 'DesignGalleryController@show');
+Route::get('/photo_entries/{gallery_slug}', 'PhotoGalleryController@show');
 Route::get('/photo_random', 'PhotoGalleryController@random');
 
 
@@ -40,11 +41,14 @@ Route::group(['before' => 'jwt-auth'], function() {
 	Route::post('/changePass', 'AuthController@changePass');
 	Route::put('/design_galleries/reorder', 'DesignGalleryController@reorder');
 	Route::put('/design_entries/reorder', 'DesignEntryController@reorder');
+	Route::put('/photo_galleries/reorder', 'PhotoGalleryController@reorder');
+	Route::put('/photo_entries/reorder', 'PhotoEntryController@reorder');
 	Route::put('/videos/reorder', 'VideoController@reorder');
 	Route::post('/video/storeVideo', 'VideoController@storeVideo');
 	Route::resource('design_galleries', 'DesignGalleryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('design_entries', 'DesignEntryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('photo_galleries', 'PhotoGalleryController', ['only' => ['store', 'update', 'destroy']]);
+	Route::resource('photo_entries', 'PhotoEntryController', ['only' => ['store', 'update', 'destroy']]);
 	Route::resource('videos', 'VideoController', ['only' => ['store', 'update', 'destroy']]);
 
 });
