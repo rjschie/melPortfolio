@@ -138,7 +138,6 @@ class DesignGalleryController extends \BaseController {
 	 */
 	public function destroy($gallery_slug)
 	{
-
 		if(is_numeric($gallery_slug)) {
 			$gallery = DesignGallery::findOrFail($gallery_slug);
 		} else {
@@ -147,8 +146,6 @@ class DesignGalleryController extends \BaseController {
 
 		// TODO: find image and delete it
 		// TODO: find entries and delete them
-
-
 
 		$gallery->delete();
 	}
