@@ -20,12 +20,10 @@ angular.module('app.controllers', [])
 					AuthServ.logout();
 				},
 				changePass : function(formData) {
-
 					if(formData.new_password !== formData.new_password_confirm) {
 						$scope.error = "New Passwords do not match.";
 						return false;
 					}
-
 					AuthServ.changePass(formData.old_password, formData.new_password)
 						.then(function() {
 							$location.url('/');
@@ -38,18 +36,15 @@ angular.module('app.controllers', [])
 				},
 				isAuth : false
 			};
-
 			$rootScope.$on('$stateChangeStart', function(e, toState, toParams) {
-
 				$scope.Auth.isAuth = ($scope.Auth.authenticate()) ? true : false;
-
-				if( ! toParams.requireAuth) return;
+				if( ! toParams.requireAuth) {
+					return;
+				}
 				if( ! $scope.Auth.isAuth) {
 					e.preventDefault();
 				}
-
 			});
-
 			$rootScope.$on('$stateChangeSuccess', function(e, toState, toParams) {
 				$scope.noScroll = (toParams.noScroll) ? true : false;
 				$scope.error = null;
@@ -63,19 +58,8 @@ angular.module('app.controllers', [])
 			};
 		}])
 
-	.controller('PhotographyController', ['$scope', 'Photography', 'PhotographyRandom', '$stateParams',
-		function ($scope, Photography, PhotographyRandom, $stateParams) {
-
-			if($stateParams.gallerySlug) {
-				$scope.entries = Photography.query({slug: $stateParams.gallerySlug});
-			} else {
-				$scope.entries = PhotographyRandom.query();
-			}
-		}])
-
 	.controller('DesignGalleryController', ['$scope', 'DesignGallery', 'DesignEntry', '$stateParams',
 		function ($scope, DesignGallery, DesignEntry, $stateParams) {
-
 			if($scope.entries == undefined && $scope.$state.includes('design-entries')) {
 				$scope.entries = DesignEntry.query({id: $stateParams.gallerySlug});
 			}
@@ -91,11 +75,8 @@ angular.module('app.controllers', [])
 			$scope.$on('$destroy', function() {
 				$scope.formData = {};
 			});
-
 			$scope.update = function(formData) {
-
 				if(formData.type == 1 && Array.isArray(formData.video_url)) { // If Video Item
-
 					$scope.uploadProgress = '0';
 					Upload.upload({
 						url: '../api/design_entries/storeVideo',
@@ -139,7 +120,6 @@ angular.module('app.controllers', [])
 				}
 
 			};
-
 			$scope.save = function(formData) {
 				var formModel;
 
@@ -155,7 +135,6 @@ angular.module('app.controllers', [])
 					default:
 						break;
 				}
-
 				if(formModel.type == 1) { // If Video Item
 					$scope.uploadProgress = '0';
 
@@ -185,7 +164,6 @@ angular.module('app.controllers', [])
 				}
 
 			};
-
 			$scope.clear = function() {
 				$scope.$parent.formData = {};
 				$scope.$$childHead.formData = {};
@@ -208,7 +186,6 @@ angular.module('app.controllers', [])
 					}
 				});
 			});
-
 			$scope.updateSort = function($part) {
 				var data = [];
 				var orig = [];
@@ -257,7 +234,6 @@ angular.module('app.controllers', [])
 					});
 				});
 			}
-
 			$scope.updateSort = function($part) {
 				var data = {};
 				var entries = {};
@@ -286,7 +262,16 @@ angular.module('app.controllers', [])
 				});
 
 			};
+		}])
 
+	.controller('PhotographyController', ['$scope', 'Photography', 'PhotographyRandom', '$stateParams',
+		function ($scope, Photography, PhotographyRandom, $stateParams) {
+
+			if($stateParams.gallerySlug) {
+				$scope.entries = Photography.query({slug: $stateParams.gallerySlug});
+			} else {
+				$scope.entries = PhotographyRandom.query();
+			}
 		}])
 
 	.controller('VideoController', ['$scope', 'Video',
@@ -302,7 +287,6 @@ angular.module('app.controllers', [])
 			$scope.$on('$destroy', function() {
 				$scope.formData = {};
 			});
-
 			$scope.videos.$promise.then(function(videoList) {
 				videoList.forEach(function(video, key) {
 					if(video.id == $scope.$stateParams.id) {
@@ -312,9 +296,7 @@ angular.module('app.controllers', [])
 					}
 				});
 			});
-
 			$scope.update = function(formData) {
-
 				if(Array.isArray(formData.video_url)) { // If Video Item
 					$scope.uploadProgress = '0';
 					Upload.upload({
@@ -347,7 +329,6 @@ angular.module('app.controllers', [])
 					});
 				}
 			};
-
 			$scope.save = function(formData) {
 				var formModel = new Video(formData);
 				$scope.model = $scope.$parent.videos;
@@ -370,13 +351,11 @@ angular.module('app.controllers', [])
 				});
 
 			};
-
 			$scope.clear = function() {
 				$scope.$parent.formData = {};
 				$scope.$$childHead.formData = {};
 				$scope.formData = {};
 			};
-
 			$scope.updateSort = function($part) {
 				var data = [];
 				var orig = [];
