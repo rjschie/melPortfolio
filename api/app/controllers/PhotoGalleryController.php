@@ -158,10 +158,11 @@ class PhotoGalleryController extends \BaseController {
 	{
 		$result = [];
 		$sortArr = PhotoEntry::randomMatrix();
-		$photos = PhotoEntry::all();
+		$photoDBRes = PhotoEntry::all();
+		$photos = $photoDBRes->keyBy('id');
 
 		foreach($sortArr as $value) {
-			$result[] = $photos[$value-1];
+			$result[] = $photos[$value];
 		}
 
 		return Response::json($result, 200, [], JSON_NUMERIC_CHECK);
