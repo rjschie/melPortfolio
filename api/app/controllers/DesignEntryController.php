@@ -33,7 +33,7 @@ class DesignEntryController extends \BaseController {
 						throw new Exception("Must select an image.");
 					}
 
-					$imageLoc = 'uploads/' . $gallery->slug . '/' . $new_image['name'];
+					$imageLoc = 'uploads/design/' . $gallery->slug . '/' . $new_image['name'];
 					try {
 						file_put_contents(
 							dirname( base_path() ) . '/dev/' . $imageLoc,
@@ -59,7 +59,7 @@ class DesignEntryController extends \BaseController {
 
 					// Upload Poster Image
 					$new_image = json_decode($new_image, true);
-					$imageLoc = 'uploads/' . $gallery->slug . '/' . $new_image['name'];
+					$imageLoc = 'uploads/design/' . $gallery->slug . '/' . $new_image['name'];
 					try {
 						file_put_contents(
 							dirname( base_path() ) . '/dev/' . $imageLoc,
@@ -168,7 +168,7 @@ class DesignEntryController extends \BaseController {
 //					unlink(dirname(base_path()) . '/dev/' . $entry->image_url);
 //				}
 
-				$imageLoc = 'uploads/' . $gallery->slug . '/' . $new_image['name'];
+				$imageLoc = 'uploads/design/' . $gallery->slug . '/' . $new_image['name'];
 				file_put_contents(
 					dirname(base_path()) . '/dev/' . $imageLoc,
 					base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
@@ -228,27 +228,6 @@ class DesignEntryController extends \BaseController {
 			}
 
 		});
-	}
-
-
-	/**
-	 * Store video file
-	 *
-	 * @return Response
-	 */
-	public function storeVideo()
-	{
-		$video_url = Input::file( 'video_url' );
-		$destinationPath = dirname(base_path()) . '/dev/uploads/videos';
-
-		if( ! $video_url->move( $destinationPath, $video_url->getClientOriginalName() ) ) {
-			return Response::json(["error" => "Couldn't upload video."], 400);
-		}
-
-		return Response::json([
-			"video_url" => 'uploads/videos/' . $video_url->getClientOriginalName()
-		], 201);
-
 	}
 
 

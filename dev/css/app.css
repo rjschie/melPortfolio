@@ -652,12 +652,13 @@ article {
     float: left; }
   .about .portrait {
     width: 60%;
-    max-width: 560px; }
+    max-width: 38.57rem; }
     .about .portrait img {
       width: 100%; }
   .about .description {
     width: 40%;
-    padding-left: 2rem; }
+    padding-left: 2rem;
+    max-width: 25.7rem; }
     .about .description p:first-of-type {
       margin-top: -3px; }
     .about .description .icons {

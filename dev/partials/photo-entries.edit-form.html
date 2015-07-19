@@ -1,0 +1,30 @@
+<div modal>
+	<form class="form-content modal">
+		<div class="form-block form-error" ng-show="error">
+			<p>{{ error }}</p>
+		</div>
+		<div class="form-block first">
+			<label for="gallery_id" class="form-label">Gallery</label>
+			<select id="gallery_id" ng-model="formData.gallery_id" ng-options="gallery.id as gallery.title for gallery in galleries.photo"></select>
+		</div>
+
+		<div class="form-block">
+			<label for="title" class="form-label">Title</label>
+			<input ng-model="formData.title" id="title" class="form-input border" type="text">
+		</div>
+
+		<div class="form-block">
+			<label class="form-label no-pointer">Image</label>
+			<div class="form-uploader-ratio">
+				<div class="form-uploader"
+						 ng-class="{'add-sign': !formData.image_url}"
+						 image-uploader form-data="formData" image-uploader-image="{{formData.image_url}}">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-block last">
+			<input class="form-button" type="submit" ng-click="update(formData)" value="Update">
+		</div>
+	</form>
+</div>

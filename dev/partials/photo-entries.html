@@ -1,0 +1,8 @@
+<div class="content-full">
+	<a ng-if="Auth.isAuth"
+		 class="list-view_edit-button"
+		 ui-sref="photo-entries.edit">Edit Entries</a>
+	<div id="{{entry.id}}" class="container" ng-repeat="entry in entries">
+		<img ng-src="{{ entry.image_url }}">
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<div ng-if="Auth.isAuth" class="content">
+	<a class="list-view_edit-button"
+		 ui-sref="photo-galleries.list">X</a>
+	<span sv-root sv-on-sort="updateSort(galleries.photo)"
+				sv-part="galleries.photo">
+		<div ng-repeat="gallery in galleries.photo | orderBy : 'sort_pos' track by $index"
+				 class="grid-container grid-container__edit" sv-element>
+			<div class="edit-bar" photo-gallery-edit-bar></div>
+
+			<div class="grid-container-ratio">
+				<article class="grid-container-ratio-inner"
+								 style="background-color: #fafafa;color:#333;">
+					<section class="subtitle--edit" style="font-size:1.3rem;">{{ gallery.title }}</section>
+				</article>
+			</div>
+			<p class="grid-container-ratio-text">&nbsp;</p>
+		</div>
+	</span>
+	<a ui-sref="photo-galleries.edit.add-gallery"
+		 class="grid-container grid-container__edit grid-link">
+		<div class="gallery-add-ratio">
+			<div class="gallery-add-shape"></div>
+		</div>
+		<p>Add Gallery</p>
+	</a>
+	<div ui-view class="modal-view-container"></div>
+</div>

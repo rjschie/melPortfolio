@@ -13,7 +13,7 @@ class DesignEntryTableSeeder extends Seeder {
 
 		foreach($galleries as $key => $gall) {
 
-			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/uploads/'.$gall['slug'];
+			$dir = dirname(dirname(dirname(dirname(__DIR__)))).'/dev/uploads/design/'.$gall['slug'];
 
 			switch($gall['slug']) {
 				case 'valise':
@@ -68,21 +68,21 @@ class DesignEntryTableSeeder extends Seeder {
 					if($file == "docs_04.jpg") {
 						$entry = DesignEntry::create( [
 							'title' => ucwords( explode( '.', $file )[ 0 ] ),
-							'image_url' => 'uploads/' . $gall[ 'slug' ] . '/' . $file,
+							'image_url' => 'uploads/design/' . $gall[ 'slug' ] . '/' . $file,
 							'video_url' => 'uploads/videos/docs.mp4',
 							'type'	=> 1
 						] );
 					} elseif($file == "unpack_01.jpg") {
 						$entry = DesignEntry::create([
 							'title' => ucwords(explode('.',$file)[0]),
-							'image_url' => 'uploads/' . $gall['slug'] . '/' . $file,
+							'image_url' => 'uploads/design/' . $gall['slug'] . '/' . $file,
 							'video_url' => 'uploads/videos/unpack.mp4',
 							'type'	=> 1
 						]);
 					} else {
 						$entry = DesignEntry::create([
 							'title' => ucwords(explode('.',$file)[0]),
-							'image_url' => 'uploads/' . $gall['slug'] . '/' . $file
+							'image_url' => 'uploads/design/' . $gall['slug'] . '/' . $file
 						]);
 					}
 

@@ -100,17 +100,66 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 				params: {noScroll:true, requireAuth: true}
 			})
 		/**
-		 * Photography States
+		 * Photo Gallery States
 		 */
-			.state('photography', {
-				url : '/photography',
-				templateUrl : 'partials/photography.html',
-				controller : 'PhotographyController'
+			.state('photo-galleries', {
+				abstract: true,
+				url : '/photo',
+				template: '<ui-view/>'
 			})
-			.state('photo-gallery', {
-				url : '/photography/:gallerySlug',
-				templateUrl : 'partials/photo-gallery.html',
-				controller : 'PhotographyController'
+			.state('photo-galleries.list', {
+				url: '',
+				templateUrl : 'partials/photo-galleries.html',
+				controller : 'PhotoGalleryController'
+			})
+			.state('photo-galleries.edit', {
+				url: '/edit',
+				templateUrl : 'partials/photo-galleries.edit.html',
+				controller : 'PhotoGalleryEdit',
+				params: {requireAuth: true}
+			})
+			.state('photo-galleries.edit.add-gallery', {
+				url: '/add-gallery',
+				templateUrl : 'partials/photo-galleries.add-form.html',
+				controller : 'PhotoGalleryEdit',
+				params: {noScroll:true, requireAuth: true}
+			})
+			.state('photo-galleries.edit.edit-gallery', {
+				url: '/:gallerySlug/edit-gallery',
+				templateUrl: 'partials/photo-galleries.edit-form.html',
+				controller: 'PhotoGalleryEdit',
+				params: {noScroll:true, requireAuth: true}
+			})
+		/**
+		 * Photo Entry States
+		 */
+			.state('photo-entries', {
+				abstract: true,
+				url : '/photo/:gallerySlug',
+				template: '<ui-view/>'
+			})
+			.state('photo-entries.list', {
+				url : '',
+				templateUrl : 'partials/photo-entries.html',
+				controller : 'PhotoGalleryController'
+			})
+			.state('photo-entries.edit', {
+				url: '/edit',
+				templateUrl: 'partials/photo-entries.edit.html',
+				controller: 'PhotoEntryEdit',
+				params: {requireAuth: true}
+			})
+			.state('photo-entries.edit.add-entry', {
+				url: '/add-entry',
+				templateUrl: 'partials/photo-entries.add-form.html',
+				controller: 'PhotoEntryEdit',
+				params: {noScroll:true, requireAuth: true}
+			})
+			.state('photo-entries.edit.edit-entry', {
+				url: '/edit-entry/:id',
+				templateUrl: 'partials/photo-entries.edit-form.html',
+				controller: 'PhotoEntryEdit',
+				params: {noScroll:true, requireAuth: true}
 			})
 		/**
 		 * Video States

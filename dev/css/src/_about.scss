@@ -25,7 +25,7 @@
 
 	.portrait {
 		width: 60%;
-		max-width: 560px;
+		max-width: 38.57rem;
 
 		img {
 			width: 100%;
@@ -36,6 +36,7 @@
 	.description {
 		width: 40%;
 		padding-left: 2rem;
+		max-width: 25.7rem;
 
 		p:first-of-type {
 			margin-top: -3px;

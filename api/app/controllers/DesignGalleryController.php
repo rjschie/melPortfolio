@@ -57,7 +57,7 @@ class DesignGalleryController extends \BaseController {
 				throw new Exception("Missing image.");
 			}
 
-			$imageLoc = 'uploads/design-home/' . $new_image['name'];
+			$imageLoc = 'uploads/design/design-home/' . $new_image['name'];
 			file_put_contents(
 				dirname(base_path()) . '/dev/' . $imageLoc,
 				base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
@@ -111,7 +111,7 @@ class DesignGalleryController extends \BaseController {
 //				if(file_exists(dirname(base_path()) . '/dev/' . $gallery->image_url)) {
 //					unlink(dirname(base_path()) . '/dev/' . $gallery->image_url);
 //				}
-				$imageLoc = 'uploads/design-home/' . $new_image['name'];
+				$imageLoc = 'uploads/design/design-home/' . $new_image['name'];
 				file_put_contents(
 					dirname(base_path()) . '/dev/' . $imageLoc,
 					base64_decode(substr($new_image['data'], strpos($new_image['data'], ",")+1))
@@ -138,7 +138,6 @@ class DesignGalleryController extends \BaseController {
 	 */
 	public function destroy($gallery_slug)
 	{
-
 		if(is_numeric($gallery_slug)) {
 			$gallery = DesignGallery::findOrFail($gallery_slug);
 		} else {
@@ -147,8 +146,6 @@ class DesignGalleryController extends \BaseController {
 
 		// TODO: find image and delete it
 		// TODO: find entries and delete them
-
-
 
 		$gallery->delete();
 	}

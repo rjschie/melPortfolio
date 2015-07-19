@@ -98,9 +98,32 @@ angular.module('app.services', [])
 
 	}])
 
-.factory('Photography', ['$resource',
+.factory('PhotoGallery', ['$resource',
 	function($resource) {
-		return $resource("../api/photo_galleries/:slug", { slug: '@slug' });
+		return $resource('../api/photo_galleries/:id', { id : '@id' },
+			{
+				update : { method:'PUT' },
+				reorder : {
+					method: 'PUT',
+					url: '../api/photo_galleries/reorder',
+					isArray: true
+				}
+			}
+		);
+	}])
+
+.factory('PhotoEntry', ['$resource',
+	function($resource) {
+		return $resource('../api/photo_entries/:id', { id : '@id' },
+			{
+				update : { method:'PUT' },
+				reorder : {
+					method: 'PUT',
+					url: '../api/photo_entries/reorder',
+					isArray: true
+				}
+			}
+		);
 	}])
 
 .factory('PhotographyRandom', ['$resource',
