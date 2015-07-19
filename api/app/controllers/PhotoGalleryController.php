@@ -9,7 +9,7 @@ class PhotoGalleryController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Response::json(PhotoGallery::orderBy('id', 'asc')->get(), 200, [], JSON_NUMERIC_CHECK);
+		return Response::json(PhotoGallery::orderBy('sort_pos', 'asc')->get(), 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
