@@ -24,10 +24,16 @@ class PhotoEntryController extends \BaseController {
 			}
 
 			$gallery = PhotoGallery::where('id', '=', $gallery_id)->get(['slug'])[0];
-			$imageLoc = 'uploads/photography/' . $gallery->slug . '/' . $new_image['name'];
+			$imageLoc = 'uploads/photography/' . $gallery->slug . '/';
+			$imageDir = dirname( base_path() ) . '/dev/' . $imageLoc;
+
 			try {
+				if( ! is_dir($imageDir) ) {
+					mkdir($imageDir, 0644, true);
+				}
+
 				file_put_contents(
-					dirname( base_path() ) . '/dev/' . $imageLoc,
+					dirname( base_path() ) . '/dev/' . $imageLoc . $new_image['name'],
 					base64_decode( substr( $new_image[ 'data' ],
 						strpos( $new_image[ 'data' ], "," ) + 1 ) )
 				);
@@ -36,7 +42,7 @@ class PhotoEntryController extends \BaseController {
 			}
 			$entry = PhotoEntry::create([
 				'title'	=> $title,
-				'image_url'	=> $imageLoc,
+				'image_url'	=> $imageLoc . $new_image['name'],
 			]);
 
 			$galleryEntry = PhotoGalleryEntry::create([

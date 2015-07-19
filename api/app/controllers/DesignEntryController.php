@@ -33,10 +33,16 @@ class DesignEntryController extends \BaseController {
 						throw new Exception("Must select an image.");
 					}
 
-					$imageLoc = 'uploads/design/' . $gallery->slug . '/' . $new_image['name'];
+					$imageLoc = 'uploads/design/' . $gallery->slug . '/';
+					$imageDir = dirname(base_path()) . '/dev/' . $imageLoc;
+
 					try {
+						if( ! is_dir($imageDir) ) {
+							mkdir($imageDir, 0644, true);
+						}
+
 						file_put_contents(
-							dirname( base_path() ) . '/dev/' . $imageLoc,
+							dirname( base_path() ) . '/dev/' . $imageLoc . $new_image['name'],
 							base64_decode( substr( $new_image[ 'data' ],
 								strpos( $new_image[ 'data' ], "," ) + 1 ) )
 						);
@@ -45,7 +51,7 @@ class DesignEntryController extends \BaseController {
 					}
 					$entry = DesignEntry::create([
 						'title'	=> $title,
-						'image_url'	=> $imageLoc,
+						'image_url'	=> $imageLoc . $new_image['name'],
 						'type'	=> $type
 					]);
 					break;
@@ -59,10 +65,15 @@ class DesignEntryController extends \BaseController {
 
 					// Upload Poster Image
 					$new_image = json_decode($new_image, true);
-					$imageLoc = 'uploads/design/' . $gallery->slug . '/' . $new_image['name'];
+					$imageLoc = 'uploads/design/' . $gallery->slug . '/';
+					$imageDir = dirname(base_path()) . '/dev/' . $imageLoc;
 					try {
+						if( ! is_dir($imageDir) ) {
+							mkdir($imageDir, 0644, true);
+						}
+
 						file_put_contents(
-							dirname( base_path() ) . '/dev/' . $imageLoc,
+							dirname( base_path() ) . '/dev/' . $imageLoc . $new_image['name'],
 							base64_decode( substr( $new_image[ 'data' ],
 								strpos( $new_image[ 'data' ], "," ) + 1 ) )
 						);
@@ -83,7 +94,7 @@ class DesignEntryController extends \BaseController {
 
 					$entry = DesignEntry::create([
 						'title'	=> $title,
-						'image_url'	=> $imageLoc,
+						'image_url'	=> $imageLoc . $new_image['name'],
 						'video_url'	=> 'uploads/videos/' . $video_url->getClientOriginalName(),
 						'type'	=> $type
 					]);
