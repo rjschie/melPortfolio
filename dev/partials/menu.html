@@ -5,10 +5,10 @@
 		<ul ng-show="$state.includes('design-entries')">
 			<li ng-repeat="gallery in galleries.design"><a ui-sref="design-entries.list({gallerySlug: gallery.slug})" ng-class="{bold : $state.params.gallerySlug == gallery.slug}">{{ gallery.short_title }}</a></li>
 		</ul>
-		<li class="more"><a ui-sref="photography" ng-class="{bold : $state.includes('photography')}">PHOTOGRAPHY</a></li>
-		<ul ng-show="$state.includes('photo-gallery') ||
-						$state.includes('photography')"> <!-- Here for testing; TODO: remove -->
-			<li ng-repeat="gallery in galleries.photo"><a ui-sref="photo-gallery({gallerySlug: gallery.slug})" ng-class="{bold : $state.params.gallerySlug == gallery.slug}">{{ gallery.short_title }}</a></li>
+		<li class="more"><a ui-sref="photo-galleries.list" ng-class="{bold : $state.includes('photo-galleries')}">PHOTOGRAPHY</a></li>
+		<ul ng-show="$state.includes('photo-entries') ||
+						$state.includes('photo-galleries')"> <!-- Here for testing; TODO: remove -->
+			<li ng-repeat="gallery in galleries.photo"><a ui-sref="photo-entries.list({gallerySlug: gallery.slug})" ng-class="{bold : $state.params.gallerySlug == gallery.slug}">{{ gallery.short_title }}</a></li>
 		</ul>
 		<li><a ui-sref="video.list" ng-class="{bold : $state.includes('video')}">VIDEO</a></li>
 		<li><a ui-sref="about" ng-class="{bold : $state.includes('about')}">ABOUT</a></li>

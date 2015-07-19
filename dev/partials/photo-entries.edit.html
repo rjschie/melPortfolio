@@ -1,0 +1,25 @@
+<div ng-if="Auth.isAuth" class="content photoGrid">
+	<a class="list-view_edit-button"
+		 ui-sref="photo-entries.list">X</a>
+	<span sv-root sv-on-sort="updateSort(entries)" sv-part="entries">
+		<div ng-repeat="entry in entries | orderBy : 'sort_pos' track by $index"
+				 class="grid-container grid-container__edit" sv-element>
+			<div class="edit-bar" photo-entry-edit-bar></div>
+
+			<div class="grid-container-ratio">
+				<span class="grid-container-ratio-inner">
+					<img class="grid-image" draggable="false" ng-src="{{ entry.image_url }}">
+				</span>
+			</div>
+			<p class="grid-container-ratio-text">{{ entry.title }}</p>
+		</div>
+	</span>
+	<a ui-sref="photo-entries.edit.add-entry"
+		 class="grid-container grid-container__edit grid-link">
+		<div class="gallery-add-ratio">
+			<div class="gallery-add-shape"></div>
+		</div>
+		<p>Add Entry</p>
+	</a>
+	<div ui-view class="modal-view-container"></div>
+</div>

@@ -1,4 +1,7 @@
 <div class="content">
+	<a ng-if="Auth.isAuth"
+		 class="list-view_edit-button"
+		 ui-sref="photo-galleries.edit">Edit Galleries</a>
 	<div class="photoWall" masonry="{'transitionDuration': '0', 'gutter': '.gutter-sizer'}" preserve-order>
 		<div class="gutter-sizer"></div>
 		<div class="masonry-brick" ng-repeat="entry in entries">

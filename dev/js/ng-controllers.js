@@ -3,8 +3,8 @@
 angular.module('app.controllers', [])
 
 	.controller('BaseController', ['$rootScope', '$scope', '$state', '$stateParams', '$location', 'AuthServ',
-		'Photography', 'DesignGallery',
-		function ($rootScope, $scope, $state, $stateParams, $location, AuthServ, Photography, DesignGallery) {
+		'PhotoGallery', 'DesignGallery',
+		function ($rootScope, $scope, $state, $stateParams, $location, AuthServ, PhotoGallery, DesignGallery) {
 			$scope.$state = $state;
 			$scope.$stateParams = $stateParams;
 
@@ -55,7 +55,7 @@ angular.module('app.controllers', [])
 			$rootScope.videoPlayingSwitcher = false;
 
 			$scope.galleries = {
-				photo : Photography.query(),
+				photo : PhotoGallery.query(),
 				design : DesignGallery.query()
 			};
 		}])
@@ -266,14 +266,160 @@ angular.module('app.controllers', [])
 			};
 		}])
 
-	.controller('PhotographyController', ['$scope', 'Photography', 'PhotographyRandom', '$stateParams',
-		function ($scope, Photography, PhotographyRandom, $stateParams) {
-
-			if($stateParams.gallerySlug) {
-				$scope.entries = Photography.query({slug: $stateParams.gallerySlug});
-			} else {
+	.controller('PhotoGalleryController', ['$scope', 'PhotoGallery', 'PhotoEntry', 'PhotographyRandom', '$stateParams',
+		function ($scope, PhotoGallery, PhotoEntry, PhotographyRandom, $stateParams) {
+			if($scope.entries == undefined && $scope.$state.includes('photo-entries') && $stateParams.gallerySlug) {
+				$scope.entries = PhotoEntry.query({id: $stateParams.gallerySlug});
+			} else if($scope.$state.is('photo-galleries.list')) {
 				$scope.entries = PhotographyRandom.query();
 			}
+		}])
+
+	.controller('PhotoAdminFormController', ['$scope', '$controller', 'PhotoGallery', 'PhotoEntry',
+		'Upload',
+		function($scope, $controller, PhotoGallery, PhotoEntry, Upload) {
+			if( ! $scope.Auth.isAuth) {return false;}
+
+			$controller('PhotoGalleryController', {$scope: $scope});
+
+			$scope.$on('$destroy', function() {
+				$scope.formData = {};
+			});
+			$scope.update = function(formData) {
+				formData.$update().then(function(result) {
+					if( $scope.model[$scope.index ].gallery_id != result.gallery_id ) {
+						$scope.model.splice($scope.index, 1);
+						$scope.$state.go('^');
+					} else {
+						$scope.model[$scope.index] = result;
+						$scope.$state.go('^');
+					}
+				}, function(result) {
+					$scope.error = 'Failed to save: ' + result.data.error;
+					console.log("Error: " + JSON.stringify(result.data));
+				});
+			};
+			$scope.save = function(formData) {
+				var formModel;
+
+				switch($scope.$state.current.name) {
+					case 'photo-galleries.edit.add-gallery':
+						formModel = new PhotoGallery(formData);
+						$scope.model = $scope.$parent.galleries.photo;
+						break;
+					case 'photo-entries.edit.add-entry':
+						formModel = new PhotoEntry(formData);
+						$scope.model = $scope.$parent.entries;
+						break;
+					default:
+						break;
+				}
+				formModel.$save().then(function(result) {
+					$scope.model.push(result);
+					$scope.$state.go('^');
+				},function(result) {
+					$scope.error = 'Failed to save: ' + result.data.error;
+					console.log("Error: " + JSON.stringify(result.data));
+				});
+			};
+			$scope.clear = function() {
+				$scope.$parent.formData = {};
+				$scope.$$childHead.formData = {};
+				$scope.formData = {};
+			};
+
+		}])
+
+	.controller('PhotoGalleryEdit', ['$scope', '$controller', 'PhotoGallery',
+		function($scope, $controller, PhotoGallery) {
+
+			$controller('PhotoAdminFormController', {$scope: $scope});
+
+			$scope.galleries.photo.$promise.then(function(galleryList) {
+				galleryList.forEach(function(gallery, key) {
+					if(gallery.slug == $scope.$stateParams.gallerySlug) {
+						$scope.formData = angular.copy(gallery);
+						$scope.model = $scope.$parent.galleries.photo;
+						$scope.index = key;
+					}
+				});
+			});
+			$scope.updateSort = function($part) {
+				var data = [];
+				var orig = [];
+				for(var i = 0, len = $part.length; i < len; i++) {
+					var item = $part[i];
+					orig[item.id] = item.sort_pos;
+					item.sort_pos = i+1;
+					data[item.id] = { id : item.id, sort_pos: item.sort_pos };
+				}
+				PhotoGallery.reorder(data).$promise.then(function() {
+					//console.log('success');
+				}, function() {
+					//console.log( 'error' );
+					for(var i=0; i < $part.length; i++) {
+						$part[i].sort_pos = orig[$part[i].id];
+					}
+					$part.sort(function(a,b) {
+						return a.sort_pos - b.sort_pos;
+					});
+				});
+			};
+
+		}])
+
+	.controller('PhotoEntryEdit', ['$scope', '$controller', 'PhotoEntry',
+		function($scope, $controller, PhotoEntry) {
+
+			$controller('PhotoAdminFormController', {$scope: $scope});
+
+			if($scope.$state.is('photo-entries.edit.edit-entry')) {
+				$scope.entries.$promise.then(function(entryList) {
+					entryList.forEach(function(entry, key) {
+						if(entry.id == $scope.$stateParams.id) {
+							$scope.formData = angular.copy(entry);
+							$scope.model = $scope.$parent.entries;
+							$scope.index = key;
+						}
+					});
+				});
+			} else {
+				$scope.galleries.photo.$promise.then(function(galleryList) {
+					galleryList.forEach(function(gallery, key) {
+						if( gallery.slug == $scope.$stateParams.gallerySlug ) {
+							$scope.formData = { gallery_id: gallery.id };
+						}
+					});
+				});
+			}
+			$scope.updateSort = function($part) {
+				var data = {};
+				var entries = {};
+				var orig = [];
+
+				for(var i = 0, len = $part.length; i < len; i++) {
+					var item = $part[i];
+					orig[item.id] = item.sort_pos;
+					item.sort_pos = i+1;
+					entries[item.id] = { id : item.id, sort_pos: item.sort_pos };
+				}
+
+				data.gallery_id = $part[0].gallery_id;
+				data.entries = entries;
+
+				PhotoEntry.reorder(data).$promise.then(function() {
+					//console.log('success');
+				}, function() {
+					console.log( 'error' );
+					for(var i=0; i < $part.length; i++) {
+						$part[i].sort_pos = orig[$part[i].id];
+					}
+					$part.sort(function(a,b) {
+						return a.sort_pos - b.sort_pos;
+					});
+				});
+
+			};
 		}])
 
 	.controller('VideoController', ['$scope', 'Video',

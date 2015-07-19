@@ -1,0 +1,37 @@
+<div modal>
+	<form class="form-content modal">
+		<div class="form-block form-error" ng-show="error">
+			<p>{{ error }}</p>
+		</div>
+		<div class="form-block first">
+			<label for="title" class="form-label">Title</label>
+			<input ng-model="formData.title"
+						 id="title"
+						 class="form-input border"
+						 type="text"
+						 required>
+		</div>
+		<div class="form-block">
+			<label for="short_title" class="form-label">Menu Title</label>
+			<input ng-model="formData.short_title"
+						 id="short_title"
+						 class="form-input border"
+						 required
+						 type="text">
+		</div>
+		<div class="form-block">
+			<label for="slug" class="form-label">Slug</label>
+			<input ng-model="formData.slug"
+						 id="slug"
+						 class="form-input border"
+						 required
+						 type="text">
+		</div>
+		<div class="form-block last">
+			<input class="form-button"
+						 type="submit"
+						 ng-click="update(formData)"
+						 value="Update">
+		</div>
+	</form>
+</div>
