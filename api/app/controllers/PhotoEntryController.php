@@ -38,7 +38,7 @@ class PhotoEntryController extends \BaseController {
 						strpos( $new_image[ 'data' ], "," ) + 1 ) )
 				);
 			} catch(Exception $e) {
-				return Response::make(['error' => "Couldn't upload image: ".$e->getMessage()], 500);
+				return Response::json(['error' => "Couldn't upload image: ".$e->getMessage()], 500);
 			}
 			$entry = PhotoEntry::create([
 				'title'	=> $title,
@@ -55,7 +55,7 @@ class PhotoEntryController extends \BaseController {
 			$entry->sort_pos = $galleryEntry->sort_pos;
 
 		} catch(Exception $e) {
-			return Response::make(['error' => $e->getMessage()], 500);
+			return Response::json(['error' => $e->getMessage()], 500);
 		}
 
 		return Response::json($entry, 201, [], JSON_NUMERIC_CHECK);
@@ -107,7 +107,7 @@ class PhotoEntryController extends \BaseController {
 
 		} catch(Exception $e) {
 
-			return Response::make(['error' => $e->getMessage()], 500);
+			return Response::json(['error' => $e->getMessage()], 500);
 		}
 
 		return Response::json($entry, 200, [], JSON_NUMERIC_CHECK);

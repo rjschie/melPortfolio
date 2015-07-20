@@ -62,7 +62,7 @@ class PhotoGalleryController extends \BaseController {
 
 		} catch(Exception $e) {
 
-			return Response::make(['error' => $e->getMessage()], 500);
+			return Response::json(['error' => $e->getMessage()], 500);
 		}
 
 		return Response::json($newGallery, 201, [], JSON_NUMERIC_CHECK);
@@ -100,7 +100,7 @@ class PhotoGalleryController extends \BaseController {
 
 		} catch(Exception $e) {
 
-			return Response::make(['error' => $e->getMessage()], 500);
+			return Response::json(['error' => $e->getMessage()], 500);
 		}
 
 		return Response::json($gallery, 200, [], JSON_NUMERIC_CHECK);

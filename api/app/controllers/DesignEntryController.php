@@ -47,7 +47,7 @@ class DesignEntryController extends \BaseController {
 								strpos( $new_image[ 'data' ], "," ) + 1 ) )
 						);
 					} catch(Exception $e) {
-						return Response::make("{\"error\":\"Couldn't upload image: ".$e->getMessage()."\"}", 500);
+						return Response::json(['error' => "Couldn't upload image: ".$e->getMessage()], 500);
 					}
 					$entry = DesignEntry::create([
 						'title'	=> $title,
@@ -78,7 +78,7 @@ class DesignEntryController extends \BaseController {
 								strpos( $new_image[ 'data' ], "," ) + 1 ) )
 						);
 					} catch(Exception $e) {
-						return Response::make("{\"error\":\"Couldn't upload image: ".$e->getMessage()."\"}", 500);
+						return Response::json(['error' => "Couldn't upload image: ".$e->getMessage()], 500);
 					}
 
 					// Upload Video
@@ -89,7 +89,7 @@ class DesignEntryController extends \BaseController {
 							return Response::json(["error" => "Couldn't move video."], 400);
 						}
 					} catch(Exception $e) {
-						return Response::make("{\"error\":\"Couldn't upload video: ".$e->getMessage()."\"}", 500);
+						return Response::json(['error' => "Couldn't upload video: ".$e->getMessage()], 500);
 					}
 
 					$entry = DesignEntry::create([
@@ -124,7 +124,7 @@ class DesignEntryController extends \BaseController {
 			$entry->sort_pos = $galleryEntry->sort_pos;
 
 		} catch(Exception $e) {
-			return Response::make("{\"error\":\"".$e->getMessage()."\"}", 500);
+			return Response::json(['error' => $e->getMessage()], 500);
 		}
 
 		return Response::json($entry, 201, [], JSON_NUMERIC_CHECK);
@@ -195,7 +195,7 @@ class DesignEntryController extends \BaseController {
 
 		} catch(Exception $e) {
 
-			return Response::make("{\"error\":\"".$e->getMessage()."\"}", 500);
+			return Response::json(['error' => $e->getMessage()], 500);
 		}
 
 		return Response::json($entry, 200, [], JSON_NUMERIC_CHECK);
