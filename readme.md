@@ -3,6 +3,5 @@
 #### Description
 Portfolio for Melissa Leith.
 
-#### Install
-- In `/` : `npm install`
-- In `/api` : `composer install`
+#### Instructions
+Please check `develop` branch for API files, and most up-to-date code
